@@ -10,8 +10,11 @@
 </head>
 
 <body>
+    
+        @include('layouts.subviews.navbar')
+    
+    </div>
 
-    @include('layouts.subviews.navbar')
 
 </body>
 
