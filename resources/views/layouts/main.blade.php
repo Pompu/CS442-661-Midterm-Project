@@ -17,9 +17,3 @@
 </body>
 
 </html>
-
-git config pull.rebase false
-git pull origin main
-> แก้คอนฟลิกใน vscode
-git add .
-git commit -m "Fix conflict"   

@@ -27,6 +27,10 @@ Route::get('/myevents/applicants', function () {
     return view('myevents.applicants');
 });
 
+Route::get('/myevents/details', function () {
+    return view('myevents.details');
+});
+
 Route::get('/events', [EventController::class, 'index'])->name("event");;
 
 Route::middleware('auth')->group(function () {
