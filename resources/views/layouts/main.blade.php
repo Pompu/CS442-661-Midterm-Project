@@ -10,11 +10,6 @@
 </head>
 
 <body>
-    
-        @include('layouts.subviews.navbar')
-    
-    </div>
-
     @include('layouts.subviews.navbar')
     <main class="bg-gray-100 mt-2 p-4 min-h-screen">
         @yield('content')
@@ -22,3 +17,9 @@
 </body>
 
 </html>
+
+git config pull.rebase false
+git pull origin main
+> แก้คอนฟลิกใน vscode
+git add .
+git commit -m "Fix conflict"   

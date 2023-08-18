@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="bg-white shadow-md rounded-md overflow-hidden max-w-lg mx-auto mt-16">
-        <div class="bg-teal-500 py-2 px-4">
-            <h2 class="text-xl font-semibold text-gray-800"> Applicant List </h2>
+    <div class="bg-white shadow sm:rounded-lg overflow-hidden max-w-lg mx-auto mt-16">
+        <div class="bg-indigo-500 py-2 px-4">
+            <h2 class="text-xl font-semibold text-white-800"> Applicant List </h2>
         </div>
         <ul class="divide-y divide-gray-200">
             
