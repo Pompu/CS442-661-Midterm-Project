@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,7 @@ Route::get('/myevents/details', function () {
 });
 
 Route::get('/events', [EventController::class, 'index'])->name("event");;
+Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
