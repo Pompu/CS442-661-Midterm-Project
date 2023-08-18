@@ -23,7 +23,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+Route::get('/myevents/applicants', function () {
+    return view('myevents.applicants');
+});
 
 Route::get('/events', [EventController::class, 'index'])->name("event");;
 
