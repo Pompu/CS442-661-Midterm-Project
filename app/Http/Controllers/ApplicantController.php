@@ -10,3 +10,4 @@ class ApplicantController extends Controller
         return view('myevents.applicants');
     }
 }
+
