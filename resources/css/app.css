@@ -74,3 +74,38 @@
     width: 500px;
     padding: 20px;
 }
+
+.budget-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-gap: 2rem;
+    margin-top: 70px;
+}
+
+.budget-item {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.budget-item:hover {
+    outline: 1.8px solid rgb(74, 98, 133);
+}
+
+.budget-detail {
+    padding: 0.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.budget-image img{
+    height: 200px;
+    width: 250px;
+    object-fit: cover;
+}
