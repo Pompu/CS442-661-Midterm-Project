@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
     <div class="container">
+        <div class="text-2xl font-semibold">My Events</div>
         <div class="event-container">
             {{-- loop  --}}
             <div class="event-item">

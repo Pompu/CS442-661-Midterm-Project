@@ -6,6 +6,7 @@
 </head>
 <body>
     <div class="container">
+        <div class="text-2xl font-semibold">Event Applied</div>
         <div class="event-container">
             {{-- loop  --}}
             <div class="event-item">

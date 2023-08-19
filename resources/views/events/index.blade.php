@@ -48,7 +48,7 @@
     </div>
 
     <div class="container">
-        <div class="text-2xl">Upcoming Events</div>
+        <div class="text-2xl font-semibold">Upcoming Events</div>
 
         <div class="event-container">
             @foreach ($events as $event)
