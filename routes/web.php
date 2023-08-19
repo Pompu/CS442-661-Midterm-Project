@@ -39,8 +39,11 @@ Route::get('/certificate', [HistoryController::class, 'certificate'])->name("his
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
 
-Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents.myevents");;
-Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");;
+Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
+Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");
+Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
+Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
+Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
 
 Route::get('/myevents/applicants', function () {
     return view('myevents.applicants');

@@ -9,7 +9,7 @@
   <ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
 
     <li>
-      <div class=" relative mx-auto text-gray-600">
+      <div class="relative mx-auto text-gray-600">
         <input class="border border-gray-300 placeholder-current h-10 px-5 pr-16  rounded-lg text-sm focus:outline-none dark:bg-gray-500 dark:border-gray-50 dark:text-gray-200 " type="search" name="search" placeholder="Search">
 
         <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
