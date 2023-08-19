@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     @include('layouts.subviews.navbar')
     <main class="bg-gray-100 p-4 min-h-screen text-black">
         @yield('content')
