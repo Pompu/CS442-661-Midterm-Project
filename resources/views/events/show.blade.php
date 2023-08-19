@@ -4,7 +4,7 @@
     <div class="mx-auto flex flex-wrap py-5">
         <div class="grid-column: 1" style="margin-left: 250px; display: flex; flex-direction: column; align-items: center;">
             <div class="event-detail-image">
-                <img src="https://s3-ap-southeast-1.amazonaws.com/tm-img-poster-event/32232240164211ee911101117567899b.png?opt=mild&resize=w200,h290" alt="{{ $event->name }}">
+                <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
             </div>
 
             @if (Auth::check())
