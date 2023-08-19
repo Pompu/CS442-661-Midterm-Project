@@ -34,8 +34,6 @@ class EventController extends Controller
         ]);
     }
 
-    
-
     private function sortEvents($events) {
         $sortedEvents = $events->sortBy('date');
 

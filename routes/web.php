@@ -38,7 +38,6 @@ Route::get('/registered', [HistoryController::class, 'register'])->name("history
 Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
-
 Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents.myevents");;
 Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");;
 
@@ -49,8 +48,6 @@ Route::get('/myevents/applicants', function () {
 Route::get('/myevents/details', function () {
     return view('myevents.details');
 })->name('myevents.details');
-
-Route::get('/events', [EventController::class, 'index'])->name("event");;
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/apply', [EventController::class, 'apply'])->name('events.apply');
