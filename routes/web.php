@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,12 +26,17 @@ Route::get('/dashboard', function () {
 
 Route::get('/myevents/applicants', function () {
     return view('myevents.applicants');
-});
+})->name('myevents.applicants');
+
+Route::get('/myevents/details', function () {
+    return view('myevents.details');
+})->name('myevents.details');
 
 Route::get('/apply/verify', function () {
     return view('form.verify');
 });
 Route::get('/events', [EventController::class, 'index'])->name("event");;
+Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

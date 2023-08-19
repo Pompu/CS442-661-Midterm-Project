@@ -2,11 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use DateTime;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
     public function index() {
-        return view('events.index');
+        $events = Event::get();
+
+        $sortedEvents = $this->sortEvents($events);
+        $filteredEvents = $this->filterUpcomingEvents($sortedEvents);
+
+        return view('events.index', [
+            'events' => $filteredEvents
+        ]);
+    }
+
+    private function sortEvents($events) {
+        $sortedEvents = $events->sortBy('date');
+
+        return $sortedEvents;
+    }
+
+    private function filterUpcomingEvents($events) {
+        $currentDate = new DateTime('today');
+
+        $filteredEvents = $events->filter(function ($event) use ($currentDate) {
+            return strtotime($event->date) >= $currentDate->getTimestamp();
+        });
+
+        return $filteredEvents;
     }
 }
