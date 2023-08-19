@@ -57,6 +57,7 @@ Route::get('/apply/verify', function () {
 });
 
 Route::get('/boards', [BoardController::class, 'index'])->name("board");
+Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("board.team");
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
