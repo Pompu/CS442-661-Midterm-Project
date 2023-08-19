@@ -16,8 +16,16 @@ class BudgetController extends Controller
 
     public function show(Budget $budget)
     {
-        return view('budget.show', [
+        return view('budgets.show', [
             'budget' => $budget
         ]);
+    }
+
+    public function updateStatus(Request $request, Budget $budget)
+    {
+        $budget->status = 'completed';
+        $budget->save();
+
+        return redirect()->route('budgets.show', ['budget' => $budget]);
     }
 }

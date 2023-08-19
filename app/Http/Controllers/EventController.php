@@ -28,20 +28,18 @@ class EventController extends Controller
         ]);
     }
 
-    public function apply(Request $request,Event $event)
-    {
-        return view('events.apply', [
-            'user' => $request->user(),
-            'event' => $event
-        ]);
-    }
-
-    
 
     private function sortEvents($events) {
         $sortedEvents = $events->sortBy('date');
 
         return $sortedEvents;
+    }
+
+    public function update(Request $request, Event $event)
+    {
+        $event->name = $request->get('name');
+        $event->save();
+        return redirect()->route('myevents.detail', ['event' =>  $event]);
     }
 
     private function filterUpcomingEvents($events) {
