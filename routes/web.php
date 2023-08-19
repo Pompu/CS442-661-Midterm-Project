@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterHistoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +26,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/historys/register', [HistoryController::class, 'register'])->name("historys.register");
+Route::get('/historys/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
 
-
-Route::get('/events', [EventController::class, 'index'])->name("event");;
+Route::get('/events', [EventController::class, 'index'])->name("event");
+Route::get('/events/my-event', [EventController::class, 'myEvent'])->name("events.my-event");;
+Route::get('/events/create-event', [EventController::class, 'createEvent'])->name("events.create-event");;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
