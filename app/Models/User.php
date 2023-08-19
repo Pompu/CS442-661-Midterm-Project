@@ -12,6 +12,16 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function isMember() : bool
+    {
+        return $this->role = 'MEMBER';
+    }
+
+    public function isOfficer() : bool
+    {
+        return $this->role = 'OFFICER';
+    }
+
     /**
      * The attributes that are mass assignable.
      *
