@@ -19,7 +19,9 @@ class BoardController extends Controller
     }
 
     public function viewTeamBoard() {
-        return view('boards.team');
+        return view('boards.team',[
+            //'boards' => $boards
+        ]);
     }
     /**
      * Show the form for creating a new resource.
