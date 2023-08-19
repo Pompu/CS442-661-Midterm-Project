@@ -24,7 +24,7 @@
 
 
   <div class="hidden lg:flex">
-    <a class=" py-1.5 px-2 m-1 text-center dark:text-gray-300  " href="/events">
+    <a class=" py-1.5 px-2 m-1 text-center dark:text-gray-300  " href="/apply">
       HOME
     </a>
     @if(Auth::check())
