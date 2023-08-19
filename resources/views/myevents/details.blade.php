@@ -18,28 +18,28 @@
               <label class="block text-gray-700 text-sm font-bold mb-2" for="eventName">
                 Event Name
               </label> 
-              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none " 
+              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 " 
               id="eventName" type="text" >
             </div>
             <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
                 Address
               </label>
-              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none " 
+              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 " 
               id="address" type="text" >
             </div>
             <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
                 District
               </label>
-              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none " 
+              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
               id="district" type="text" >
             </div>
             <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
                 Province
               </label>
-              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none" 
+              <input class="shadow appearance-none border-gray-300 rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
               id="province" type="text" >
             </div>
             
@@ -47,11 +47,10 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="eventDetail">
               Event Detail
             </label>
-            <input class="shadow appearance-none border-gray-300 rounded w-96 h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-            id="eventDetail" type="text"  >
+        
             </div>
-            <input class="shadow appearance-none border rounded w-96 py-2 px-3 bg-emerald-400 text-grey-700 leading-tight focus:outline-none focus:shadow-outline font-bold text-sm" 
-            id="createSubmit" type="submit">
+            <button class="shadow appearance-none border rounded w-96 py-2 px-3 bg-emerald-400 text-grey-700 leading-tight focus:ring-violet-600 focus:shadow-outline font-bold text-sm" >
+            Submit </button>
         </div>
         
         </div>
