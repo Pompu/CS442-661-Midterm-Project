@@ -18,9 +18,9 @@
 
           @if(auth()->user()->role === 'MEMBER')
           <x-dropdown-link :href="route('historys.register')">
-            {{ __('Event applied')  }} 
+            {{ __('Event Applied') }}
           </x-dropdown-link>
-          <x-dropdown-link :href="route('historys.certificate')" >
+          <x-dropdown-link :href="route('historys.certificate')">
             {{ __('Certificate') }}
           </x-dropdown-link>
           <x-dropdown-link :href="route('myevents.myevents')">
