@@ -17,7 +17,7 @@
     <!-- Author: FormBold Team -->
     <!-- Learn More: https://formbold.com -->
     <div class="mx-auto w-full max-w-[550px]">
-        <form action="" method="POST">
+        <form action="{{ route('application.store' , ['event' => $event])  }}" method="POST">
             @csrf
             <div class="-mx-3 flex">
                 <div class="w-full px-3 sm:w-1/2">
@@ -43,19 +43,7 @@
                 <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" readonly value="{{ $user->email }}" required autocomplete="username" />
                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
             </div>
-
-
-
-            <div class="flex mb-4"></div>
-
-            <div class="mb-6">
-                <x-input-label for="large-input" :value="__('Reason')" />
-                <x-text-input type="text" id="large-input" class="mt-1 block w-full" />
-                <p class="mt-3 text-sm leading-6 text-gray-600">Tell me why do you want to join us.</p>
-            </div>
-
-
-
+            
             <div class="flex mb-4"></div>
             <div class="flex justify-center">
                 <button type="submit" class=" hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">

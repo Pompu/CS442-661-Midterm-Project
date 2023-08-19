@@ -48,14 +48,6 @@
 
             <div class="flex mb-4"></div>
 
-            <div class="mb-6">
-                <x-input-label for="large-input" :value="__('Reason')" />
-                <x-text-input type="text" id="large-input"  readonly value="" class="mt-1 block w-full" />
-               
-            </div>
-
-
-
             <div class="flex mb-4"></div>
             <div class="flex justify-center">
                 <button type="submit" class=" hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">

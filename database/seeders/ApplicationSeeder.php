@@ -3,16 +3,17 @@
 namespace Database\Seeders;
 
 use App\Models\Applicant;
+use App\Models\Application;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ApplicantSeeder extends Seeder
+class ApplicationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Applicant::factory(10)->create();
+        Application::factory(10)->create();
     }
 }
