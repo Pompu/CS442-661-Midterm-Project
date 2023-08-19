@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\BoardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,13 +38,15 @@ Route::get('/myevents/details', function () {
     return view('myevents.details');
 })->name('myevents.details');
 
-Route::get('/events', [EventController::class, 'index'])->name("event");
+Route::get('/events', [EventController::class, 'index'])->name("event");;
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 
 Route::get('/apply/verify', function () {
     return view('form.verify');
 });
+
+Route::get('/boards', [BoardController::class, 'index'])->name("board");
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
