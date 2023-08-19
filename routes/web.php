@@ -33,10 +33,9 @@ Route::get('/myevents/details', function () {
 Route::get('/events', [EventController::class, 'index'])->name("event");
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events/{event}/apply', [EventController::class, 'apply'])->name('events.apply');
 
-Route::get('/apply/verify', function () {
-    return view('form.verify');
-});
+Route::get('/verify', function () { return view('events.verify');});
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
@@ -44,8 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/apply', [ProfileController::class, 'apply'])->name('profile.apply');
-
     });
 ;
 
