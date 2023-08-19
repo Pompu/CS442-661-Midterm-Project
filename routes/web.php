@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
@@ -16,7 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [EventController::class, 'index'])->name("home");
+Route::get('/', function () {
+    if (auth()->check()) {
+        if (auth()->user()->role === 'OFFICER') {
+            return redirect('/budgets');
+        }
+        return redirect('/events');
+    } else {
+        return redirect('/events');
+    }
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -45,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/apply', [ProfileController::class, 'apply'])->name('profile.apply');
-
+    Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
     });
 ;
 

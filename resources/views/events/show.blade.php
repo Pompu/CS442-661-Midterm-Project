@@ -7,7 +7,7 @@
                 <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
             </div>
 
-            @if (Auth::check())
+            @if (Auth::check() & auth()->user()->role === 'MEMBER')
                 <div style="margin-block: 50px">
                     <a href="{{ route('profile.apply') }}">
                         <button class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">

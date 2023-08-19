@@ -16,6 +16,7 @@
             {{ __('Profile') }}
           </x-dropdown-link>
 
+          @if(auth()->user()->role === 'MEMBER')
           <x-dropdown-link >
             {{ __('Event applied') }}
           </x-dropdown-link>
@@ -25,6 +26,7 @@
           <x-dropdown-link >
             {{ __('Myevent') }}
           </x-dropdown-link>
+          @endif
 
           <!-- Authentication -->
           <form method="POST" action="{{ route('logout') }}">
