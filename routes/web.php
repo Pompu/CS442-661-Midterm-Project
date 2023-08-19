@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegisterHistoryController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
