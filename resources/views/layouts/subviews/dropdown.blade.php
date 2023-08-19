@@ -22,7 +22,7 @@
           <x-dropdown-link >
             {{ __('Certificate') }}
           </x-dropdown-link>
-          <x-dropdown-link >
+          <x-dropdown-link>
             {{ __('Myevent') }}
           </x-dropdown-link>
 
