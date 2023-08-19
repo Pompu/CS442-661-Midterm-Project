@@ -18,6 +18,9 @@ class BoardController extends Controller
         ]);
     }
 
+    public function viewTeamBoard() {
+        return view('boards.team');
+    }
     /**
      * Show the form for creating a new resource.
      */

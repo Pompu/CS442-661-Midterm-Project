@@ -20,14 +20,6 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
-
-    public function apply(Request $request): View
-    {
-        return view('form.apply', [
-            'user' => $request->user(),
-        ]);
-    }
-
     /**
      * Update the user's profile information.
      */
