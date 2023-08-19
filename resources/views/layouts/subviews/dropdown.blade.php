@@ -17,14 +17,14 @@
           </x-dropdown-link>
 
           @if(auth()->user()->role === 'MEMBER')
-          <x-dropdown-link >
-            {{ __('Event applied') }}
+          <x-dropdown-link :href="route('historys.register')">
+            {{ __('Event applied')  }} 
           </x-dropdown-link>
-          <x-dropdown-link >
+          <x-dropdown-link :href="route('historys.certificate')" >
             {{ __('Certificate') }}
           </x-dropdown-link>
-          <x-dropdown-link>
-            {{ __('Myevent') }}
+          <x-dropdown-link :href="route('myevents.myevents')">
+            {{ __('My Event') }}
           </x-dropdown-link>
           @endif
 

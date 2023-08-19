@@ -23,14 +23,15 @@
         src="https://cdn.discordapp.com/attachments/982119215723053096/1142118215275778138/IMG_2916.jpg">
     </div>
 
-    <div class="max-h-full max-w-full mx-14 shadow-md border-black border flex justify-center items-center rounded-2xl hover:bg-gray-300 h-96">
+    <a href=" {{ route('myevents.create-event')}}" class="max-h-full max-w-full mx-14 shadow-md border-black border flex justify-center items-center rounded-2xl hover:bg-gray-300 h-96" 
+    method="POST" >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
         <p class="text-xl">
             Create Event
         </p>
-    </div>
+</a>
 </div>
 
 
