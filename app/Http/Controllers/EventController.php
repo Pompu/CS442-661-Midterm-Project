@@ -55,6 +55,6 @@ class EventController extends Controller
         return view('myevents.myevents');
     }
     public function createEvent() {
-        return view('myevents.create-event');
+        return view('events.create-event');
     }
 }

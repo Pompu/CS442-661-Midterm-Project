@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
+
 @section('content')
+
 
 <head>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
