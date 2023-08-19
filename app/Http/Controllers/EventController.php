@@ -26,6 +26,16 @@ class EventController extends Controller
         ]);
     }
 
+    public function apply(Request $request,Event $event)
+    {
+        return view('events.apply', [
+            'user' => $request->user(),
+            'event' => $event
+        ]);
+    }
+
+    
+
     private function sortEvents($events) {
         $sortedEvents = $events->sortBy('date');
 
