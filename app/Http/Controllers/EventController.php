@@ -41,4 +41,10 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
+    public function myEvent() {
+        return view('events.my-event');
+    }
+    public function createEvent() {
+        return view('events.create-event');
+    }
 }
