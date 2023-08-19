@@ -11,9 +11,9 @@
 
 <body>
     @include('layouts.subviews.navbar')
-    <main class="bg-gray-100 mt-2 p-4 min-h-screen">
+    <main class="bg-gray-100 p-4 min-h-screen text-black">
         @yield('content')
-        </main>
+    </main>
 </body>
 
 </html>
