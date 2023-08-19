@@ -32,7 +32,8 @@
 }
 
 .event-item:hover {
-    outline: 1.8px solid rgb(74, 98, 133);
+    box-shadow: 0 0 0 2px #6d28d9;
+    
 }
 
 .event-detail {
@@ -93,7 +94,7 @@
 }
 
 .budget-item:hover {
-    outline: 1.8px solid rgb(74, 98, 133);
+    box-shadow: 0 0 0 2px #6d28d9;
 }
 
 .budget-detail {

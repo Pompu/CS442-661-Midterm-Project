@@ -33,6 +33,13 @@ class EventController extends Controller
         return $sortedEvents;
     }
 
+    public function update(Request $request, Event $event)
+    {
+        $event->name = $request->get('name');
+        $event->save();
+        return redirect()->route('myevents.detail', ['event' =>  $event]);
+    }
+
     private function filterUpcomingEvents($events) {
         $currentDate = new DateTime('today');
 
@@ -42,6 +49,7 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
+
     public function myEvent() {
         return view('myevents.myevents');
     }
