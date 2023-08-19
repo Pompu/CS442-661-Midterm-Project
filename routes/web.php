@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\BoardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ Route::get('/apply/verify', function () {
     return view('form.verify');
 });
 Route::get('/events', [EventController::class, 'index'])->name("event");;
-Route::get('/teams', [TeamController::class, 'index'])->name("team");
+Route::get('/boards', [BoardController::class, 'index'])->name("board");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
