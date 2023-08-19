@@ -23,7 +23,7 @@
 
         <div class="budget-container">
             @foreach ($budgets as $budget)
-            {{-- <a href="{{ route('budgets.show', ['budget' => $budget]) }}"> --}}
+            <a href="{{ route('budgets.show', ['budget' => $budget]) }}">
                 <div class="budget-item">
                     <div class="budget-image">
                         <img src="{{ $budget->event->image_path }}" alt="{{ $budget->event->name }}">
@@ -33,7 +33,7 @@
                         <p class="text-gray-600 text-sm">{{ $budget->cost }}</p>
                     </div>
                 </div>
-            {{-- </a> --}}
+            </a>
             @endforeach
         </div>
     </div>
