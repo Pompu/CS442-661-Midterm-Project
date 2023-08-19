@@ -19,8 +19,9 @@ class BoardController extends Controller
     }
 
     public function viewTeamBoard() {
+        $boards = Board::get();
         return view('boards.team',[
-            //'boards' => $boards
+            'boards' => $boards
         ]);
     }
     /**
