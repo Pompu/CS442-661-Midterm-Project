@@ -7,14 +7,16 @@
                 <img src="https://s3-ap-southeast-1.amazonaws.com/tm-img-poster-event/32232240164211ee911101117567899b.png?opt=mild&resize=w200,h290" alt="{{ $event->name }}">
             </div>
 
-            <div style="margin-block: 50px">
-                <a>
-                    <button class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">
-                        <div class="absolute inset-0 w-3 bg-purple-700 transition-all duration-250 ease-out group-hover:w-full"></div>
-                        <span class="relative group-hover:text-white">Apply</span>
-                    </button>
-                </a>
-            </div>
+            @if (Auth::check())
+                <div style="margin-block: 50px">
+                    <a href="{{ route('profile.apply') }}">
+                        <button class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">
+                            <div class="absolute inset-0 w-3 bg-purple-700 transition-all duration-250 ease-out group-hover:w-full"></div>
+                            <span class="relative group-hover:text-white">Apply</span>
+                        </button>
+                    </a>
+                </div>
+            @endif
         </div>
 
         <div class="grid-column:2" style="margin-left: 100px">
