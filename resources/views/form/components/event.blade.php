@@ -7,7 +7,7 @@
                     <h2 class="text-sm title-font text-gray-500 tracking-widest">EVENT NAME</h2>
                     <h1 class="text-gray-900 text-6xl title-font font-medium mb-1">Lorem, ipsum dolor </h1>
                     <div class="flex mb-4"></div>
-                    <div class="text-lg font-bold">
+                    <div class="text-sm font-bold">
                         <div class="flex">
                             <span class="mr-3">Date</span>
                             <p class="leading-relaxed">10 December 2020 at 19:00 - 22:00</p>
