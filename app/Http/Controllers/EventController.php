@@ -19,6 +19,13 @@ class EventController extends Controller
         ]);
     }
 
+    public function show(Event $event)
+    {
+        return view('events.show', [
+            'event' => $event
+        ]);
+    }
+
     private function sortEvents($events) {
         $sortedEvents = $events->sortBy('date');
 
