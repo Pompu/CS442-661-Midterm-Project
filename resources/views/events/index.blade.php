@@ -14,15 +14,15 @@
                 <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
                     <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
-                    <img src="{{ $events->random()->image_path }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
+                    <img src="{{ asset('storage/' . $image_path[0]) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ $events->random()->image_path }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
+                    <img src="{{ asset('storage/' . $image_path[1]) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ $events->random()->image_path }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
+                    <img src="{{ asset('storage/' . $image_path[2]) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
                 </div>
             </div>
 
@@ -75,7 +75,7 @@
             <a href="{{ route('events.show', ['event' => $event]) }}">
                 <div class="event-item">
                     <div class="event-image">
-                        <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
+                        <img src="{{ asset('storage/' . $event->image_path) }}" alt="{{ $event->name }}">
                     </div>
                     <div class="event-detail">
                         <p class="font-semibold text-violet-700">{{ date('d M Y', strtotime($event->date)) }}</p>

@@ -33,9 +33,16 @@ class EventController extends Controller
                 return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
             });
         }
-
+        //dd($events->rand(0, count($events)));
+        // dd($events[Event::all()->random()]->getAttributes()['image_path'] );
+        $array = [
+            $events[0]->getAttributes()['image_path'],
+            $events[1]->getAttributes()['image_path'],
+            $events[2]->getAttributes()['image_path']
+        ];
         return view('events.index', [
-            'events' => $events
+            'events' => $events,
+            'image_path' => $array
         ]);
     }
 
