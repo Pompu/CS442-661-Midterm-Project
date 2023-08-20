@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('detail');
-            $table->string('location');
-            $table->date('date');
+            $table->dateTime('dateTime');
             $table->string('image_path')->nullable();
+            $table->string('address');
+            $table->string('province');
+            $table->string('district');
+            $table->string('subdistrict');
+            $table->string('location_detail')->nullable();
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
+
 </head>
 <body>
     <div class="max-w-2xl mx-auto my-auto" style="margin-block: 10">
@@ -58,9 +58,9 @@
                         <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
                     </div>
                     <div class="event-detail">
-                        <p class="font-semibold text-violet-700">{{ date("d M Y", strtotime($event->date)) }}</p>
+                        <p class="font-semibold text-violet-700">{{ date('d M Y', strtotime($event->dateTime)) }}</p>
                         <h2 class="event-name">  {{ $event->name }}</h2>
-                        <p class="text-gray-600 text-sm">{{ $event->location }}</p>
+                        <p class="event-location" style="margin-block: 4px">{{ $event->province }} {{ $event->district }}</p>
                     </div>
                 </div>
             </a>

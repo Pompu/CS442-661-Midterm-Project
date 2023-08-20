@@ -30,7 +30,7 @@ class EventController extends Controller
 
 
     private function sortEvents($events) {
-        $sortedEvents = $events->sortBy('date');
+        $sortedEvents = $events->sortBy('dateTime');
 
         return $sortedEvents;
     }
@@ -43,10 +43,10 @@ class EventController extends Controller
     }
 
     private function filterUpcomingEvents($events) {
-        $currentDate = new DateTime('today');
+        $currentDateTime = now();
 
-        $filteredEvents = $events->filter(function ($event) use ($currentDate) {
-            return strtotime($event->date) >= $currentDate->getTimestamp();
+        $filteredEvents = $events->filter(function ($event) use ($currentDateTime) {
+            return $event->dateTime >= $currentDateTime;
         });
 
         return $filteredEvents;
@@ -61,20 +61,20 @@ class EventController extends Controller
     }
     public function getDistrict(Request $request) {
         $selectedValue = $request->input('province_id');
-    
+
         $districts = DB::table('masterdistrict')
                         ->where('province_id', $selectedValue)
                         ->get();
-    
+
         return response()->json(['districts' => $districts]);
     }
     public function getSubdistrict(Request $request) {
         $selectedValue = $request->input('district_id');
-    
+
         $subdistricts = DB::table('mastersubdistrict')
                         ->where('district_id', $selectedValue)
                         ->get();
-    
+
         return response()->json(['subdistricts' => $subdistricts]);
     }
     public function storeEvent(Request $request) {

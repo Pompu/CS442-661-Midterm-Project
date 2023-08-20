@@ -19,7 +19,7 @@ class BudgetFactory extends Factory
         return [
             'event_id' => fake()->numberBetween(1,20),
             'cost' => fake()->randomFloat(2,0,10000),
-            'description' => fake()->paragraph()
+            'description' => fake()->sentence(10)
         ];
     }
 }
