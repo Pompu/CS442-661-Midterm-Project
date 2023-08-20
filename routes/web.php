@@ -45,6 +45,11 @@ Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->n
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
 Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
 Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
+Route::get('/myevents/details', [EventController::class, 'getDetails'])->name("myevents.details");
+Route::get('/myevents/applicants', function () {
+    return view('myevents.applicants');
+})->name('myevents.applicants');
+
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
