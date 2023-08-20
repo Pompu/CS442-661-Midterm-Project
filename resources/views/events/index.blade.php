@@ -21,6 +21,7 @@
                     </div>
                 @endforeach
             </div>
+            
 
             <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
                 <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
@@ -40,10 +41,13 @@
                 </span>
             </button>
         </div>
+        
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
     </div>
+    
 
     <div class="container">
+        
         <div class="flex justify-between items-center mb-4 p-4 rounded-lg bg-white">
             <div class="flex items-center">
                 <div class="text-2xl font-semibold">Upcoming Events</div>

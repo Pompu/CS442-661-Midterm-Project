@@ -32,8 +32,8 @@ class ApplicationController extends Controller
         
          $application = new Application();
          $application->status = 'WATING';
-         $application->user = Auth::user()->id;
-         $application->event = $event->id;
+         $application->user_id = Auth::user()->id;
+         $application->event_id = $event->id;
          $application->save();
             return redirect()->route('event');
         

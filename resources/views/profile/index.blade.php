@@ -8,18 +8,15 @@
 
 
     <div class="container mx-auto my-5 p-5">
-
-
-
         <div class="md:flex no-wrap md:-mx-2 ">
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
-                <div class="bg-white p-3 border-t-4 border-green-400">
+                <div class="bg-white p-3 border-t-4 border-indigo-600 grid justify-items-center rounded-b-lg">
                     @if ((auth()->user()->image_path))
 
-                    <div class="relative w-40 h-40  overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                        <img type="file" name="image_path" id="image_path" class="relative relative w-40 h-40  rounded-full" src="{{ asset('storage/' . auth()->user()->image_path) }}" alt="Rounded avatar">
+                    <div class="relative w-40 h-40 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 ">
+                        <img type="file" name="image_path" id="image_path" class="relative relative w-40 h-40 rounded-full" src="{{ asset('storage/' . auth()->user()->image_path) }}" alt="Rounded avatar">
                     </div>
 
                     @else
@@ -32,7 +29,6 @@
 
                     @endif
                     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$user->user_name}}</h1>
-                    <h3 class="text-gray-600 font-lg text-semibold leading-6">Description</h3>
                     <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">{{$user->about}}</p>
                    
                 </div>
@@ -45,7 +41,7 @@
             <div class="w-full md:w-9/12 mx-2 h-64">
                 <!-- Profile tab -->
                 <!-- About Section -->
-                <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="bg-white p-3 shadow-sm rounded-lg">
                     <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                         <span clas="text-green-500">
                             <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -83,7 +79,7 @@
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Email.</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-800">{{$user->email}}</a>
+                                    <a class="text-indigo-600">{{$user->email}}</a>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2">
@@ -99,7 +95,7 @@
                 <div class="my-4"></div>
 
                 <!-- Experience and education -->
-                <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="bg-white p-3 shadow-sm rounded-lg">
 
                         <div>
                             <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
@@ -112,17 +108,19 @@
                                 </span>
                                 <span class="tracking-wide">Education</span>
                             </div>
-                            <ul class="list-inside space-y-2">
+                            <div>
+                            <ul class="list-inside space-y-0">
                                 <li>
-                                    <div class="text-teal-600">{{$user->faculty}}</div>
+                                     <div class="px-4 py-2 font-semibold text-sm text-indigo-600">
+                                        {{$user->faculty}}</div>
                                 </li>
                             </ul>
-
+                            </div>
                         </div>
 
                     </div>
                     <a href="{{ route('profile.edit', ['user' => $user]) }}">
-                        <button class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+                        <button class="block w-full text-indigo-600 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
                             <span class="relative group-hover:text-white">Edit Information</span>
                         </button>
                     </a>
