@@ -11,17 +11,13 @@
     <div class="max-w-2xl mx-auto my-auto pt-6" style="margin-block: 10">
         <div id="default-carousel" class="relative" data-carousel="static">
             <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
-                @php
-                    $lastThreeEvents = App\Models\Event::get()->reverse()->take(3);
-                @endphp
-
                 @foreach ($lastThreeEvents as $event)
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('storage/' . $event->image_path) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
                     </div>
                 @endforeach
             </div>
-            
+
 
             <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
                 <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
@@ -41,13 +37,13 @@
                 </span>
             </button>
         </div>
-        
+
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
     </div>
-    
+
 
     <div class="container">
-        
+
         <div class="flex justify-between items-center mb-4 p-4 rounded-lg bg-white">
             <div class="flex items-center">
                 <div class="text-2xl font-semibold">Upcoming Events</div>
