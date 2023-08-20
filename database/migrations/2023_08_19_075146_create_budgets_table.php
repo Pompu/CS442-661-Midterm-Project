@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('budgets', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Event::class);
+            $table->foreignIdFor(Event::class, 'event_id');
             $table->float('cost');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('status')->default('inprogress'); //inprogress, completed
             $table->timestamps();
         });
