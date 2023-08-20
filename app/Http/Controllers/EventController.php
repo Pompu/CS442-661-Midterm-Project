@@ -110,10 +110,10 @@ class EventController extends Controller
         return view('myevents.create-event', [ 'provinces' => $provinces ]);
     }
     public function boards(Request $request) {
-        $myevent = $request->myevent;
-        $organize = DB::table('events')->where('organizer_id')->get();
-        $boards = Board::where('organizer_id')->get();
-        $board_details = BoardDetail::where('board_header_id')->get();
+        $myevent = $request->myevent;                                  //รับอีเว้นที่กดมา
+        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();                       //เอาเลขorganizer id ออกมาจาก event
+        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();                    // เอาหัวข้อบอร์ดจากorganize
+        $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
         return view('myevents.boards',[ 
             'boards' => $boards,
             'board_details' => $board_details,
@@ -173,7 +173,7 @@ class EventController extends Controller
 
 
 
-        $organizer_member = new OrganizerMember();
+        /*$organizer_member = new OrganizerMember();
         $organizer_member->organizer_id = $organizer->id;
         $organizer_member->user_id = Auth::user()->id;
         $organizer_member->save();
@@ -181,12 +181,15 @@ class EventController extends Controller
         for ($i = 0; $i < 3; $i++){
             $board = new Board();
             $board->organizer_id = $organizer->id;
-            $board->header = 'head{$i}';
+            $board->header = 'head' . $i;
+            $board->save();
             $board_detail = new BoardDetail();
             $board_detail->board_header_id = $board->id;
-            $board_detail->topic = 'topic{$i}';
-            $board_detail->detail = 'detail{$i}';
-        }
+            $board_detail->topic = 'topic' . $i;
+            $board_detail->detail = 'detail' . $i;
+            $board_detail->save();
+        }*/
+        
 
         $organizer_member = new OrganizerMember();
         $organizer_member->organizer_id = $organizer->id;
@@ -196,20 +199,20 @@ class EventController extends Controller
         /*$organizer_member = new OrganizerMember();
         $organizer_member->organizer_id = $organizer->id;
         $organizer_member->user_id = Auth::user()->id;
-        $organizer_member->save();
+        $organizer_member->save(); */
 
         // ทำ 3 task (หัวข้อ)
         for ($i = 0; $i < 3; $i++){
             $board = new Board();
             $board->organizer_id = $organizer->id;
             $board->header = $request->get('boardheader');
+            /*
             $board_detail = new BoardDetail();
             $board_detail->board_header_id = $board->id;
             $board_detail->topic = $request->get('boardtopic');
-            $board_detail->topic = $request->get('boarddetail');
+            $board_detail->topic = $request->get('boarddetail');*/
         }
         
-        */
         
         return redirect()->route('myevents');
     }
