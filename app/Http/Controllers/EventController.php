@@ -8,6 +8,8 @@ use App\Models\Budget;
 use App\Models\Event;
 use App\Models\Organizer;
 use App\Models\OrganizerMember;
+use App\Models\Application;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,9 +76,14 @@ class EventController extends Controller
         return $filteredEvents;
     }
     public function applicants(Request $request) {
+        
         $myevent = $request->myevent;
+        $applicants = Application::where('event_id', $myevent['id'])->get();
+        //$users = DB::table('users')->where('id', $applicants['user_id'])->get();
+        //$users = User::where('id', $applicants['user_id'])->get();
         return view('myevents.applicants', [
-            'myevent' => $myevent
+            'myevent' => $myevent,
+            'applicants' => $applicants,
         ]);
     }
     public function getDetails(Request $request) {

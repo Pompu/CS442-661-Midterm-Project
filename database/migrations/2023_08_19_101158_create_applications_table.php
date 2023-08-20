@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             //$table->team_id();
             $table->timestamps();
-            $table->foreignIdFor(User::class,'user');
-            $table->foreignIdFor(Event::class,'event');
+            $table->foreignIdFor(User::class,'user_id');
+            $table->foreignIdFor(Event::class,'event_id');
             $table->string('status')->default('WAITING');
             $table->softDeletes();
         });
