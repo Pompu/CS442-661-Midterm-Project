@@ -17,32 +17,26 @@ class EventController extends Controller
         $currentDate = now();
         $events = Event::where('date', '>=', $currentDate)->orderBy('date')->get();
 
-        if ($request->has('sort')) {
-            if ($request->sort === 'oldest') {
-                $events = $events->sortBy('date');
-            } elseif ($request->sort === 'newest') {
-                $events = $events->sortByDesc('date');
-            }
-        }
+        // if ($request->has('sort')) {
+        //     if ($request->sort === 'oldest') {
+        //         $events = $events->sortBy('date');
+        //     } elseif ($request->sort === 'newest') {
+        //         $events = $events->sortByDesc('date');
+        //     }
+        // }
 
-        if ($request->has('start_date') || $request->has('end_date')) {
-            $startDate = $request->start_date ?? now()->format('Y-m-d');
-            $endDate = $request->end_date ?? $events->max('date');
+        // if ($request->has('start_date') || $request->has('end_date')) {
+        //     $startDate = $request->start_date ?? now()->format('Y-m-d');
+        //     $endDate = $request->end_date ?? $events->max('date');
 
-            $events = $events->filter(function ($event) use ($startDate, $endDate) {
-                return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
-            });
-        }
-        //dd($events->rand(0, count($events)));
+        //     $events = $events->filter(function ($event) use ($startDate, $endDate) {
+        //         return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
+        //     });
+        // }
+        //dd($events);
         // dd($events[Event::all()->random()]->getAttributes()['image_path'] );
-        $array = [
-            $events[0]->getAttributes()['image_path'],
-            $events[1]->getAttributes()['image_path'],
-            $events[2]->getAttributes()['image_path']
-        ];
         return view('events.index', [
-            'events' => $events,
-            'image_path' => $array
+            'events' => $events
         ]);
     }
 
@@ -75,6 +69,7 @@ class EventController extends Controller
             'myevent' => $myevent
         ]);
     }
+    
     public function getDetails(Request $request) {
 
         $myevent = $request->myevent;
