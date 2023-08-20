@@ -1,9 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-
+@include('myevents.sidebar')
 <div>
     <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
+      <h1>{{ $myevent['name'] }}</h1>
       <!-- Sidebar -->
       <div class="absolute flex flex-col top-100 left-100 w-14 hover:w-64 md:w-64 bg-grey-200 h-full text-black transition-all duration-300 border-none z-10 sidebar">
         <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
@@ -11,7 +12,7 @@
 
             <li class="px-5 hidden md:block">
               <div class="flex flex-row items-center h-8">
-                <div class="text-sm font-light tracking-wide text-gray-400 uppercase">My Event</div>
+                <div class="text-sm font-light tracking-wide text-gray-400 uppercase"></div>
               </div>
             </li>
             <li>
@@ -47,24 +48,21 @@
           </ul>
         </div>
       </div>
-      <!-- ./Sidebar -->
       <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
         <div class="px-10 mt-6">
           <h1 class="text-2xl font-bold text-center"></h1>
         </div>
         <button class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">ADD POST-IT</button>
 
-        
-        <!-- Board part-->
         <div class= "grid grid-cols-3 gap-15">
-          @foreach ($boards as $board)
+          
           <div class="max-w-2xl mx-5">
             <div class="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8" style="flex-grow:1;">
               <div class="flex justify-between items-center mb-4 bg-red-400 rounded-lg border shadow-md sm:p-8">
-                <h3 class="text-xl font-bold leading-none text-gray-900">{{ $board->name }}</h3>
+                <h3 class="text-xl font-bold leading-none text-gray-900"></h3>
               </div>
               <div class="board-container overflow-scroll max-h-[800px]">
-                @foreach ($board_details as $board_detail)
+                
                 <div role="list" class="p-2 divide-y divide-gray-200"> 
                   <div class="group bg-gray-900 p-4 transition-all duration-300 hover:rotate-1 lg:p-8">
       
@@ -81,11 +79,11 @@
                       </button>
                     </div>
                     <div class="my-4">
-                      <h3 class="text-2xl font-medium text-gray-200">{{ $board_detail->topic }}</h3>
+                      <h3 class="text-2xl font-medium text-gray-200"></h3>
                     </div>
                     <div class="flex items-center gap-x-2">
                       <div>
-                        <span class="text-xs text-gray-300">{{ $board_detail->detail }}</span>
+                        <span class="text-xs text-gray-300"></span>
                       </div>
                     </div>
                     <div class="flex items-center justify-between">
@@ -94,13 +92,9 @@
                       <a class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">Location Team</a>
                     </div>
                   </div>
-                </div>
-                @endforeach    
-            @endforeach  
-        
-      <!-- applicants -->  
+                </div>           
       </div>    
-    </div>
-  </div> 
+    </div> 
+  </div>  
 </div>   
-@endsection
+@endsection 

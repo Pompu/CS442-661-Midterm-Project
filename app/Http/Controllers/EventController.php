@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoardDetail;
+use App\Models\Board;
 use App\Models\Budget;
 use App\Models\Event;
+use App\Models\Organizer;
+use App\Models\OrganizerMember;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -98,9 +102,17 @@ class EventController extends Controller
         $provinces = DB::table('masterprovince')->get();
         return view('myevents.create-event', [ 'provinces' => $provinces ]);
     }
-    public function board() {
-        $myevents = DB::table('events')->where('user_id', Auth::user()->id)->get();
-        return view('myevents.myevents', [ 'myevents' => $myevents ]);
+    public function boards(Request $request) {
+        $myevent = $request->myevent;
+        $organize = DB::table('events')->where('organizer_id')->get();
+        $boards = Board::where('organizer_id')->get();
+        $board_details = BoardDetail::where('board_header_id')->get();
+        return view('myevents.boards',[ 
+            'boards' => $boards,
+            'board_details' => $board_details,
+            'myevent' => $myevent,
+            'organize' => $organize
+        ]);
     }
     public function getDistrict(Request $request) {
         $selectedValue = $request->input('province_id');
@@ -122,9 +134,20 @@ class EventController extends Controller
     }
     public function storeEvent(Request $request) {
         $path = $request->file('image')->store('event_images', 'public');
+
+        /*$organizer = new Organizer();
+        $organizer->user_id = Auth::user()->id;
+        $organizer->name = $request->get('organizername');
+        $organizer->save();*/
+
+        $organizer = new Organizer();
+        $organizer->user_id = Auth::user()->id;
+        $organizer->name = 'testOrganize';
+        $organizer->save();
+
         $event = new Event();
         $event->user_id = Auth::user()->id;
-        $event->organizer_id = 1;
+        $event->organizer_id = $organizer->id;
         $event->name = $request->get('eventname');
         $event->detail = $request->get('eventdetail');
         $event->date = $request->get('eventdate');
@@ -140,6 +163,46 @@ class EventController extends Controller
         $budget->event_id = $event->id;
         $budget->cost = $request->get('eventbudget');
         $budget->save();
+
+
+
+        $organizer_member = new OrganizerMember();
+        $organizer_member->organizer_id = $organizer->id;
+        $organizer_member->user_id = Auth::user()->id;
+        $organizer_member->save();
+        
+        for ($i = 0; $i < 3; $i++){
+            $board = new Board();
+            $board->organizer_id = $organizer->id;
+            $board->header = 'head{$i}';
+            $board_detail = new BoardDetail();
+            $board_detail->board_header_id = $board->id;
+            $board_detail->topic = 'topic{$i}';
+            $board_detail->detail = 'detail{$i}';
+        }
+
+        $organizer_member = new OrganizerMember();
+        $organizer_member->organizer_id = $organizer->id;
+        $organizer_member->user_id = Auth::user()->id;
+        $organizer_member->save();
+
+        /*$organizer_member = new OrganizerMember();
+        $organizer_member->organizer_id = $organizer->id;
+        $organizer_member->user_id = Auth::user()->id;
+        $organizer_member->save();
+
+        // ทำ 3 task (หัวข้อ)
+        for ($i = 0; $i < 3; $i++){
+            $board = new Board();
+            $board->organizer_id = $organizer->id;
+            $board->header = $request->get('boardheader');
+            $board_detail = new BoardDetail();
+            $board_detail->board_header_id = $board->id;
+            $board_detail->topic = $request->get('boardtopic');
+            $board_detail->topic = $request->get('boarddetail');
+        }
+        
+        */
         
         return redirect()->route('myevents');
     }

@@ -18,4 +18,7 @@ class Event extends Model
     public function applications(): HasMany {
         return $this->hasMany(Application::class);
     }
+    public function organizer() : HasOne{
+        return $this->hasOne(Organizer::class);
+    }
 }
