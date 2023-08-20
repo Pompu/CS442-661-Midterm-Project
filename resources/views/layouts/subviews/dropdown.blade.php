@@ -23,7 +23,7 @@
           <x-dropdown-link :href="route('historys.certificate')">
             {{ __('Certificate') }}
           </x-dropdown-link>
-          <x-dropdown-link :href="route('myevents.myevents')">
+          <x-dropdown-link :href="route('myevents')">
             {{ __('My Event') }}
           </x-dropdown-link>
           @endif

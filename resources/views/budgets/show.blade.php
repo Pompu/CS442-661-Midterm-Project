@@ -12,8 +12,14 @@
                 </div>
 
                 <div class = "event-detail-box-white">
-                    <p>{{ date("D d F Y", strtotime($budget->event->date))}}</p>
-                    <p>{{ $budget->event->location }}</p>
+                    <div style="display: flex">
+                        <span style="margin-right: 10px"><img src="https://img.icons8.com/?size=512&id=6Z5IUAh18Fuc&format=png" width="20"></span>
+                        <span><p>{{ date("D d F Y", strtotime($budget->event->date))}}</p></span>
+                    </div>
+                    <div style="display: flex">
+                        <span style="margin-right: 10px"><img src="https://img.icons8.com/?size=512&id=c0kUjxdWTRsk&format=png" width="20"></span>
+                        <span><p>{{ date("D d F Y", strtotime($budget->event->location))}}</p></span>
+                    </div>
                 </div>
 
                 <div class="event-detail-box-white">
@@ -36,10 +42,10 @@
         </div>
         <div style="margin-block:10px">
             <span class="font-semibold">ค่าใช้จ่าย: </span>
-            <span>{{ $budget->cost }}</span>
+            <span>{{ $budget->cost }} บาท</span>
         </div>
         <div style="margin-block:10px">
-            <span class="font-semibold">คำอธิบาย: </span>
+            <span class="font-semibold">รายละเอียด: </span>
             <span>{{ $budget->description }}</span>
         </div>
 

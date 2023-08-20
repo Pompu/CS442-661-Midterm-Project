@@ -65,9 +65,9 @@ Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("bo
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
-Route::get('/budgets/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
-Route::put('/budgets/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
 Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
+Route::get('/budgets/detail/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
+Route::put('/budgets/detail/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

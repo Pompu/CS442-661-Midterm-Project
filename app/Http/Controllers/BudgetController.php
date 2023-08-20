@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class BudgetController extends Controller
 {
-    public function index($status = 'inprogress'){
-        $budgets = Budget::where('status', $status)->get();
+    public function index($status = ""){
+        if($status == null){
+            $budgets = Budget::get();
+        }
+        else{
+            $budgets = Budget::where('status', $status)->get();
+        }
         return view('budgets.index', [
             'budgets' => $budgets
         ]);

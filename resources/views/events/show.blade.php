@@ -29,8 +29,14 @@
             </div>
 
             <div class = "event-detail-box">
-                <p>{{ date("D d F Y", strtotime($event->date))}}</p>
-                <p>{{ $event->location }}</p>
+                <div style="display: flex">
+                    <span style="margin-right: 10px"><img src="https://i.ibb.co/G7DMFWP/icons8-clock-48.png" width="20"></span>
+                    <span><p>{{ date("D d F Y", strtotime($event->date))}}</p></span>
+                </div>
+                <div style="display: flex">
+                    <span style="margin-right: 10px"><img src="https://i.ibb.co/TwgxD7N/icons8-location-48.png" width="20"></span>
+                    <span><p>{{ date("D d F Y", strtotime($event->location))}}</p></span>
+                </div>
             </div>
 
             <div class="event-detail-box">
