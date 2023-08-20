@@ -47,6 +47,7 @@ Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->n
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
 Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
 Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
+Route::get('/myevents/boards',[EventController::class, 'boards'])->name("myevents.boards");
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
@@ -54,7 +55,7 @@ Route::post('/events/{event}/application', [ApplicationController::class, 'store
 
 Route::get('/verify', function () { return view('events.verify');});
 
-Route::get('/boards', [BoardController::class, 'index'])->name("board");
+//Route::get('/boards', [BoardController::class,'index'])->name("board");
 Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("board.team");
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");

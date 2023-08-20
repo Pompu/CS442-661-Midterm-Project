@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function organizers() : HasOne{
+    public function organizer() : HasOne{
         return $this->hasOne(Organizer::class);
     }
 

@@ -28,4 +28,7 @@ class Event extends Model
     public function subdistrict(): BelongsTo{
         return $this->belongsTo(Subdistrict::class);
     }
+    public function organizer() : HasOne{
+        return $this->hasOne(Organizer::class);
+    }
 }

@@ -18,11 +18,11 @@ class BoardController extends Controller
         $organize = DB::table('events')->where('organizer_id')->get();
         $boards = Board::where('organizer_id')->get();
         $board_details = BoardDetail::where('board_header_id')->get();
-        //$event = Event::where('organizer_id',1)->get();
         return view('boards.index',[ 
             'boards' => $boards,
             'board_details' => $board_details,
-            'myevent' => $myevent
+            'myevent' => $myevent,
+            'organize' => $organize
         ]);
     }
 
