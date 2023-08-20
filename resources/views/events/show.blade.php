@@ -36,7 +36,7 @@
                 <div class="detail-container">
                     <span class="detail-icon"><img src="https://i.ibb.co/TwgxD7N/icons8-location-48.png"></span>
                     <span class="detail-info">
-                        <p>{{ $event->address }} {{ $event->province }} {{ $event->district }} {{ $event->subdistrict }}</p>
+                        <p>{{ $event->address }} {{ $event->province->name }} {{ $event->district->name }} {{ $event->subdistrict->name }}</p>
                         <p>{{ $event->location_detail }}</p>
                     </span>
                 </div>

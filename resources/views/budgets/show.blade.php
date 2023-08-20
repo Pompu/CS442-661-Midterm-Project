@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mx-auto bg-gray-800 shadow-md rounded flex justify-center" style="margin-block: 30px">
         <div class="event-detail-image">
-            <img src="{{ $budget->event->image_path }}" alt="{{ $budget->event->name }}">
+            <img src="{{ asset('storage/' . $budget->event->image_path) }}" alt="{{ $budget->event->name }}">
         </div>
 
         <div style="margin-left: 50px">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="detail-container">
                         <span class="detail-icon"><img src="https://img.icons8.com/?size=512&id=c0kUjxdWTRsk&format=png" width="20"></span>
-                        <span class="detail-info"><p>{{ $budget->event->address }} {{ $budget->event->province }} {{ $budget->event->district }} {{ $budget->event->subdistrict }}</p></span>
+                        <span class="detail-info"><p>{{ $budget->event->address }} {{ $budget->event->province->name }} {{ $budget->event->district->name }} {{ $budget->event->subdistrict->name }}</p></span>
                     </div>
                     <p style="margin-left:30px">{{ $budget->event->location_detail }}</p>
                 </div>

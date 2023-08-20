@@ -11,21 +11,15 @@
     <div class="max-w-2xl mx-auto my-auto pt-6" style="margin-block: 10">
         <div id="default-carousel" class="relative" data-carousel="static">
             <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
-    
-                <!-- Item 1 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
-                    <img src="{{ asset('storage/' . $events[0]->image_path) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
-                </div>
-                <!-- Item 2 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('storage/' . $events[1]->image_path)}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
-                </div>
-                <!-- Item 3 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('storage/' . $events[2]->image_path) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
-                </div>
-            
+                @php
+                    $lastThreeEvents = App\Models\Event::get()->reverse()->take(3);
+                @endphp
+
+                @foreach ($lastThreeEvents as $event)
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('storage/' . $event->image_path) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2">
+                    </div>
+                @endforeach
             </div>
 
             <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
@@ -82,7 +76,7 @@
                     <div class="event-detail">
                         <p class="font-semibold text-violet-700">{{ date('d M Y', strtotime($event->date)) }}</p>
                         <h2 class="event-name">  {{ $event->name }}</h2>
-                        <p class="event-location" style="margin-block: 4px">{{ $event->province }} {{ $event->district }}</p>
+                        <p class="event-location" style="margin-block: 4px">{{ $event->province->name }} {{ $event->district->name }}</p>
                     </div>
                 </div>
             </a>
