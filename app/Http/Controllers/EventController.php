@@ -10,14 +10,29 @@ use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
 {
-    public function index() {
-        $events = Event::get();
+    public function index(Request $request) {
+        $currentDate = now();
+        $events = Event::where('dateTime', '>=', $currentDate)->orderBy('dateTime')->get();
 
-        $sortedEvents = $this->sortEvents($events);
-        $filteredEvents = $this->filterUpcomingEvents($sortedEvents);
+        if ($request->has('sort')) {
+            if ($request->sort === 'oldest') {
+                $events = $events->sortBy('dateTime');
+            } elseif ($request->sort === 'newest') {
+                $events = $events->sortByDesc('dateTime');
+            }
+        }
+
+        if ($request->has('start_date') || $request->has('end_date')) {
+            $startDate = $request->start_date ?? now()->format('Y-m-d');
+            $endDate = $request->end_date ?? $events->max('dateTime');
+
+            $events = $events->filter(function ($event) use ($startDate, $endDate) {
+                return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
+            });
+        }
 
         return view('events.index', [
-            'events' => $filteredEvents
+            'events' => $events
         ]);
     }
 
@@ -28,28 +43,11 @@ class EventController extends Controller
         ]);
     }
 
-
-    private function sortEvents($events) {
-        $sortedEvents = $events->sortBy('dateTime');
-
-        return $sortedEvents;
-    }
-
     public function update(Request $request, Event $event)
     {
         $event->name = $request->get('name');
         $event->save();
         return redirect()->route('myevents.detail', ['event' =>  $event]);
-    }
-
-    private function filterUpcomingEvents($events) {
-        $currentDateTime = now();
-
-        $filteredEvents = $events->filter(function ($event) use ($currentDateTime) {
-            return $event->dateTime >= $currentDateTime;
-        });
-
-        return $filteredEvents;
     }
 
     public function myEvent() {
