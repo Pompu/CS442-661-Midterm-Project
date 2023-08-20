@@ -60,18 +60,19 @@ Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("bo
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
-Route::get('/budgets/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
-Route::put('/budgets/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
-Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
-
 Route::middleware('auth')->group(function () {
-    
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile', [ProfileController::class, 'uploadImage'])->name('profile.uploadImage');
     });
+
+Route::middleware(['can:viewAny,App\Models\Budget'])->group(function () {
+    Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
+    Route::get('/budgets/detail/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
+    Route::put('/budgets/detail/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
+});
 
 ;
 require __DIR__.'/auth.php';

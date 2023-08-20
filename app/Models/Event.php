@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Event extends Model
 {
@@ -17,6 +18,15 @@ class Event extends Model
     }
     public function applications(): HasMany {
         return $this->hasMany(Application::class);
+    }
+    public function province(): BelongsTo{
+        return $this->belongsTo(Province::class);
+    }
+    public function district(): BelongsTo{
+        return $this->belongsTo(District::class);
+    }
+    public function subdistrict(): BelongsTo{
+        return $this->belongsTo(Subdistrict::class);
     }
     public function organizer() : HasOne{
         return $this->hasOne(Organizer::class);

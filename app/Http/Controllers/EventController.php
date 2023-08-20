@@ -36,19 +36,13 @@ class EventController extends Controller
             $endDate = $request->end_date ?? $events->max('date');
 
             $events = $events->filter(function ($event) use ($startDate, $endDate) {
-                return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
+                return $event->date >= $startDate && $event->date <= $endDate;
             });
         }
-        //dd($events->rand(0, count($events)));
+        //dd($events);
         // dd($events[Event::all()->random()]->getAttributes()['image_path'] );
-        $array = [
-            $events[0]->getAttributes()['image_path'],
-            $events[1]->getAttributes()['image_path'],
-            $events[2]->getAttributes()['image_path']
-        ];
         return view('events.index', [
-            'events' => $events,
-            'image_path' => $array
+            'events' => $events
         ]);
     }
 
@@ -76,7 +70,7 @@ class EventController extends Controller
         return $filteredEvents;
     }
     public function applicants(Request $request) {
-        
+
         $myevent = $request->myevent;
         $applicants = Application::where('event_id', $myevent['id'])->get();
         //$users = DB::table('users')->where('id', $applicants['user_id'])->get();
@@ -86,6 +80,7 @@ class EventController extends Controller
             'applicants' => $applicants,
         ]);
     }
+
     public function getDetails(Request $request) {
 
         $myevent = $request->myevent;
@@ -110,9 +105,9 @@ class EventController extends Controller
         return view('myevents.create-event', [ 'provinces' => $provinces ]);
     }
     public function boards(Request $request) {
-        $myevent = $request->myevent;                                  //รับอีเว้นที่กดมา
-        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();                       //เอาเลขorganizer id ออกมาจาก event
-        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();                    // เอาหัวข้อบอร์ดจากorganize
+        $myevent = $request->myevent;                   
+        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();                       
+        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();                    
         $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
         return view('myevents.boards',[ 
             'boards' => $boards,
@@ -139,7 +134,7 @@ class EventController extends Controller
 
         return response()->json(['subdistricts' => $subdistricts]);
     }
-    public function storeEvent(Request $request) {
+    public function storeEvent(Request $request){
         $path = $request->file('image')->store('event_images', 'public');
 
         /*$organizer = new Organizer();
@@ -177,7 +172,7 @@ class EventController extends Controller
         $organizer_member->organizer_id = $organizer->id;
         $organizer_member->user_id = Auth::user()->id;
         $organizer_member->save();
-        
+
         for ($i = 0; $i < 3; $i++){
             $board = new Board();
             $board->organizer_id = $organizer->id;
