@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <div class="max-w-2xl mx-auto my-auto" style="margin-block: 10px">
+    <div class="max-w-2xl mx-auto my-auto" style="margin-block: 10">
         <div id="default-carousel" class="relative" data-carousel="static">
             <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
                 <!-- Item 1 -->
