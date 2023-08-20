@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <div class="max-w-2xl mx-auto my-auto" style="margin-block: 10">
+    <div class="max-w-2xl mx-auto my-auto pt-6" style="margin-block: 10">
         <div id="default-carousel" class="relative" data-carousel="static">
             <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
                 <!-- Item 1 -->
@@ -78,7 +78,7 @@
                         <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
                     </div>
                     <div class="event-detail">
-                        <p class="font-semibold text-violet-700">{{ date('d M Y', strtotime($event->dateTime)) }}</p>
+                        <p class="font-semibold text-violet-700">{{ date('d M Y', strtotime($event->date)) }}</p>
                         <h2 class="event-name">  {{ $event->name }}</h2>
                         <p class="event-location" style="margin-block: 4px">{{ $event->province }} {{ $event->district }}</p>
                     </div>

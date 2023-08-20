@@ -15,19 +15,19 @@ class EventController extends Controller
 {
     public function index(Request $request) {
         $currentDate = now();
-        $events = Event::where('dateTime', '>=', $currentDate)->orderBy('dateTime')->get();
+        $events = Event::where('date', '>=', $currentDate)->orderBy('date')->get();
 
         if ($request->has('sort')) {
             if ($request->sort === 'oldest') {
-                $events = $events->sortBy('dateTime');
+                $events = $events->sortBy('date');
             } elseif ($request->sort === 'newest') {
-                $events = $events->sortByDesc('dateTime');
+                $events = $events->sortByDesc('date');
             }
         }
 
         if ($request->has('start_date') || $request->has('end_date')) {
             $startDate = $request->start_date ?? now()->format('Y-m-d');
-            $endDate = $request->end_date ?? $events->max('dateTime');
+            $endDate = $request->end_date ?? $events->max('date');
 
             $events = $events->filter(function ($event) use ($startDate, $endDate) {
                 return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
@@ -64,6 +64,7 @@ class EventController extends Controller
     }
     
     public function getDetails(Request $request) {
+
         $myevent = $request->myevent;
         $province = DB::table('masterprovince')->where('id', $myevent['province_id'])->get();
         $district = DB::table('masterdistrict')->where('id', $myevent['district_id'])->get();

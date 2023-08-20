@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SubdistrictSeeder::class);
 
         $this->call(UserSeeder::class);
-        $this->call(EventSeeder::class);
         $this->call(BudgetSeeder::class);
         $this->call(OrganizerSeeder::class);
         $this->call(OrganizerMemberSeeder::class);
+        $this->call(EventSeeder::class);
         $this->call(TeamSeeder::class);
         $this->call(TeamMemberSeeder::class);
         $this->call(BoardSeeder::class);

@@ -14,7 +14,7 @@
                 <div class = "event-detail-box-white">
                     <div class="detail-container">
                         <span class="detail-icon"><img src="https://img.icons8.com/?size=512&id=6Z5IUAh18Fuc&format=png" width="20"></span>
-                        <span class="detail-info"><p>{{ date('D d F Y g:i:s A', strtotime($budget->event->dateTime)) }}</p></span>
+                        <span class="detail-info"><p>{{ date('D d F Y g:i:s A', strtotime($budget->event->date)) }}</p></span>
                     </div>
                     <div class="detail-container">
                         <span class="detail-icon"><img src="https://img.icons8.com/?size=512&id=c0kUjxdWTRsk&format=png" width="20"></span>

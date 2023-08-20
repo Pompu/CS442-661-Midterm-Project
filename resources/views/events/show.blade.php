@@ -31,7 +31,7 @@
             <div class="event-detail-box">
                 <div class="detail-container">
                     <span class="detail-icon"><img src="https://i.ibb.co/G7DMFWP/icons8-clock-48.png"></span>
-                    <span class="detail-info">{{ date('D d F Y g:i:s A', strtotime($event->dateTime)) }}</span>
+                    <span class="detail-info">{{ date('D d F Y g:i:s A', strtotime($event->date)) }}</span>
                 </div>
                 <div class="detail-container">
                     <span class="detail-icon"><img src="https://i.ibb.co/TwgxD7N/icons8-location-48.png"></span>
