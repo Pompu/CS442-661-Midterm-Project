@@ -80,9 +80,14 @@ class EventController extends Controller
         $myevents = DB::table('events')->where('user_id', Auth::user()->id)->get();
         return view('myevents.myevents', [ 'myevents' => $myevents ]);
     }
+
     public function createEvent() {
         $provinces = DB::table('masterprovince')->get();
         return view('myevents.create-event', [ 'provinces' => $provinces ]);
+    }
+    public function board() {
+        $myevents = DB::table('events')->where('user_id', Auth::user()->id)->get();
+        return view('myevents.myevents', [ 'myevents' => $myevents ]);
     }
     public function getDistrict(Request $request) {
         $selectedValue = $request->input('province_id');

@@ -12,6 +12,7 @@
         <div class="px-10 mt-6">
           <h1 class="text-2xl font-bold text-center">Team Project Board</h1>
         </div>
+        <button class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">ADD POST-IT</button>
 
         
         <!-- Board part-->
