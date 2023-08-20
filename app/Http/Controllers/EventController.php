@@ -69,7 +69,12 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
-    
+    public function applicants(Request $request) {
+        $myevent = $request->myevent;
+        return view('myevents.applicants', [
+            'myevent' => $myevent
+        ]);
+    }
     public function getDetails(Request $request) {
 
         $myevent = $request->myevent;
@@ -88,9 +93,14 @@ class EventController extends Controller
         $myevents = DB::table('events')->where('user_id', Auth::user()->id)->get();
         return view('myevents.myevents', [ 'myevents' => $myevents ]);
     }
+
     public function createEvent() {
         $provinces = DB::table('masterprovince')->get();
         return view('myevents.create-event', [ 'provinces' => $provinces ]);
+    }
+    public function board() {
+        $myevents = DB::table('events')->where('user_id', Auth::user()->id)->get();
+        return view('myevents.myevents', [ 'myevents' => $myevents ]);
     }
     public function getDistrict(Request $request) {
         $selectedValue = $request->input('province_id');
