@@ -10,18 +10,21 @@ class BoardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(Request $request) {
+        $myevent = $request->myevent;
         $boards = Board::get();
         return view('boards.index',[
-            'boards' => $boards
+            'boards' => $boards,
+            'myevent' => $myevent
         ]);
     }
 
-    public function viewTeamBoard() {
+    public function viewTeamBoard(Request $request) {
+        $myevent = $request->myevent;
         $boards = Board::get();
         return view('boards.team',[
-            'boards' => $boards
+            'boards' => $boards,
+            'myevent' => $myevent
         ]);
     }
     /**

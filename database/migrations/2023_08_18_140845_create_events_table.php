@@ -26,7 +26,6 @@ return new class extends Migration
             $table->foreignIdFor(Province::class, 'province_id');
             $table->foreignIdFor(District::class, 'district_id');
             $table->foreignIdFor(Subdistrict::class, 'subdistrict_id');
-            $table->string('location_detail');
             $table->dateTime('date');
             $table->string('image_path')->nullable();
             $table->string('location_detail')->nullable();
