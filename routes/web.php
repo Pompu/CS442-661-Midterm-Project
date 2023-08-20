@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantListController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HistoryController;
@@ -39,6 +40,8 @@ Route::get('/registered', [HistoryController::class, 'register'])->name("history
 Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
+Route::get('/myevents/details', [EventController::class, 'getDetails'])->name("myevents.details");
+Route::get('/myevents/applicants', [ApplicantListController::class, 'applicants'])->name("myevents.applicants");
 
 Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
 Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");

@@ -69,12 +69,7 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
-    public function applicants(Request $request) {
-        $myevent = $request->myevent;
-        return view('myevents.applicants', [
-            'myevent' => $myevent
-        ]);
-    }
+    
     public function getDetails(Request $request) {
 
         $myevent = $request->myevent;
