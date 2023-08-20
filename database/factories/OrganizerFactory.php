@@ -17,8 +17,8 @@ class OrganizerFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::all()->random()->id,
-            'name' => fake()->realTextBetween(5,10),
+            'user_id' => fake()->numberBetween(1,User::count()),
+            'name' => fake()->realTextBetween(5,10)
         ];
     }
 }
