@@ -5,10 +5,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
+
 </head>
 <body>
-    <div class="max-w-2xl mx-auto" style="margin-block: 30px">
+    <div class="max-w-2xl mx-auto my-auto" style="margin-block: 10px">
         <div id="default-carousel" class="relative" data-carousel="static">
             <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
                 <!-- Item 1 -->
@@ -58,9 +58,9 @@
                         <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
                     </div>
                     <div class="event-detail">
-                        <p class="font-semibold text-violet-700">{{ date("d M Y", strtotime($event->date)) }}</p>
+                        <p class="font-semibold text-violet-700">{{ date('d M Y', strtotime($event->dateTime)) }}</p>
                         <h2 class="event-name">  {{ $event->name }}</h2>
-                        <p class="text-gray-600 text-sm">{{ $event->location }}</p>
+                        <p class="event-location" style="margin-block: 4px">{{ $event->province }} {{ $event->district }}</p>
                     </div>
                 </div>
             </a>
