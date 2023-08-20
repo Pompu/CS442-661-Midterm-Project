@@ -1,42 +1,57 @@
 <div class="hidden sm:flex sm:items-center sm:ml-6">
-      <x-dropdown align="right" width="48">
-        <x-slot name="trigger">
-          <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 rounded-md text-black bg-white hover:text-violet-600 focus:outline-none transition ease-in-out duration-150">
-            <div>{{ Auth::user()->name }}</div>
-            <div class="ml-1">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
+
+  <x-dropdown align="right" width="48">
+    <x-slot name="trigger">
+      <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+
+        <div>{{ Auth::user()->user_name }}</div>
+        <div class="ml-1">
+
+          @if ((auth()->user()->image_path))
+
+          <div class="relative w-5 h-5 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <img type="file" name="image_path" id="image_path" class="relative relative w-5 h-5 rounded-full" src="{{ asset('storage/' . auth()->user()->image_path) }}" alt="Rounded avatar">
+          </div>
+
+          @else
+
+          <div class="relative w-5 h-5 overflow-hidden  rounded-full ">
+            <div class="relative w-5 h-5 overflow-hidden  rounded-full ">
+              <img type="file" name="image_path" id="image_path" class="relative w-5 h-5 rounded-full" src="https://cdn4.iconfinder.com/data/icons/top-search-7/128/_user_account_profile_head_person_avatar-512.png">
+
             </div>
-          </button>
-        </x-slot>
-
-        <x-slot name="content">
-          <x-dropdown-link :href="route('profile.edit')">
-            {{ __('Profile') }}
-          </x-dropdown-link>
-
-          @if(auth()->user()->role === 'MEMBER')
-          <x-dropdown-link :href="route('historys.register')">
-            {{ __('Event Applied') }}
-          </x-dropdown-link>
-          <x-dropdown-link :href="route('historys.certificate')">
-            {{ __('Certificate') }}
-          </x-dropdown-link>
-          <x-dropdown-link :href="route('myevents')">
-            {{ __('My Event') }}
-          </x-dropdown-link>
+          </div>
           @endif
+        </div>
+      </button>
+    </x-slot>
 
-          <!-- Authentication -->
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
+    <x-slot name="content">
+      <x-dropdown-link :href="route('profile')">
+        {{ __('Profile') }}
+      </x-dropdown-link>
 
-            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+      @if(auth()->user()->role === 'MEMBER')
+      <x-dropdown-link :href="route('historys.register')">
+        {{ __('Event Applied') }}
+      </x-dropdown-link>
+      <x-dropdown-link :href="route('historys.certificate')">
+        {{ __('Certificate') }}
+      </x-dropdown-link>
+      <x-dropdown-link :href="route('myevents')">
+        {{ __('My Event') }}
+      </x-dropdown-link>
+      @endif
+
+      <!-- Authentication -->
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-              {{ __('Log Out') }}
-            </x-dropdown-link>
-          </form>
-        </x-slot>
-      </x-dropdown>
-    </div>
+          {{ __('Log Out') }}
+        </x-dropdown-link>
+      </form>
+    </x-slot>
+  </x-dropdown>
+</div>

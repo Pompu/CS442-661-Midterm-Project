@@ -47,6 +47,8 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="eventDetail">
               Event Detail
             </label>
+            <input class="shadow appearance-none border-gray-300 rounded w-96 h-20 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+              id="moreDetail" type="text" >
         
             </div>
             <button class="shadow appearance-none border rounded w-96 py-2 px-3 bg-emerald-400 text-grey-700 leading-tight focus:ring-violet-600 focus:shadow-outline font-bold text-sm" >

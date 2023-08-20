@@ -20,6 +20,27 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
+    public function index(Request $request): View
+    {
+        return view('profile.index', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+
+        if ($request->hasFile('image_path')) {
+            $fileName = Auth::user()->id;
+            $path = $request->file('image_path')->storeAs('user_images',$fileName, 'public');
+            $request->user()->image_path = $path;
+        }
+
+        $request->user()->save();
+        return Redirect::route('profile')->with('status', 'profile-updated');
+    }
+
     /**
      * Update the user's profile information.
      */
@@ -30,10 +51,11 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-
+        
+        $request->user()->faculty =  $request->get('faculty');
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile')->with('status', 'profile-updated');
     }
 
     /**
