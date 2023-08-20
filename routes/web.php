@@ -47,6 +47,7 @@ Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->n
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
 Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
 Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
+Route::get('/myevents/boards',[EventController::class, 'boards'])->name("myevents.boards");
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
@@ -54,23 +55,24 @@ Route::post('/events/{event}/application', [ApplicationController::class, 'store
 
 Route::get('/verify', function () { return view('events.verify');});
 
-Route::get('/boards', [BoardController::class, 'index'])->name("board");
+//Route::get('/boards', [BoardController::class,'index'])->name("board");
 Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("board.team");
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
-Route::get('/budgets/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
-Route::put('/budgets/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
-Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
-
 Route::middleware('auth')->group(function () {
-    
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile', [ProfileController::class, 'uploadImage'])->name('profile.uploadImage');
     });
+
+Route::middleware(['can:viewAny,App\Models\Budget'])->group(function () {
+    Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
+    Route::get('/budgets/detail/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
+    Route::put('/budgets/detail/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
+});
 
 ;
 require __DIR__.'/auth.php';

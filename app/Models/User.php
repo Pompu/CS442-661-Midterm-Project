@@ -14,18 +14,18 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function organizers() : HasOne{
+    public function organizer() : HasOne{
         return $this->hasOne(Organizer::class);
     }
 
     public function isMember() : bool
     {
-        return $this->role = 'MEMBER';
+        return $this->role == 'MEMBER';
     }
 
     public function isOfficer() : bool
     {
-        return $this->role = 'OFFICER';
+        return $this->role == 'OFFICER';
     }
     public function applications(): HasMany {
         return $this->hasMany(Application::class);

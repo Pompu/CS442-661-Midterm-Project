@@ -26,7 +26,7 @@
             <a href="{{ route('budgets.show', ['budget' => $budget]) }}">
                 <div class="budget-item">
                     <div class="budget-image">
-                        <img src="{{ $budget->event->image_path }}" alt="{{ $budget->event->name }}">
+                        <img src="{{ asset('storage/' . $budget->event->image_path) }}" alt="{{ $budget->event->name }}">
                     </div>
                     <div class="budget-detail">
                         <h2 class="text-xl font-semibold">{{ $budget->event->name }}</h2>
@@ -39,7 +39,7 @@
                             </div>
                             <div>
                                 <span class="font-semibold">ค่าใช้จ่าย: </span>
-                                <span>{{ $budget->cost }} บาท</span>
+                                <span>{{ $budget->cost }} </span>
                             </div>
                         </div>
                     </div>

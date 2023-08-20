@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="mx-auto py-5 grid grid-cols-2">
-        <div class="grid-column: 1" style="margin-left: 250px; display: flex; flex-direction: column; align-items: center;">
+    <div class="mx-auto py-10 px-10 grid grid-cols-2">
+        <div class="grid-column: 1" style=" display: flex; flex-direction: column; align-items: center;">
             <div class="event-detail-image">
                 <img src="{{ asset('storage/' . $event->image_path) }}" alt="{{ $event->name }}">
             </div>
         </div>
 
-        <div class="grid-column:2" style="margin-left: 100px">
+        <div class="grid-column:2">
             <div class = "event-detail-box">
                 <h1 class="font-semibold text-xl"> {{ $event->name }} </h1>
             </div>
@@ -16,12 +16,12 @@
             <div class="event-detail-box">
                 <div class="detail-container">
                     <span class="detail-icon"><img src="https://i.ibb.co/G7DMFWP/icons8-clock-48.png"></span>
-                    <span class="detail-info">{{ date('D d F Y g:i:s A', strtotime($event->date)) }}</span>
+                    <span class="detail-info">{{ date('D d F Y', strtotime($event->date)) }}</span>
                 </div>
                 <div class="detail-container">
                     <span class="detail-icon"><img src="https://i.ibb.co/TwgxD7N/icons8-location-48.png"></span>
                     <span class="detail-info">
-                        <p>{{ $event->address }} {{ $event->province }} {{ $event->district }} {{ $event->subdistrict }}</p>
+                        <p>{{ $event->address }} {{ $event->province->name }} {{ $event->district->name }} {{ $event->subdistrict->name }}</p>
                         <p>{{ $event->location_detail }}</p>
                     </span>
                 </div>
