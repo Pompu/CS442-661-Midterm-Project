@@ -1,11 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<style>
-  .dragging {
-    opacity: 0.6;
-  }
-</style>
 
 <div>
     <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
@@ -68,10 +63,16 @@
               </div>
               <div class="board-container overflow-scroll max-h-[800px]">
                 @foreach ($boards as $board)
-                <div role="list" class="p-2 divide-y divide-gray-200"  draggable="true"> 
+                <div role="list" class="p-2 divide-y divide-gray-200"> 
                   <div class="group bg-gray-900 p-4 transition-all duration-300 hover:rotate-1 lg:p-8">
+      
                     <div class="mb-3 text-right">
-                      <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                      <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-yellow-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+                          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                        </svg>
+                      </button>
+                      <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-green-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
                           <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
                         </svg>
@@ -87,6 +88,7 @@
                     </div>
                     <div class="flex items-center justify-between">
                       <span class="text-sm font-medium text-gray-50"></span>
+                      
                       <a class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">Location Team</a>
                     </div>
                   </div>
@@ -102,10 +104,15 @@
               </div>
               <div class="board-container overflow-scroll max-h-[800px] ">
                 @foreach ($boards as $board)
-                <div role="list" class="p-2 divide-y divide-gray-200" draggable="true"> 
+                <div role="list" class="p-2 divide-y divide-gray-200"> 
                   <div class="group bg-gray-900 p-4 transition-all duration-300 hover:rotate-1 lg:p-8">
                     <div class="mb-3 text-right">
                       <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+                          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                        </svg>
+                      </button>
+                      <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-green-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
                           <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
                         </svg>
@@ -136,10 +143,15 @@
               </div>
               <div class="board-container overflow-scroll max-h-[800px] ">
                 @foreach ($boards as $board)
-                <div role="list" class="p-2 divide-y divide-gray-200" draggable="true"> 
+                <div role="list" class="p-2 divide-y divide-gray-200"> 
                   <div class="group bg-gray-900 p-4 transition-all duration-300 hover:rotate-1 lg:p-8">
                     <div class="mb-3 text-right">
                       <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+                          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                        </svg>
+                      </button>
+                      <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-yellow-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
                           <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
                         </svg>
@@ -170,36 +182,4 @@
     </div>
   </div> 
 </div>   
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const boardContainers = document.querySelectorAll('.board-container');
-
-    let draggedItem = null;
-
-    boardContainers.forEach(container => {
-      container.addEventListener('dragstart', event => {
-        draggedItem = event.currentTarget;
-        event.dataTransfer.setData('text/plain', '');
-        event.currentTarget.classList.add('dragging');
-      });
-
-      container.addEventListener('dragend', event => {
-        draggedItem = null;
-        event.currentTarget.classList.remove('dragging');
-      });
-
-      container.addEventListener('dragover', event => {
-        event.preventDefault();
-      });
-
-      container.addEventListener('drop', event => {
-        event.preventDefault();
-        if (draggedItem) {
-          const targetContainer = event.currentTarget;
-          targetContainer.appendChild(draggedItem);
-        }
-      });
-    });
-  });
-</script>
 @endsection

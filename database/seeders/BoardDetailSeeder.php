@@ -1,17 +1,18 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Board;
+
+use App\Models\BoardDetail;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BoardSeeder extends Seeder
+class BoardDetailSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Board::factory(3)->create();
+        BoardDetail::factory(15)->create();
     }
 }
