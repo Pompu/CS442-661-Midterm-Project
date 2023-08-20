@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Organizer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +18,8 @@ class BoardFactory extends Factory
     {
         return [
         
-            //'header_id' => fake()->numberBetween(1,3),
-            'topic' => fake()->realTextBetween(5,10),
-            'detail' => fake()->realTextBetween(5,10)
+            'organizer_id' => Organizer::all()->random()->id,
+            'header' => fake()->realTextBetween(5,10)
         ];
     }
 }

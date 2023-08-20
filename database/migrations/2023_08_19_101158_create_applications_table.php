@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
+            //$table->team_id();
             $table->timestamps();
             $table->foreignIdFor(User::class,'user');
             $table->foreignIdFor(Event::class,'event');

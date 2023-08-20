@@ -1,4 +1,5 @@
 <div class="hidden sm:flex sm:items-center sm:ml-6">
+
   <x-dropdown align="right" width="48">
     <x-slot name="trigger">
       <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -17,8 +18,10 @@
           <div class="relative w-5 h-5 overflow-hidden  rounded-full ">
             <div class="relative w-5 h-5 overflow-hidden  rounded-full ">
               <img type="file" name="image_path" id="image_path" class="relative w-5 h-5 rounded-full" src="https://cdn4.iconfinder.com/data/icons/top-search-7/128/_user_account_profile_head_person_avatar-512.png">
+
             </div>
           </div>
+
 
           @endif
         </div>
@@ -37,7 +40,7 @@
       <x-dropdown-link :href="route('historys.certificate')">
         {{ __('Certificate') }}
       </x-dropdown-link>
-      <x-dropdown-link :href="route('myevents.myevents')">
+      <x-dropdown-link :href="route('myevents')">
         {{ __('My Event') }}
       </x-dropdown-link>
       @endif

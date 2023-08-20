@@ -30,7 +30,18 @@
                     </div>
                     <div class="budget-detail">
                         <h2 class="text-xl font-semibold">{{ $budget->event->name }}</h2>
-                        <p class="text-gray-600 text-sm">{{ $budget->cost }}</p>
+                        <div>
+                            <div>
+                                <span class="font-semibold">สถานะ: </span>
+                                @if($budget->status === "inprogress") <span class="text-red-600">รอดำเนินการ</span>
+                                @elseif($budget->status === "completed") <span class="text-green-600">ดำเนินการแล้ว</span>
+                                @endif
+                            </div>
+                            <div>
+                                <span class="font-semibold">ค่าใช้จ่าย: </span>
+                                <span>{{ $budget->cost }} บาท</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </a>

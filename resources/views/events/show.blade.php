@@ -28,10 +28,20 @@
                 <h1 class="font-semibold text-xl"> {{ $event->name }} </h1>
             </div>
 
-            <div class = "event-detail-box">
-                <p>{{ date("D d F Y", strtotime($event->date))}}</p>
-                <p>{{ $event->location }}</p>
+            <div class="event-detail-box">
+                <div class="detail-container">
+                    <span class="detail-icon"><img src="https://i.ibb.co/G7DMFWP/icons8-clock-48.png"></span>
+                    <span class="detail-info">{{ date('D d F Y g:i:s A', strtotime($event->dateTime)) }}</span>
+                </div>
+                <div class="detail-container">
+                    <span class="detail-icon"><img src="https://i.ibb.co/TwgxD7N/icons8-location-48.png"></span>
+                    <span class="detail-info">
+                        <p>{{ $event->address }} {{ $event->province }} {{ $event->district }} {{ $event->subdistrict }}</p>
+                        <p>{{ $event->location_detail }}</p>
+                    </span>
+                </div>
             </div>
+
 
             <div class="event-detail-box">
                 <p>{{ $event->detail }}</p>
