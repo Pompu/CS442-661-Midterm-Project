@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\Organizer;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,6 +19,8 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => fake()->numberBetween(1,User::count()),
+            'organizer_id' =>fake()->numberBetween(1,Organizer::count()),
             'name' => fake()->realText($maxNbChars = 50),
             'user_id' => 1,
             'organizer_id' => 1,
