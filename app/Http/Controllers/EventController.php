@@ -38,7 +38,7 @@ class EventController extends Controller
         //dd($events);
         // dd($events[Event::all()->random()]->getAttributes()['image_path'] );
         return view('events.index', [
-            'events' => $events,
+            'events' => $events
         ]);
     }
 
