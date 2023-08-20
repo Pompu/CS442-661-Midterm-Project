@@ -13,14 +13,29 @@ use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
-    public function index() {
-        $events = Event::get();
+    public function index(Request $request) {
+        $currentDate = now();
+        $events = Event::where('dateTime', '>=', $currentDate)->orderBy('dateTime')->get();
 
-        $sortedEvents = $this->sortEvents($events);
-        $filteredEvents = $this->filterUpcomingEvents($sortedEvents);
+        if ($request->has('sort')) {
+            if ($request->sort === 'oldest') {
+                $events = $events->sortBy('dateTime');
+            } elseif ($request->sort === 'newest') {
+                $events = $events->sortByDesc('dateTime');
+            }
+        }
+
+        if ($request->has('start_date') || $request->has('end_date')) {
+            $startDate = $request->start_date ?? now()->format('Y-m-d');
+            $endDate = $request->end_date ?? $events->max('dateTime');
+
+            $events = $events->filter(function ($event) use ($startDate, $endDate) {
+                return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
+            });
+        }
 
         return view('events.index', [
-            'events' => $filteredEvents
+            'events' => $events
         ]);
     }
 
@@ -29,13 +44,6 @@ class EventController extends Controller
         return view('events.show', [
             'event' => $event
         ]);
-    }
-
-
-    private function sortEvents($events) {
-        $sortedEvents = $events->sortBy('date');
-
-        return $sortedEvents;
     }
 
     public function update(Request $request, Event $event)
@@ -56,7 +64,6 @@ class EventController extends Controller
     }
     
     public function getDetails(Request $request) {
-        //dd($request->myevent);
         $myevent = $request->myevent;
         $province = DB::table('masterprovince')->where('id', $myevent['province_id'])->get();
         $district = DB::table('masterdistrict')->where('id', $myevent['district_id'])->get();
@@ -79,20 +86,20 @@ class EventController extends Controller
     }
     public function getDistrict(Request $request) {
         $selectedValue = $request->input('province_id');
-    
+
         $districts = DB::table('masterdistrict')
                         ->where('province_id', $selectedValue)
                         ->get();
-    
+
         return response()->json(['districts' => $districts]);
     }
     public function getSubdistrict(Request $request) {
         $selectedValue = $request->input('district_id');
-    
+
         $subdistricts = DB::table('mastersubdistrict')
                         ->where('district_id', $selectedValue)
                         ->get();
-    
+
         return response()->json(['subdistricts' => $subdistricts]);
     }
     public function storeEvent(Request $request) {

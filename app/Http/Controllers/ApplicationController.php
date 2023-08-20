@@ -19,8 +19,15 @@ class ApplicationController extends Controller
             'event' => $event
         ]);
     }
+    public function verify(Request $request,Event $event)
+    {
+        return view('application.verify', [
+            'user' => $request->user(),
+            'event' => $event
+        ]);
+    }
 
-    public function store(Request $request, Event $event)
+    public function store( Event $event)
     {
         
          $application = new Application();

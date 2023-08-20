@@ -61,6 +61,16 @@
     white-space: nowrap;
 }
 
+.event-location {
+    color: #718096;
+    font-size: 14px;
+    flex: 1;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .event-image img{
     height: 300px;
     object-fit: cover;
@@ -82,6 +92,20 @@
     border-radius: 10px;
     width: 500px;
     padding: 20px;
+}
+
+.detail-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.detail-icon {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.detail-info {
+    flex: 1;
 }
 
 .budget-container {

@@ -5,10 +5,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
+
 </head>
 <body>
-    <div class="max-w-2xl mx-auto" style="margin-block: 30px">
+    <div class="max-w-2xl mx-auto my-auto" style="margin-block: 10">
         <div id="default-carousel" class="relative" data-carousel="static">
             <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
                 <!-- Item 1 -->
@@ -48,7 +48,27 @@
     </div>
 
     <div class="container">
-        <div class="text-2xl font-semibold">Upcoming Events</div>
+        <div class="flex justify-between items-center mb-4 p-4 rounded-lg bg-white">
+            <div class="flex items-center">
+                <div class="text-2xl font-semibold">Upcoming Events</div>
+            </div>
+            <form id="filterForm" action="{{ route('event') }}" method="get" class="flex items-center space-x-4">
+                @csrf
+                <label for="sort" class="font-semibold">Sort:</label>
+                <select id="sort" name="sort" class="px-4 py-1 border rounded w-24">
+                    <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest</option>
+                    <option value="newest" {{ request('sort') === 'newest' ? 'selected' : '' }}>Newest</option>
+                </select>
+
+                <label for="startDate" class="font-semibold">Start Date:</label>
+                <input type="date" id="startDate" name="start_date" class="px-2 py-1 border rounded" value="{{ request('start_date') }}" min="{{ date('Y-m-d') }}">
+
+                <label for="endDate" class="font-semibold">End Date:</label>
+                <input type="date" id="endDate" name="end_date" class="px-2 py-1 border rounded" value="{{ request('end_date') }}" min="{{ date('Y-m-d') }}">
+
+                <input type="submit" style="display: none;">
+            </form>
+        </div>
 
         <div class="event-container">
             @foreach ($events as $event)
@@ -58,15 +78,33 @@
                         <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
                     </div>
                     <div class="event-detail">
-                        <p class="font-semibold text-violet-700">{{ date("d M Y", strtotime($event->date)) }}</p>
+                        <p class="font-semibold text-violet-700">{{ date('d M Y', strtotime($event->dateTime)) }}</p>
                         <h2 class="event-name">  {{ $event->name }}</h2>
-                        <p class="text-gray-600 text-sm">{{ $event->location }}</p>
+                        <p class="event-location" style="margin-block: 4px">{{ $event->province }} {{ $event->district }}</p>
                     </div>
                 </div>
             </a>
             @endforeach
         </div>
     </div>
+
+    <script>
+        const filterForm = document.getElementById('filterForm');
+        const sortSelect = document.getElementById('sort');
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+
+        sortSelect.addEventListener('change', function() {
+            filterForm.submit();
+        });
+        startDateInput.addEventListener('change', function() {
+            filterForm.submit();
+        });
+        endDateInput.addEventListener('change', function() {
+            filterForm.submit();
+        });
+    </script>
+
 </body>
 </html>
 @endsection

@@ -24,7 +24,7 @@
                     <div class="sm:col-span-3">
                         <x-input-label for="name" :value="__('First name')" />
                         <div class="mt-2">
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" readonly value="{{ $user->name}}" required autofocus autocomplete="name" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" readonly value="{{ $user->first_name}}" required autofocus autocomplete="name" />
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="sm:col-span-3">
                         <x-input-label for="name" :value="__('Last name')" />
                         <div class="mt-2">
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" readonly value="{{ $user->name}}" required autofocus autocomplete="name" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" readonly value="{{ $user->last_name}}" required autofocus autocomplete="name" />
                         </div>
                     </div>
                 </div>

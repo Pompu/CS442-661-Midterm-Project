@@ -55,7 +55,7 @@ Route::get('/events/{event}', [EventController::class, 'show'])->name('events.sh
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
 Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
 
-Route::get('/verify', function () { return view('events.verify');});
+
 
 Route::get('/boards', [BoardController::class, 'index'])->name("board");
 Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("board.team");
@@ -67,9 +67,11 @@ Route::get('/budgets/detail/{budget}', [BudgetController::class, 'show'])->name(
 Route::put('/budgets/detail/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile', [ProfileController::class, 'uploadImage'])->name('profile.uploadImage');
     });
 
 ;
