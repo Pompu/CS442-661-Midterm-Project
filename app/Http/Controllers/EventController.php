@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Budget;
 use App\Models\Event;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
@@ -51,9 +54,24 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
-
+    
+    public function getDetails(Request $request) {
+        //dd($request->myevent);
+        $myevent = $request->myevent;
+        $province = DB::table('masterprovince')->where('id', $myevent['province_id'])->get();
+        $district = DB::table('masterdistrict')->where('id', $myevent['district_id'])->get();
+        $subdistrict = DB::table('mastersubdistrict')->where('id', $myevent['subdistrict_id'])->get();
+        return view('myevents.details', [
+            'myevent' => $myevent,
+            'province' => $province[0]->name,
+            'district' => $district[0]->name,
+            'subdistrict' => $subdistrict[0]->name,
+            'owner' =>  Auth::user()->name
+        ]);
+    }
     public function myEvent() {
-        return view('myevents.myevents');
+        $myevents = DB::table('events')->where('user_id', Auth::user()->id)->get();
+        return view('myevents.myevents', [ 'myevents' => $myevents ]);
     }
     public function createEvent() {
         $provinces = DB::table('masterprovince')->get();
@@ -78,19 +96,26 @@ class EventController extends Controller
         return response()->json(['subdistricts' => $subdistricts]);
     }
     public function storeEvent(Request $request) {
-        /* $request->validate([
-            'name' => ['required', 'unique:App\Models\Artist,name']
-        ]);
-        $image_file = $request->file('image');
-        $image_path = $image_file->storeAs("public");
+        $path = $request->file('image')->store('event_images', 'public');
+        $event = new Event();
+        $event->user_id = Auth::user()->id;
+        $event->organizer_id = 1;
+        $event->name = $request->get('eventname');
+        $event->detail = $request->get('eventdetail');
+        $event->date = $request->get('eventdate');
+        $event->address = $request->get('eventaddress');
+        $event->province_id = $request->get('province');
+        $event->district_id = $request->get('district');
+        $event->subdistrict_id = $request->get('subdistrict');
+        $event->location_detail = $request->get('addressdetail');
+        $event->image_path = $path;
+        $event->save();
 
-        $artist = new Artist();
-        $artist->image_path = $image_path;
-        $artist->name = $request->get('name');
-        $artist->save();
-
-         */
-        Log::info('Request Data:', $request->all());
-        //return redirect()->route('myevents');
+        $budget = new Budget();
+        $budget->event_id = $event->id;
+        $budget->cost = $request->get('eventbudget');
+        $budget->save();
+        
+        return redirect()->route('myevents');
     }
 }

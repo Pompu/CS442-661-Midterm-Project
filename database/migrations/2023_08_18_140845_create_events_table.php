@@ -1,5 +1,10 @@
 <?php
 
+use App\Models\District;
+use App\Models\Organizer;
+use App\Models\Province;
+use App\Models\Subdistrict;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +18,16 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class, 'user_id');
+            $table->foreignIdFor(Organizer::class, 'organizer_id');
             $table->string('name');
-            $table->string('detail');
-            $table->string('location');
-            $table->date('date');
+            $table->string('detail')->nullable();
+            $table->string('address');
+            $table->foreignIdFor(Province::class, 'province_id');
+            $table->foreignIdFor(District::class, 'district_id');
+            $table->foreignIdFor(Subdistrict::class, 'subdistrict_id');
+            $table->string('location_detail');
+            $table->dateTime('date');
             $table->string('image_path')->nullable();
             $table->timestamps();
         });
