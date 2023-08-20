@@ -38,5 +38,6 @@ class ApplicationController extends Controller
             return redirect()->route('event');
         
     }
+   
 }
 
