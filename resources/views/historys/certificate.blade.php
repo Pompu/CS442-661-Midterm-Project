@@ -1,12 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-   
-<div class="grid justify-items-center">
-    <label class="text-2xl">
-        Certificates
-    </label>
-</div>
+
 {{-- loop --}}
 <div class="mt-10 mx-20 grid gap-x-10 gap-y-10 grid-cols-3">
     <div class="group/img shadow-md border-black border animate-[fadeIn_2s]">

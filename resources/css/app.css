@@ -11,15 +11,23 @@
 .container{
     max-width: 1125px;
     margin: 0 auto;
-    padding: 50px;
+    padding: 30px;
 }
 
 .event-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(179px, 1fr));
     grid-gap: 2rem;
-    margin-top: 70px;
+    margin-top: 20px;
 }
+
+.create-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(179px, 1fr));
+    grid-gap: 7rem;
+    margin-top: 20px;
+}
+
 
 .event-item {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -32,7 +40,8 @@
 }
 
 .event-item:hover {
-    outline: 1.8px solid rgb(74, 98, 133);
+    box-shadow: 0 0 0 2px #6d28d9;
+
 }
 
 .event-detail {
@@ -45,6 +54,16 @@
 
 .event-name {
     font-weight: 600;
+    flex: 1;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.event-location {
+    color: #718096;
+    font-size: 14px;
     flex: 1;
     max-width: 100%;
     overflow: hidden;
@@ -75,6 +94,20 @@
     padding: 20px;
 }
 
+.detail-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.detail-icon {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.detail-info {
+    flex: 1;
+}
+
 .budget-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -93,7 +126,7 @@
 }
 
 .budget-item:hover {
-    outline: 1.8px solid rgb(74, 98, 133);
+    box-shadow: 0 0 0 2px #6d28d9;
 }
 
 .budget-detail {

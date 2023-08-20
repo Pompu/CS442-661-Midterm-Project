@@ -12,8 +12,15 @@
                 </div>
 
                 <div class = "event-detail-box-white">
-                    <p>{{ date("D d F Y", strtotime($budget->event->date))}}</p>
-                    <p>{{ $budget->event->location }}</p>
+                    <div class="detail-container">
+                        <span class="detail-icon"><img src="https://img.icons8.com/?size=512&id=6Z5IUAh18Fuc&format=png" width="20"></span>
+                        <span class="detail-info"><p>{{ date('D d F Y g:i:s A', strtotime($budget->event->dateTime)) }}</p></span>
+                    </div>
+                    <div class="detail-container">
+                        <span class="detail-icon"><img src="https://img.icons8.com/?size=512&id=c0kUjxdWTRsk&format=png" width="20"></span>
+                        <span class="detail-info"><p>{{ $budget->event->address }} {{ $budget->event->province }} {{ $budget->event->district }} {{ $budget->event->subdistrict }}</p></span>
+                    </div>
+                    <p style="margin-left:30px">{{ $budget->event->location_detail }}</p>
                 </div>
 
                 <div class="event-detail-box-white">
@@ -36,10 +43,10 @@
         </div>
         <div style="margin-block:10px">
             <span class="font-semibold">ค่าใช้จ่าย: </span>
-            <span>{{ $budget->cost }}</span>
+            <span>{{ $budget->cost }} บาท</span>
         </div>
         <div style="margin-block:10px">
-            <span class="font-semibold">คำอธิบาย: </span>
+            <span class="font-semibold">รายละเอียด: </span>
             <span>{{ $budget->description }}</span>
         </div>
 
