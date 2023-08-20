@@ -57,10 +57,12 @@ Route::get('/myevents/details', function () {
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
 Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
+Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
 
 
 
 Route::get('/boards', [BoardController::class, 'index'])->name("board");
+
 Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("board.team");
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");

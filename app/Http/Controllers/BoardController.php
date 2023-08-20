@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Board;
-
+use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\BoardDetail;
+use App\Models\Organizer;
 use Illuminate\Http\Request;
 
 class BoardController extends Controller
@@ -10,18 +14,26 @@ class BoardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index()  
     {
-        $boards = Board::get();
-        return view('boards.index',[
-            'boards' => $boards
+        $organize = DB::table('events')->where('organizer_id')->get();
+        $boards = Board::where('organizer_id')->get();
+        $board_details = BoardDetail::where('board_header_id')->get();
+        //$event = Event::where('organizer_id',1)->get();
+        return view('boards.index',[ 
+            'boards' => $boards,
+            'board_details' => $board_details
         ]);
     }
 
     public function viewTeamBoard() {
+        
         $boards = Board::get();
+        $board_details = BoardDetail::get();
         return view('boards.team',[
-            'boards' => $boards
+            'boards' => $boards,
+            'board_details' => $board_details
+            
         ]);
     }
     /**
