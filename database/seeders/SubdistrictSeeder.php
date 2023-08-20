@@ -2,17 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Applicant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class ApplicantSeeder extends Seeder
+class SubdistrictSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Applicant::factory(10)->create();
+        $path = resource_path('sql/subdistrict.sql');
+        $sql = file_get_contents($path);
+        DB::unprepared($sql);
     }
 }

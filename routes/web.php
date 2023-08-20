@@ -6,6 +6,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,8 +40,11 @@ Route::get('/certificate', [HistoryController::class, 'certificate'])->name("his
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
 
-Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents.myevents");;
-Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");;
+Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
+Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");
+Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
+Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
+Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
 
 Route::get('/myevents/applicants', function () {
     return view('myevents.applicants');
@@ -50,10 +54,9 @@ Route::get('/myevents/details', function () {
     return view('myevents.details');
 })->name('myevents.details');
 
-Route::get('/events', [EventController::class, 'index'])->name("event");;
-
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
-Route::get('/events/{event}/apply', [EventController::class, 'apply'])->name('events.apply');
+Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
+Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
 
 Route::get('/verify', function () { return view('events.verify');});
 
@@ -62,13 +65,15 @@ Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("bo
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");
 
+Route::get('/budgets/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
+Route::put('/budgets/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
+Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
-
     });
-;
 
+;
 require __DIR__.'/auth.php';
