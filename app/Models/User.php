@@ -31,6 +31,10 @@ class User extends Authenticatable
         return $this->hasMany(Application::class);
     }
 
+    public function certificates(): HasMany {
+        return $this->hasMany(Certificate::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
