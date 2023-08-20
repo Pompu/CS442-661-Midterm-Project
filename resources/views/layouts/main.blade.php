@@ -14,6 +14,7 @@
     <main class="bg-gray-100 min-h-screen text-black">
         @yield('content')
     </main>
+    @include('layouts.subviews.footer')
 </body>
 
 </html>
