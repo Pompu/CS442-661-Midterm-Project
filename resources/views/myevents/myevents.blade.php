@@ -16,7 +16,7 @@
                     <img src="{{ asset('storage/' . $myevent->image_path) }}">
                 </div>
                 <div class="event-detail">
-                    <label class="font-semibold text-violet-700">{{ $myevent->date }}</label>
+                    <label class="font-semibold text-violet-700">{{date('d F Y', strtotime($myevent->date)) }}</label>
                     <label class="event-name">{{ $myevent->name }}</label>
                     <label class="text-gray-600 text-sm">{{ $myevent->location_detail }}</label>
                 </div>
