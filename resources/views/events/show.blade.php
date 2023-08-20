@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="mx-auto flex py-5">
+    <div class="mx-oflex py-5">
         <div class="grid-column: 1" style="margin-left: 250px; display: flex; flex-direction: column; align-items: center;">
             <div class="event-detail-image">
                 <img src="{{ $event->image_path }}" alt="{{ $event->name }}">
