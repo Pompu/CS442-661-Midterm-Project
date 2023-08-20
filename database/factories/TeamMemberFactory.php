@@ -19,8 +19,8 @@ class TeamMemberFactory extends Factory
     public function definition(): array
     {
         return [
-            'organizer_member_id' => OrganizerMember::all()->random()->id,
-            'team_id' => Team::all()->random()->id,
+            'organizer_member_id' => fake()->numberBetween(1,OrganizerMember::count()),
+            'team_id' => fake()->numberBetween(1,Team::count())
         ];
     }
 }

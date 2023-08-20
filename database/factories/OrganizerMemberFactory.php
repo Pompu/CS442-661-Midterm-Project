@@ -19,8 +19,8 @@ class OrganizerMemberFactory extends Factory
     public function definition(): array
     {
         return [
-            'organizer_id' => Organizer::all()->random()->id,
-            'user_id' => User::all()->random()->id,
+            'organizer_id' => fake()->numberBetween(1,Organizer::count()),
+            'user_id' => fake()->numberBetween(1,User::count())
            
         ];
     }

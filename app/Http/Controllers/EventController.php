@@ -2,22 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Budget;
 use App\Models\Event;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
-    public function index() {
-        $events = Event::get();
+    public function index(Request $request) {
+        $currentDate = now();
+        $events = Event::where('dateTime', '>=', $currentDate)->orderBy('dateTime')->get();
 
-        $sortedEvents = $this->sortEvents($events);
-        $filteredEvents = $this->filterUpcomingEvents($sortedEvents);
+        if ($request->has('sort')) {
+            if ($request->sort === 'oldest') {
+                $events = $events->sortBy('dateTime');
+            } elseif ($request->sort === 'newest') {
+                $events = $events->sortByDesc('dateTime');
+            }
+        }
+
+        if ($request->has('start_date') || $request->has('end_date')) {
+            $startDate = $request->start_date ?? now()->format('Y-m-d');
+            $endDate = $request->end_date ?? $events->max('dateTime');
+
+            $events = $events->filter(function ($event) use ($startDate, $endDate) {
+                return $event->dateTime >= $startDate && $event->dateTime <= $endDate;
+            });
+        }
 
         return view('events.index', [
-            'events' => $filteredEvents
+            'events' => $events
         ]);
     }
 
@@ -28,13 +46,6 @@ class EventController extends Controller
         ]);
     }
 
-
-    private function sortEvents($events) {
-        $sortedEvents = $events->sortBy('dateTime');
-
-        return $sortedEvents;
-    }
-
     public function update(Request $request, Event $event)
     {
         $event->name = $request->get('name');
@@ -43,17 +54,31 @@ class EventController extends Controller
     }
 
     private function filterUpcomingEvents($events) {
-        $currentDateTime = now();
+        $currentDate = new DateTime('today');
 
-        $filteredEvents = $events->filter(function ($event) use ($currentDateTime) {
-            return $event->dateTime >= $currentDateTime;
+        $filteredEvents = $events->filter(function ($event) use ($currentDate) {
+            return strtotime($event->date) >= $currentDate->getTimestamp();
         });
 
         return $filteredEvents;
     }
-
+    
+    public function getDetails(Request $request) {
+        $myevent = $request->myevent;
+        $province = DB::table('masterprovince')->where('id', $myevent['province_id'])->get();
+        $district = DB::table('masterdistrict')->where('id', $myevent['district_id'])->get();
+        $subdistrict = DB::table('mastersubdistrict')->where('id', $myevent['subdistrict_id'])->get();
+        return view('myevents.details', [
+            'myevent' => $myevent,
+            'province' => $province[0]->name,
+            'district' => $district[0]->name,
+            'subdistrict' => $subdistrict[0]->name,
+            'owner' =>  Auth::user()->name
+        ]);
+    }
     public function myEvent() {
-        return view('myevents.myevents');
+        $myevents = DB::table('events')->where('user_id', Auth::user()->id)->get();
+        return view('myevents.myevents', [ 'myevents' => $myevents ]);
     }
     public function createEvent() {
         $provinces = DB::table('masterprovince')->get();
@@ -78,19 +103,26 @@ class EventController extends Controller
         return response()->json(['subdistricts' => $subdistricts]);
     }
     public function storeEvent(Request $request) {
-        /* $request->validate([
-            'name' => ['required', 'unique:App\Models\Artist,name']
-        ]);
-        $image_file = $request->file('image');
-        $image_path = $image_file->storeAs("public");
+        $path = $request->file('image')->store('event_images', 'public');
+        $event = new Event();
+        $event->user_id = Auth::user()->id;
+        $event->organizer_id = 1;
+        $event->name = $request->get('eventname');
+        $event->detail = $request->get('eventdetail');
+        $event->date = $request->get('eventdate');
+        $event->address = $request->get('eventaddress');
+        $event->province_id = $request->get('province');
+        $event->district_id = $request->get('district');
+        $event->subdistrict_id = $request->get('subdistrict');
+        $event->location_detail = $request->get('addressdetail');
+        $event->image_path = $path;
+        $event->save();
 
-        $artist = new Artist();
-        $artist->image_path = $image_path;
-        $artist->name = $request->get('name');
-        $artist->save();
-
-         */
-        Log::info('Request Data:', $request->all());
-        //return redirect()->route('myevents');
+        $budget = new Budget();
+        $budget->event_id = $event->id;
+        $budget->cost = $request->get('eventbudget');
+        $budget->save();
+        
+        return redirect()->route('myevents');
     }
 }

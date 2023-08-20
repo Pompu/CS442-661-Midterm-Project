@@ -10,17 +10,18 @@
     <div class="container">
         <div class="text-2xl font-semibold">My Events</div>
         <div class="event-container">
-            {{-- loop  --}}
-            <div class="event-item">
+            @foreach ($myevents as $myevent)
+            <a href="{{ route('myevents.details', ['myevent' => $myevent]) }}" class="event-item cursor-pointer">
                 <div class="event-image" >
-                    <img src="https://cdn.discordapp.com/attachments/982119215723053096/1142118215275778138/IMG_2916.jpg" alt="">
+                    <img src="{{ asset('storage/' . $myevent->image_path) }}">
                 </div>
                 <div class="event-detail">
-                    <p class="font-semibold text-violet-700">Date</p>
-                    <h2 class="event-name">Name</h2>
-                    <p class="text-gray-600 text-sm">Location</p>
+                    <label class="font-semibold text-violet-700">{{ $myevent->date }}</label>
+                    <label class="event-name">{{ $myevent->name }}</label>
+                    <label class="text-gray-600 text-sm">{{ $myevent->location_detail }}</label>
                 </div>
-            </div>
+            </a>
+            @endforeach
         
             <a href=" {{ route('myevents.create-event')}}" class="event-item justify-center items-center" 
                 method="POST" >

@@ -42,6 +42,7 @@ Route::get('/events', [EventController::class, 'index'])->name("event");
 
 Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
 Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");
+Route::get('/myevents/details', [EventController::class, 'getDetails'])->name("myevents.details");
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
 Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
 Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
@@ -50,17 +51,15 @@ Route::get('/myevents/applicants', function () {
     return view('myevents.applicants');
 })->name('myevents.applicants');
 
-Route::get('/myevents/details', function () {
-    return view('myevents.details');
-})->name('myevents.details');
-
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
+Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
 Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
 
 
 
 Route::get('/boards', [BoardController::class, 'index'])->name("board");
+
 Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("board.team");
 
 Route::get('/teams', [TeamController::class, 'index'])->name("team");

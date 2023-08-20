@@ -18,7 +18,7 @@ class BoardFactory extends Factory
     {
         return [
         
-            'organizer_id' => Organizer::all()->random()->id,
+            'organizer_id' =>fake()->numberBetween(1,Organizer::count()),
             'header' => fake()->realTextBetween(5,10)
         ];
     }

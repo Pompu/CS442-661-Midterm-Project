@@ -18,8 +18,8 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
-            'organizer_id' => Organizer::all()->random()->id,
-            'name' => fake()->realTextBetween(5,10),
+            'organizer_id' => fake()->numberBetween(1,Organizer::count()),
+            'name' => fake()->realTextBetween(5,10)
         ];
     }
 }
