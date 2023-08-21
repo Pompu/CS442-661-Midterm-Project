@@ -4,7 +4,7 @@
 @include('myevents.sidebar')
 
 <div>
-    <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
+    <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black  ">
       <div class=" ml-5 mt-5 mb-5 md:ml-40">
         <div class="px-10 m-6">
           <h1 class="text-5xl font-bold text-center">{{ $myevent['name'] }}</h1>
