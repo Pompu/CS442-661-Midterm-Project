@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Event;
+use App\Models\Organizer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ class ApplicationController extends Controller
 
     public function form(Request $request, Event $event)
     {
+
         return view('application.form', [
             'user' => $request->user(),
             'event' => $event
@@ -23,34 +25,32 @@ class ApplicationController extends Controller
     }
     public function verify(Request $request, $event, $applicant,)
     {
-        //$myevent = Event::findOrFail($myevent);
-        
+
         
         $applicant = Application::findOrFail($applicant);
         $myevent = Event::findOrFail($event);
-        //dd($request->myevent);
+        $organizer =  Organizer::where('id', $request->organizer)->get();
         return view('application.verify', [
 
-            'myevent' => $request->myevent,
+            'myevent' => $myevent,
             'applicant' => $applicant,
+            'organizer' => $organizer[0]
         ]);
     }
-    public function update(Request $request, $event,$applicant)
+    public function update(Request $request,$applicant)
     {
-        //dd($applicant);
         $action = $request->input('action');
         $applicant = Application::findOrFail($applicant);
-        $myevent = $request->myevent;
-        //dd($request->myevent);
+        $myevent = Event::findOrFail($request->event);
+        $organizer =  Organizer::where('id', $request->organizer)->get();
         if ($action === 'accept') {
             $applicant->status = 'ACCEPT';
         } elseif ($action === 'reject') {
             $applicant->status = 'REJECT';
         }
-        //dd($event);
         $applicant->save();
        
-        return  redirect()->route('myevents.applicants', ['myevent' => $myevent,'event' => $myevent['id']]);
+        return  redirect()->route('myevents.applicants', ['event' => $myevent,'myevent' => $myevent, 'organizer' => $organizer[0]]);
 
         
     }

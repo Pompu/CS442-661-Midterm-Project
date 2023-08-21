@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organizer;
+use App\Models\Board;
+use App\Models\BoardDetail;
 use App\Models\OrganizerMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +28,23 @@ class OrganizerController extends Controller
         $organizer->user_id = Auth::user()->id;
         $organizer->name = $request->get('name');
         $organizer->save();
+        for ($i = 0; $i < 3; $i++) {
+            $board = new Board();
+            $board->organizer_id = $organizer->id;
+            if ($i == 0) {
+                $board->header = 'To Do';
+            } else if ($i == 1) {
+                $board->header = 'Ongoing';
+            } else {
+                $board->header = 'Finish';
+            }
+            $board->save();
+            $board_detail = new BoardDetail();
+            $board_detail->board_header_id = $board->id;
+            $board_detail->topic = 'topic' . $i;
+            $board_detail->detail = 'Type your detail here' . $i;
+            $board_detail->save();
+        }
         return response()->json(['organizer' => $organizer]);
     }
 

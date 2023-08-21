@@ -8,7 +8,7 @@
 <div class="container">
     <div class="w-full">
         <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-            <form action="{{ route('myevents.storePostit',['board'=> $board,'event' => $myevent['id'], 'myevent' => $myevent])}}" method="POST">
+            <form action="{{ route('myevents.storePostit',['board'=> $board,'event' => $myevent, 'myevent' => $myevent, 'organizer' => $organizer ])}}" method="POST">
                 @csrf
                 <div class="mb-5">
                     <label for="name" class="block mb-2 font-bold text-gray-700">Topic</label>

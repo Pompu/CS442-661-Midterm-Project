@@ -12,12 +12,12 @@
 
                 <div class="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 ">
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-bold leading-none text-gray-900 ">Applicants {{$myevent_details->name}}</h3>
+                        <h3 class="text-xl font-bold leading-none text-gray-900 ">Applicants {{$organizer->id}}</h3>
                     </div>
                     <div class="flow-root">
                         <ul role="list" class="divide-y divide-gray-200 ">
                             @foreach ($applicants as $applicant)
-                            <a href="{{ route('application.verify', ['applicant' => $applicant['id'], 'event' => $myevent, 'myevent' => $myevent]) }}">
+                            <a href="{{ route('application.verify', ['applicant' => $applicant['id'], 'event' => $myevent, 'myevent' => $myevent,'organizer' => $organizer]) }}">
                                 <li class="py-3 sm:py-4">
                                     <div class="flex items-center space-x-4 text-blue-600">
                                         <div class="flex-shrink-0">

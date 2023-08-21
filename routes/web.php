@@ -13,6 +13,7 @@ use App\Http\Controllers\OrganizerController;
 use App\Models\Certificate;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
