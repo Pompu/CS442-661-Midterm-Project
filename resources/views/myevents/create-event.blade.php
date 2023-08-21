@@ -6,7 +6,7 @@
  </head>
 <div class="container">
     <div class="text-2xl font-semibold text-center">Create New Event</div>
-            <form action="{{ route('myevents.storeEvent') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('myevents.storeEvent') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="create-container ">
                     
@@ -104,7 +104,6 @@
                         
                         </div>
             </div>
-        </div>
     </form>
 </div>
 

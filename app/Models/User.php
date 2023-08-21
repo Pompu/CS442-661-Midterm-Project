@@ -20,15 +20,19 @@ class User extends Authenticatable
 
     public function isMember() : bool
     {
-        return $this->role = 'MEMBER';
+        return $this->role == 'MEMBER';
     }
 
     public function isOfficer() : bool
     {
-        return $this->role = 'OFFICER';
+        return $this->role == 'OFFICER';
     }
     public function applications(): HasMany {
         return $this->hasMany(Application::class);
+    }
+
+    public function certificates(): HasMany {
+        return $this->hasMany(Certificate::class);
     }
 
     /**

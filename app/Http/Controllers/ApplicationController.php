@@ -65,11 +65,13 @@ class ApplicationController extends Controller
     public function store(Event $event)
     {
 
-        $application = new Application();
-        $application->status = 'WATING';
-        $application->user_id = Auth::user()->id;
-        $application->event_id = $event->id;
-        $application->save();
-        return redirect()->route('event');
+         $application = new Application();
+         $application->status = 'WAITING';
+         $application->user_id = Auth::user()->id;
+         $application->event_id = $event->id;
+         $application->save();
+            return redirect()->route('event');
+
     }
+   
 }
