@@ -10,10 +10,10 @@
             @foreach ($organizers as $organizer)
                 <a href="{{ route('myevents', ['organizer' => $organizer]) }}" class="event-item cursor-pointer">
                     <div class="event-image">
-                        <img src="#">
+                        <img src="https://cdn.discordapp.com/attachments/1130699942311247915/1143290643389628549/Organizer.png">
                     </div>
                     <div class="event-detail">
-                        <label class="event-name">{{ $organizer->name }}</label>
+                        <label class="text-base font-bold text-center ">{{ $organizer->name }}</label>
                     </div>
                 </a>
             @endforeach
