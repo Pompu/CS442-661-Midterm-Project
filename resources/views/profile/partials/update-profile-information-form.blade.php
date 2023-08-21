@@ -17,7 +17,7 @@
         <div class="mt-2 flex items-center gap-x-3">
             @if (($user->image_path))
             <label title="Click to upload" for="button">
-                <div class="relative w-20 h-20 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <div class="relative w-20 h-20 overflow-hidden bg-gray-100 rounded-full ">
                     <img type="file" name="preview" id="preview" class="relative w-20 h-20 rounded-full" src="{{ asset('storage/' . $user->image_path) }}" alt="Rounded avatar">
                 </div>
             </label>
@@ -69,6 +69,7 @@
                 <x-input-label for="last_name" :value="__('Last name')" />
                 <div class="mt-2">
                     <x-text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full" :value="old('name', $user->last_name)" required autocomplete="off" />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
             </div>
         </div>
@@ -78,7 +79,7 @@
                 @if($user->faculty)
                 <option selected> {{$user->faculty}}</option>
                 @else
-                <option selected> Select faculty </option>
+                <option selected> ---- </option>
                 @endif
 
                 <option value="engineering">Engineering</option>

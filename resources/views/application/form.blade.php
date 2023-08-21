@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <h1 class=" flex justify-center text-gray-800 dark:text-white  font-lg font-bold  leading-tight mb-4"> Apply </h1>
+                <h1 class=" flex justify-center text-gray-800 dark:text-white  font-lg font-bold  leading-tight mb-4"> Apply to: </h1>
                 <h2 class=" flex justify-center text-gray-800 dark:text-white  font-lg font-bold  leading-tight mb-4">{{ $event->name }}</h2>
 
                 <div>
@@ -46,12 +46,12 @@
             </div>
 
             <div class="flex mb-4"></div>
-            <div class="flex justify-center">
+            <div class="flex justify-center gap-5 ">
                 <button type="submit" class=" hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                     Submit
                 </button>
 
-                <a href="javascript:history.back()" class=" hover:shadow-form rounded-md bg-grey-100 py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                <a href="javascript:history.back()" class=" hover:shadow-form rounded-md bg-red-500 py-3 px-8 text-center text-base font-semibold text-white outline-none">
                     Cancel
                 </a>
             </div>

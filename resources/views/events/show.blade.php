@@ -9,24 +9,24 @@
         </div>
 
         <div class="grid-column:2">
-            <div class = "event-detail-box">
-                <h1 class="font-semibold text-xl"> {{ $event->name }} </h1>
+            <div class = "event-detail-box-white">
+                <h1 class="font-semibold text-xl "> {{ $event->name }} </h1>
             </div>
 
-            <div class="event-detail-box">
+            <div class="event-detail-box-white">
                 <div class="detail-container">
-                    <span class="detail-icon"><img src="https://i.ibb.co/G7DMFWP/icons8-clock-48.png"></span>
-                    <span class="detail-info">{{ date('D d F Y', strtotime($event->date)) }}</span>
+                    <span class="detail-icon"><img src="https://img.icons8.com/?size=512&id=6Z5IUAh18Fuc&format=png"></span>
+                    <span class="detail-info ">{{ date('D d F Y', strtotime($event->date)) }}</span>
                 </div>
                 <div class="detail-container">
-                    <span class="detail-icon"><img src="https://i.ibb.co/TwgxD7N/icons8-location-48.png"></span>
-                    <span class="detail-info">
+                    <span class="detail-icon"><img src="https://img.icons8.com/?size=512&id=c0kUjxdWTRsk&format=png"></span>
+                    <span class="detail-info ">
                         <p>{{ $event->address }} {{ $event->province->name }} {{ $event->district->name }} {{ $event->subdistrict->name }}</p>
                         <p>{{ $event->location_detail }}</p>
                     </span>
                 </div>
             </div>
-            <div class="event-detail-box">
+            <div class="event-detail-box-white">
                 <p>{{ $event->detail }}</p>
             </div>
 

@@ -19,9 +19,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $currentDate = now();
-        $events = Event::whereHas('budget', function ($query) {$query->where('status', 'COMPLETED');})->where('date', '>=', $currentDate)->get();
+        $events = Event::whereHas('budget', function ($query) {
+            $query->where('status', 'COMPLETED');
+        })->where('date', '>=', $currentDate)->get();
 
         $lastThreeEvents = $events->reverse()->take(3);
         $events = $events->sortBy('date');
@@ -64,7 +67,8 @@ class EventController extends Controller
         return redirect()->route('myevents.detail', ['event' =>  $event]);
     }
 
-    private function filterUpcomingEvents($events) {
+    private function filterUpcomingEvents($events)
+    {
         $currentDate = new DateTime('today');
 
         $filteredEvents = $events->filter(function ($event) use ($currentDate) {
@@ -116,33 +120,63 @@ class EventController extends Controller
             'organizer' => $request->organizer
         ]);
     }
-    public function addPostit(Request $request) {
+    public function addPostit(Request $request, $event)
+    {
+        //dd($request->myevent);
         $board = Board::find($request->board);
+        $myevent = $request->myevent;
+        //dd($request->myevent);
         $board_details = BoardDetail::where('board_header_id', $board->id)->get();
-        return view('myevents.create-postit', [ 
-            'board' => $board ,
-            'board_details' => $board_details]);
+        return view('myevents.create-postit', [
+            'board' => $board,
+            'board_details' => $board_details,
+            'event' => $myevent['id'], 'myevent' => $myevent
+        ]);
     }
-    public function storePostit(Request $request){
+    public function storePostit(Request $request)
+    {
 
         $board = Board::find($request->board);
+        $myevent = $request->myevent;
+        //dd($myevent);
         $board_detail = new BoardDetail();
-        $board_detail->board_header_id = $board->id; 
+        $board_detail->board_header_id = $board->id;
         $board_detail->topic = $request->get('board_detail_topic');
         $board_detail->detail = $request->get('board_detail_details');
         $board_detail->save();
 
-        return redirect()->route('myevents.boards',['board' => $board
-            ]);
+        return redirect()->route('myevents.boards', [
+            'board' => $board, 'event' => $myevent['id'], 'myevent' => $myevent
+        ]);
     }
-    
+                           
+    public function updatePostit(Request $request, $event)
+    {
 
-    public function boards(Request $request) {
+        $board = Board::find($request->board);
+        $board_detail = BoardDetail::find($request->board_detail);
+        $myevent = $request->myevent;
+        $action = $request->input('action');
+        $myevent = $request->myevent;
+        if ($action === 'shift_left') {
+            $board_detail->board_header_id  = '21';
+        } elseif ($action === 'shift_right') {
+            $board_detail->board_header_id  = '23';
+        }
+        $board_detail->save();
+        return redirect()->route('myevents.boards', [
+            'board' => $board, 'event' => $event, 'myevent' => $myevent
+        ]);
+    }
+
+
+    public function boards(Request $request)
+    {
         $myevent = DB::table('events')->where('id', $request->myevent)->get();                
         $organize = Event::where('organizer_id', $request->organizer)->get();                       
-        $boards = Board::where('organizer_id', $request->organizer)->get();                    
+        $boards = Board::where('organizer_id', $request->organizer)->get(); 
         $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
-        return view('myevents.boards',[ 
+        return view('myevents.boards', [
             'boards' => $boards,
             'board_details' => $board_details,
             'myevent' => $myevent[0],
@@ -150,18 +184,20 @@ class EventController extends Controller
             'organizer' => $request->organizer
         ]);
     }
-    public function boardDestroy(Request $request)
-    {       
+
+    public function delete_postit(Request $request, $event)
+    {
         $board = Board::find($request->board);
-        $board_details = BoardDetail::where('board_header_id', $board->id)->get();
-        return view('myevents.create-postit', [ 
-            'board' => $board ,
-            'board_details' => $board_details]);
-        $request->board_detail->delete();
-        return redirect()->route('myevents.boards');
+        $board_detail = BoardDetail::find($request->board_detail);
+        $myevent = $request->myevent;
+        //dd($myevent);
+        $board_detail->delete();
+        return redirect()->route('myevents.boards', [
+            'board' => $board, 'event' => $event, 'myevent' => $myevent
+        ]);
     }
-    
-    
+
+
     /*public function updatePostitStatus(Request $request) {
         $myevent = $request->myevent;  
 
@@ -175,21 +211,23 @@ class EventController extends Controller
             'organize' => $organize
         ]);
     }*/
-    public function getDistrict(Request $request) {
+    public function getDistrict(Request $request)
+    {
         $selectedValue = $request->input('province_id');
 
         $districts = DB::table('masterdistrict')
-                        ->where('province_id', $selectedValue)
-                        ->get();
+            ->where('province_id', $selectedValue)
+            ->get();
 
         return response()->json(['districts' => $districts]);
     }
-    public function getSubdistrict(Request $request) {
+    public function getSubdistrict(Request $request)
+    {
         $selectedValue = $request->input('district_id');
 
         $subdistricts = DB::table('mastersubdistrict')
-                        ->where('district_id', $selectedValue)
-                        ->get();
+            ->where('district_id', $selectedValue)
+            ->get();
 
         return response()->json(['subdistricts' => $subdistricts]);
     }

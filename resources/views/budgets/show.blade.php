@@ -1,12 +1,13 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container mx-auto bg-gray-800 shadow-md rounded flex justify-center" style="margin-block: 30px">
+    <div class="mx-auto py-10 px-10 grid grid-cols-2">
+        <div class="grid-column: 1" style=" display: flex; flex-direction: column; align-items: center;">
         <div class="event-detail-image">
             <img src="{{ asset('storage/' . $budget->event->image_path) }}" alt="{{ $budget->event->name }}">
-        </div>
+        </div></div>
 
-        <div style="margin-left: 50px">
+        <div style="grid-column:2">
                 <div class = "event-detail-box-white">
                     <h1 class="font-semibold text-xl"> {{ $budget->event->name }} </h1>
                 </div>
@@ -26,27 +27,23 @@
                 <div class="event-detail-box-white">
                     <p>{{ $budget->event->detail }}</p>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mx-auto bg-white shadow-md rounded" style="margin-block: 30px">
-        <div class="mx-auto flex justify-center" style="margin-block:30px">
-            <div class="text-4xl font-semibold">Budget</div>
+                <div class="event-detail-box-white" >
+        <div class="mx-auto flex justify-left">
+            <div class="font-semibold">Budget</div>
         </div>
 
         <div style="margin-block:10px">
-            <span class="font-semibold">สถานะ: </span>
+            <span class="font-semibold">สถานะ : </span>
             @if($budget->status === "inprogress") <span>รอดำเนินการ</span>
             @elseif($budget->status === "completed") <span>ดำเนินการแล้ว</span>
             @endif
         </div>
         <div style="margin-block:10px">
-            <span class="font-semibold">ค่าใช้จ่าย: </span>
+            <span class="font-semibold">ค่าใช้จ่าย : </span>
             <span>{{ $budget->cost }} บาท</span>
         </div>
         <div style="margin-block:10px">
-            <span class="font-semibold">รายละเอียด: </span>
+            <span class="font-semibold">รายละเอียด : </span>
             <span>{{ $budget->description }}</span>
         </div>
 
@@ -61,4 +58,9 @@
             </form>
         </div>
     </div>
+            </div>
+        </div>
+    </div>
+
+    
 @endsection
