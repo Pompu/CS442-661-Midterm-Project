@@ -73,7 +73,9 @@
                 </div>
             </div>
         </div>
+        @if($user->role == 'MEMBER')
         <div class="sm:col-span-3">
+            
             <x-input-label for="faculty" :value="__('Select faculty')" />
             <select id="faculty" name="faculty" value="{{old('about', $user->faculty)}}" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 @if($user->faculty)
@@ -99,6 +101,7 @@
             </select>
 
         </div>
+        @endif
 
 
         <div>
