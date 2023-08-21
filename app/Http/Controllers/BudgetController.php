@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class BudgetController extends Controller
 {
-    public function index($status = ""){
-        if($status == null){
+    public function index(Request $request){
+        $status = $request->input('status', 'ALL');
+
+        if($status === 'ALL'){
             $budgets = Budget::get();
         }
         else{
