@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap');
+</style>
 
 <head>
     <meta charset="UTF-8">

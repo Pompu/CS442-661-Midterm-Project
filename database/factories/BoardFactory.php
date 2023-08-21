@@ -16,10 +16,11 @@ class BoardFactory extends Factory
      */
     public function definition(): array
     {
+        $organizer = Organizer::all()->random()->id;
         return [
-        
-            'organizer_id' =>fake()->numberBetween(1,Organizer::count()),
-            'header' => fake()->realTextBetween(5,10)
+            'organizer_id' => $organizer,
+            'header' => $this->faker->realTextBetween(5, 10)
         ];
+        
     }
 }

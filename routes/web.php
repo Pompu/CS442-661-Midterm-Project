@@ -52,9 +52,6 @@ Route::get('/events', [EventController::class, 'index'])->name("event");
 Route::get('/myevents/{event}/details', [EventController::class, 'getDetails'])->name("myevents.details");
 Route::get('/myevents/{event}/applicants', [EventController::class, 'applicants'])->name('myevents.applicants');
 
-
-
-
 Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
 Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
@@ -80,6 +77,7 @@ Route::delete('/myevents/{event}/boards/destroy', [EventController::class, 'dele
 
 
 Route::get('/myevents/certificate', [CertificateController::class, 'index'])->name('myevents.certificate');
+Route::post('/myevents/certificate', [CertificateController::class, 'uploadImage'])->name('myevents.uploadImage');
 
 
 Route::middleware(['can:apply,event'])->group(function () {

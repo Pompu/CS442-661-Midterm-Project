@@ -3,6 +3,7 @@
 @section('content')
 <!DOCTYPE html>
 <html>
+    
 <head>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
