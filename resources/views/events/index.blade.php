@@ -44,23 +44,23 @@
 
     <div class="container">
 
-        <div class="flex justify-between items-center mb-4 p-4 rounded-lg bg-white">
+        <div class="flex justify-between items-center mb-4 p-4 rounded-lg">
             <div class="flex items-center">
                 <div class="text-2xl font-semibold">Upcoming Events</div>
             </div>
             <form id="filterForm" action="{{ route('event') }}" method="get" class="flex items-center space-x-4">
                 @csrf
-                <label for="sort" class="font-semibold">Sort:</label>
-                <select id="sort" name="sort" class="px-4 py-1 border rounded w-24">
+                <label for="sort" class="font-semibold text-sm">Sort by :</label>
+                <select id="sort" name="sort" class="font-semibold text-sm px-4 py-1 border-2 border-indigo-600 text-indigo-600 rounded-full w-24 focus:ring-0">
                     <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest</option>
                     <option value="newest" {{ request('sort') === 'newest' ? 'selected' : '' }}>Newest</option>
                 </select>
 
-                <label for="startDate" class="font-semibold">Start Date:</label>
-                <input type="date" id="startDate" name="start_date" class="px-2 py-1 border rounded" value="{{ request('start_date') }}" min="{{ date('Y-m-d') }}">
+                <label for="startDate" class="font-semibold text-sm">Start Date :</label>
+                <input type="date" id="startDate" name="start_date" class="font-semibold text-sm px-2 py-1 border-2 border-indigo-600 text-indigo-600 rounded-full focus:ring-0 " value="{{ request('start_date') }}" min="{{ date('Y-m-d') }}">
 
-                <label for="endDate" class="font-semibold">End Date:</label>
-                <input type="date" id="endDate" name="end_date" class="px-2 py-1 border rounded" value="{{ request('end_date') }}" min="{{ date('Y-m-d') }}">
+                <label for="endDate" class="font-semibold text-sm ">End Date :</label>
+                <input type="date" id="endDate" name="end_date" class="font-semibold text-sm px-2 py-1 border-2 border-indigo-600 text-indigo-600 rounded-full focus:ring-0 " value="{{ request('end_date') }}" min="{{ date('Y-m-d') }}">
 
                 <input type="submit" style="display: none;">
             </form>

@@ -22,10 +22,10 @@
                             </svg>
                         </div>
                         <div class="relative w-full">
-                        <input type="text" id="input-group-1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  :bg-gray-700 " placeholder="name@flowbite.com">
+                        <input type="text" id="input-group-1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-2.5  :bg-gray-700 " placeholder="name@flowbite.com">
                         <form action="{{ route('myorgs.orgs-member')}}" method="POST">
                         @csrf
-                        <button type="submit" class="absolute top-0 right-0 p-2.5 h-full text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "><svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <button type="submit" class="absolute top-0 right-0 p-2.5 h-full text-sm font-medium text-white bg-indigo-700 rounded-r-lg border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 "><svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                         </button>
@@ -34,7 +34,22 @@
                     </div>
         </div>
         <div class="bg-white p-10 rounded-lg shadow ">
-            <label for="name" class="block mb-2 font-bold text-gray-700">Member list </label>   
+            <div class="bg-white shadow-md rounded-md overflow-hidden max-w-lg mx-auto mt-auto justify-items-center ">
+                <div class="bg-indigo-600 py-2 px-4">
+                    <h2 class="font-semibold text-white">Member List </h2>
+                </div>
+                <ul class="divide-y divide-gray-200">
+                    <!-- loop -->
+                    <li class="flex items-center py-4 px-6 hover:bg-gray-50">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-gray-700">Username</h3>
+                            <p class="text-gray-600 text-base">email</p>
+                        </div>
+                    </li>
+                
+                </ul>
+            </div>  
+ 
         </div>
     </div>
 </div>
