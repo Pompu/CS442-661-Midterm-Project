@@ -81,12 +81,13 @@ class EventController extends Controller
     {
         $myevent = DB::table('events')->where('id', $request->myevent)->get();
         $applicants = Application::where('event_id', $request->myevent)->get();
-
+        $organizer =  Organizer::where('id', $request->organizer)->get();
+        //dd($organizer);
         return view('myevents.applicants', [
             'myevent_details' => $myevent[0],
             'myevent' => $myevent[0]->id,
             'applicants' => $applicants,
-            'organizer' => $request->organizer
+            'organizer' => $organizer[0]
         ]);
     }
     public function getDetails(Request $request) {
