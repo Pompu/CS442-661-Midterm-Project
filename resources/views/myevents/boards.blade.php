@@ -34,16 +34,6 @@
               </form>
               <div class="mb-1 text-right">
                 <div class="mx-auto flex justify-center" style="margin-block:30px">
-                  <form action="{{ route('myevents.updatePostit', ['board' => $board, 'event' => $myevent,'board_detail'=> $board_detail ,'myevent_details' => $myevent_details] ) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @if($index != 2)
-                    <button type="submit" name="action" value="shift_right" class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
-                      go next
-                    </button>
-                    @endif
-                    
-                  </form>
                 </div>
               </div>
               <div>
