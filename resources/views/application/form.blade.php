@@ -4,8 +4,9 @@
 <div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
         <div class=" py-8 px-5 md:px-10 bg-white dark:bg-gray-800 dark:border-gray-700 shadow-md rounded border border-gray-400">
                 <div class="w-full flex justify-center text-gray-600 mb-3">
+                    <div class="event-detail-image">
                         <img src="{{ asset('storage/' . $event->image_path) }}" alt="{{ $event->name }}">
-
+                    </div>
                 </div>
 
                 <h1 class=" flex justify-center text-gray-800 dark:text-white  font-lg font-bold  leading-tight mb-4"> Apply </h1>

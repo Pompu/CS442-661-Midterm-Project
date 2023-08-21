@@ -38,6 +38,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/registered', [HistoryController::class, 'register'])->name("historys.register");
+Route::get('/registered/{event}', [HistoryController::class, 'registerDetail'])->name("historys.registerDetail");
+
 Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
@@ -54,8 +56,10 @@ Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->nam
 Route::post('/myevents/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
-Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
-Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
+Route::middleware(['can:apply,event'])->group(function () {
+    Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
+    Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
+});
 
 Route::get('/myorgs', [OrganizerController::class, 'myOrg'])->name("myorgs.myorgs");
 Route::get('/myorgs/create-orgs', [OrganizerController::class, 'createOrgs'])->name("myorgs.create-orgs");
@@ -78,9 +82,9 @@ Route::middleware('auth')->group(function () {
     });
 
 Route::middleware(['can:viewAny,App\Models\Budget'])->group(function () {
-    Route::get('/budgets/{status?}', [BudgetController::class, 'index'])->name('budgets.index');
-    Route::get('/budgets/detail/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
-    Route::put('/budgets/detail/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
+    Route::get('/budgets', [BudgetController::class, 'index'])->name('budgets.index');
+    Route::get('/budgets/{budget}', [BudgetController::class, 'show'])->name('budgets.show');
+    Route::put('/budgets/{budget}/update-status', [BudgetController::class, 'updateStatus'])->name('budgets.update-status');
 });
 
 ;

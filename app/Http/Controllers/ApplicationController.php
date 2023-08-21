@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
-    
+
 
     public function form(Request $request,Event $event)
     {
@@ -29,15 +29,15 @@ class ApplicationController extends Controller
 
     public function store( Event $event)
     {
-        
+
          $application = new Application();
-         $application->status = 'WATING';
+         $application->status = 'WAITING';
          $application->user_id = Auth::user()->id;
          $application->event_id = $event->id;
          $application->save();
             return redirect()->route('event');
-        
+
     }
-   
+
 }
 

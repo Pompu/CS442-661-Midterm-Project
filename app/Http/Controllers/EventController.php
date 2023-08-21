@@ -21,7 +21,10 @@ class EventController extends Controller
 {
     public function index(Request $request) {
         $currentDate = now();
-        $events = Event::where('date', '>=', $currentDate)->orderBy('date')->get();
+        $events = Event::whereHas('budget', function ($query) {$query->where('status', 'COMPLETED');})->where('date', '>=', $currentDate)->get();
+
+        $lastThreeEvents = $events->reverse()->take(3);
+        $events = $events->sortBy('date');
 
         if ($request->has('sort')) {
             if ($request->sort === 'oldest') {
@@ -42,7 +45,8 @@ class EventController extends Controller
         //dd($events);
         // dd($events[Event::all()->random()]->getAttributes()['image_path'] );
         return view('events.index', [
-            'events' => $events
+            'events' => $events,
+            'lastThreeEvents' => $lastThreeEvents
         ]);
     }
 
