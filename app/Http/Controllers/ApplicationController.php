@@ -7,27 +7,62 @@ use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ApplicationController extends Controller
 {
 
 
-    public function form(Request $request,Event $event)
+    public function form(Request $request, Event $event)
     {
         return view('application.form', [
             'user' => $request->user(),
             'event' => $event
         ]);
     }
-    public function verify(Request $request,Event $event)
+    public function verify(Request $request, $event, $applicant,)
     {
+        //$myevent = Event::findOrFail($myevent);
+        
+        
+        $applicant = Application::findOrFail($applicant);
+        $myevent = Event::findOrFail($event);
+        //dd($request);
         return view('application.verify', [
-            'user' => $request->user(),
-            'event' => $event
+
+            'myevent' => $myevent,
+            'applicant' => $applicant,
         ]);
     }
+    public function update(Request $request, $event,$applicant)
+    {
+        //dd($applicant);
+        $action = $request->input('action');
+        $applicant = Application::findOrFail($applicant);
+        $myevent = Event::findOrFail($event);
+        //dd($myevent);
+        if ($action === 'accept') {
+            $applicant->status = 'Accepted';
+        } elseif ($action === 'reject') {
+            $applicant->status = 'Rejected';
+        }
+        //dd($event);
+        $applicant->save();
+        return Redirect::route('myevents');
 
-    public function store( Event $event)
+        
+    }
+
+
+
+
+
+
+
+
+
+    public function store(Event $event)
     {
 
          $application = new Application();
@@ -38,6 +73,5 @@ class ApplicationController extends Controller
             return redirect()->route('event');
 
     }
-
+   
 }
-

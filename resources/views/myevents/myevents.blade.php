@@ -11,7 +11,7 @@
         <div class="text-2xl font-semibold">My Events</div>
         <div class="event-container">
             @foreach ($myevents as $myevent)
-            <a href="{{ route('myevents.details', ['myevent' => $myevent]) }}" class="event-item cursor-pointer">
+            <a href="{{ route('myevents.details', ['myevent' => $myevent ,'event' => $myevent->id  ]) }}" class="event-item cursor-pointer">
                 <div class="event-image" >
                     <img src="{{ asset('storage/' . $myevent->image_path) }}">
                 </div>
