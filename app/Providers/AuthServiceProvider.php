@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         Budget::class => BudgetPolicy::class,
         Event::class => EventPolicy::class,
         Certificate::class => CertificatePolicy::class,
+        Organizer::class => OrganizerPolicy::class,
     ];
 
     /**
