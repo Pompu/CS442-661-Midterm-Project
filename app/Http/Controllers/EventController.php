@@ -154,7 +154,7 @@ class EventController extends Controller
         $myevent = $request->myevent;
         $action = $request->input('action');
         $myevent = $request->myevent;
-        if ($action === 'shift_left') {
+        if ($action === 'update') {
             $board_detail->board_header_id  = '21';
         } elseif ($action === 'shift_right') {
             $board_detail->board_header_id  = '23';
