@@ -6,12 +6,11 @@
  </head>
 <div class="container">
     <div class="text-2xl font-semibold text-center">Create New Event</div>
-    <form action="{{ route('myevents.storeEvent') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('myevents.storeEvent',['organizer' => $organizer]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="create-container ">
-                    
                     <div class="max-h-full w-60 mx-14 shadow-md border-grey-300 border flex flex-col justify-center items-center rounded-2xl hover:bg-gray-300 h-96" id="imageContainer">
-                        <input type="file" accept="image/*" class="hidden" id="image" name="image">
+                        <input required type="file" accept="image/*" class="hidden" id="image" name="image">
                         <label for="image" class="cursor-pointer w-full h-full flex flex-col items-center justify-center text-l font-bold" id="label">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 mb-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -20,6 +19,11 @@
                         </label>
                         <img id="imagePreview" class="hidden w-full h-full object-cover rounded-2xl">
                     </div>
+                    @error('image')
+                    <div class="text-red-600 text-sm">
+                        {{ $message }}
+                    </div>
+                    @enderror
                     
                 
                 <div class="ml-20">
@@ -27,28 +31,28 @@
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventname">
                                 Event Name
                                 </label>
-                                <input class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
                                 id="eventname" name="eventname" type="text" placeholder="Event Name">
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventdetail">
                                 Event Detail
                                 </label>
-                                <input class="shadow appearance-none border-gray-300 rounded w-80 h-40 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 h-40 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
                                 id="eventdetail" name="eventdetail" type="text" placeholder="Event Detail">
                             </div>        
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventdate">
                                 Event Date
                                 </label>
-                                <input class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
                                 id="eventdate" name="eventdate" type="datetime-local" placeholder="Event Date">
                             </div>        
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventbudget">
                                 Event Budget
                                 </label>
-                                <input class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
                                 id="eventbudget" name="eventbudget" type="number" placeholder="Event Budget">
                             </div>        
                         </div>
@@ -58,7 +62,7 @@
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventaddress">
                                     Address
                                 </label>
-                                <input class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
                                 id="eventaddress" name="eventaddress" type="text" placeholder="Address">
                             </div>
                             <div class="mb-4">
