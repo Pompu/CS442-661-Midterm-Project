@@ -73,6 +73,7 @@ Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->nam
 Route::post('/myevents/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
 
 Route::get('/myevents/certificate', [CertificateController::class, 'index'])->name('myevents.certificate');
+Route::post('/myevents/certificate', [CertificateController::class, 'uploadImage'])->name('myevents.uploadImage');
 
 Route::middleware(['can:apply,event'])->group(function () {
     Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
