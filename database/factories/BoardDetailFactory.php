@@ -18,7 +18,7 @@ class BoardDetailFactory extends Factory
     public function definition(): array
     {
         return [
-            'board_header_id' => fake()->numberBetween(1,Board::count()),
+            'board_header_id' => fake()->numberBetween(1,3),
             'topic' => fake()->realTextBetween(5,10),
             'detail' => fake()->realTextBetween(5,10)
         ];
