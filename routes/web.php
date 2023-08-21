@@ -36,6 +36,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/registered', [HistoryController::class, 'register'])->name("historys.register");
+Route::get('/registered/{event}', [HistoryController::class, 'registerDetail'])->name("historys.registerDetail");
+
 Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
