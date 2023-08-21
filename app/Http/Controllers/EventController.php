@@ -23,7 +23,7 @@ class EventController extends Controller
     {
         $currentDate = now();
         $events = Event::whereHas('budget', function ($query) {
-            $query->where('status', 'COMPLETED');
+            $query->where('status', 'completed');
         })->where('date', '>=', $currentDate)->get();
 
         $lastThreeEvents = $events->reverse()->take(3);
@@ -78,10 +78,10 @@ class EventController extends Controller
         return $filteredEvents;
     }
     public function applicants(Request $request)
-    {   
+    {
         $myevent = DB::table('events')->where('id', $request->myevent)->get();
         $applicants = Application::where('event_id', $request->myevent)->get();
-        
+
         return view('myevents.applicants', [
             'myevent_details' => $myevent[0],
             'myevent' => $myevent[0]->id,
@@ -94,7 +94,7 @@ class EventController extends Controller
         $province = DB::table('masterprovince')->where('id', $myevent[0]->province_id)->get();
         $district = DB::table('masterdistrict')->where('id', $myevent[0]->district_id)->get();
         $subdistrict = DB::table('mastersubdistrict')->where('id', $myevent[0]->subdistrict_id)->get();
-        
+
         return view('myevents.details', [
             'myevent_details' => $myevent[0],
             'myevent' => $myevent[0]->id,
@@ -107,7 +107,7 @@ class EventController extends Controller
     }
     public function myEvent(Request $request) {
         $myevents = Event::where('organizer_id', $request->organizer)->get();
-        return view('myevents.myevents', [ 
+        return view('myevents.myevents', [
             'myevents' => $myevents,
             'organizer' => $request->organizer
         ]);
@@ -115,7 +115,7 @@ class EventController extends Controller
 
     public function createEvent(Request $request) {
         $provinces = DB::table('masterprovince')->get();
-        return view('myevents.create-event', [ 
+        return view('myevents.create-event', [
             'provinces' => $provinces,
             'organizer' => $request->organizer
         ]);
@@ -149,7 +149,7 @@ class EventController extends Controller
             'board' => $board, 'event' => $myevent['id'], 'myevent' => $myevent
         ]);
     }
-                           
+
     public function updatePostit(Request $request, $event)
     {
 
@@ -172,9 +172,9 @@ class EventController extends Controller
 
     public function boards(Request $request)
     {
-        $myevent = DB::table('events')->where('id', $request->myevent)->get();                
-        $organize = Event::where('organizer_id', $request->organizer)->get();                       
-        $boards = Board::where('organizer_id', $request->organizer)->get(); 
+        $myevent = DB::table('events')->where('id', $request->myevent)->get();
+        $organize = Event::where('organizer_id', $request->organizer)->get();
+        $boards = Board::where('organizer_id', $request->organizer)->get();
         $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
         return view('myevents.boards', [
             'boards' => $boards,
@@ -199,12 +199,12 @@ class EventController extends Controller
 
 
     /*public function updatePostitStatus(Request $request) {
-        $myevent = $request->myevent;  
+        $myevent = $request->myevent;
 
-        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();                       
-        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();                    
+        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();
+        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();
         $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
-        return view('myevents.boards',[ 
+        return view('myevents.boards',[
             'boards' => $boards,
             'board_details' => $board_details,
             'myevent' => $myevent,
@@ -232,7 +232,7 @@ class EventController extends Controller
         return response()->json(['subdistricts' => $subdistricts]);
     }
     public function storeEvent(Request $request){
-        
+
         $request->validate([
             'eventname' => ['required', 'unique:App\Models\Event,name'],
             'eventdate' => ['required'],
@@ -261,7 +261,7 @@ class EventController extends Controller
         $budget = new Budget();
         $budget->event_id = $event->id;
         $budget->cost = $request->get('eventbudget');
-        $budget->save(); 
+        $budget->save();
         return redirect()->route('myevents');
     }
 }

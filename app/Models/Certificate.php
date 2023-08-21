@@ -12,5 +12,4 @@ class Certificate extends Model
     public function users() : BelongsTo{
         return $this->belongsTo(User::class);
     }
-
 }

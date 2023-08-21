@@ -12,7 +12,7 @@
         @foreach ($certificates as $certificate)
             <div class="group/img shadow-md border-black border animate-[fadeIn_2s]">
                 <img class="w-full h-full object-cover opacity-90 group-hover/img:opacity-100"
-                src="{{ $certificate->certificate }}">
+                src="{{ asset('storage/' . $certificate->certificate) }}">
             </div>
         @endforeach
     </div>
