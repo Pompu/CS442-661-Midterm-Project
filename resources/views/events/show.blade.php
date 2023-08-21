@@ -29,20 +29,17 @@
             <div class="event-detail-box">
                 <p>{{ $event->detail }}</p>
             </div>
-            @if (Auth::check())
-                @if (auth()->user()->role === 'MEMBER')
-                    <div style="margin-block: 50px">
-                    <a href="{{ route('application.form', ['event' => $event]) }}">
-                            <button class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">
-                                <div class="absolute inset-0 w-3 bg-purple-700 transition-all duration-250 ease-out group-hover:w-full"></div>
-                                <span class="relative group-hover:text-white">Apply</span>
-                            </button>
-                        </a>
-                    </div>
-                @endif
 
-            @endif
+            @can('apply', $event)
+                <div style="margin-block: 50px">
+                    <a href="{{ route('application.form', ['event' => $event]) }}">
+                        <button class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">
+                            <div class="absolute inset-0 w-3 bg-purple-700 transition-all duration-250 ease-out group-hover:w-full"></div>
+                            <span class="relative group-hover:text-white">Apply</span>
+                        </button>
+                    </a>
+                </div>
+            @endcan
         </div>
     </div>
-
 @endsection

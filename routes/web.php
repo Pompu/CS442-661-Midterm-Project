@@ -55,8 +55,10 @@ Route::get('/myevents/boards',[EventController::class, 'boards'])->name("myevent
 Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
-Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
-Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
+Route::middleware(['can:apply,event'])->group(function () {
+    Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
+    Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
+});
 
 Route::get('/myorgs', [OrganizerController::class, 'myOrg'])->name("myorgs.myorgs");
 Route::get('/myorgs/create-orgs', [OrganizerController::class, 'createOrgs'])->name("myorgs.create-orgs");
