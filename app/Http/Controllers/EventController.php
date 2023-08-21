@@ -23,7 +23,7 @@ class EventController extends Controller
     {
         $currentDate = now();
         $events = Event::whereHas('budget', function ($query) {
-            $query->where('status', 'COMPLETED');
+            $query->where('status', 'completed');
         })->where('date', '>=', $currentDate)->get();
 
         $lastThreeEvents = $events->reverse()->take(3);
@@ -194,12 +194,12 @@ class EventController extends Controller
 
 
     /*public function updatePostitStatus(Request $request) {
-        $myevent = $request->myevent;  
+        $myevent = $request->myevent;
 
-        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();                       
-        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();                    
+        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();
+        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();
         $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
-        return view('myevents.boards',[ 
+        return view('myevents.boards',[
             'boards' => $boards,
             'board_details' => $board_details,
             'myevent' => $myevent,
@@ -301,12 +301,12 @@ class EventController extends Controller
             $board = new Board();
             $board->organizer_id = $organizer->id;
             $board->header = $request->get('boardheader');
-            
+
             $board_detail = new BoardDetail();
             $board_detail->board_header_id = $board->id;
             $board_detail->topic = $request->get('boardtopic');
             $board_detail->topic = $request->get('boarddetail');
-        } 
+        }
         */
 
 

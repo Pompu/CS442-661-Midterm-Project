@@ -24,6 +24,5 @@ class CertificateSeeder extends Seeder
             $certificate->certificate = "https://cdn.discordapp.com/attachments/982119215723053096/1142161915343274024/2Q.png";
             $certificate->save();
         }
-        
     }
 }
