@@ -73,24 +73,24 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
-    public function applicants(Request $request) {
-
-        $myevent = $request->myevent;
-        $applicants = Application::where('event_id', $myevent['id'])->get();
-        //$users = DB::table('users')->where('id', $applicants['user_id'])->get();
-        //$users = User::where('id', $applicants['user_id'])->get();
+    public function applicants(Request $request, $event)
+    {   $myevent = $request->myevent;
+        //dd($myevent);
+        $applicants = Application::where('event_id', $event)->get();
+        
         return view('myevents.applicants', [
-            'myevent' => $myevent,
+            'myevent' => $request->myevent,
             'applicants' => $applicants,
         ]);
     }
-
-    public function getDetails(Request $request) {
+    public function getDetails(Request $request,$event) {
 
         $myevent = $request->myevent;
+        //dd($myevent);
         $province = DB::table('masterprovince')->where('id', $myevent['province_id'])->get();
         $district = DB::table('masterdistrict')->where('id', $myevent['district_id'])->get();
         $subdistrict = DB::table('mastersubdistrict')->where('id', $myevent['subdistrict_id'])->get();
+        
         return view('myevents.details', [
             'myevent' => $myevent,
             'province' => $province[0]->name,

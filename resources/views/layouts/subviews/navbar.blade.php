@@ -20,7 +20,7 @@
       </button>
     </a>
 
-    <a class="grid grid-cols-2 gap-4 py-1.5 px-3 m-1 text-center text-sm border border-violet-600 rounded-full text-violet-600  hover:bg-gray-100 hidden lg:inline-block "
+    <a class="grid grid-cols-2 gap-4 py-1.5 px-3 m-1 text-sm text-center border border-violet-600 rounded-full text-violet-600  hover:bg-gray-100 hidden lg:inline-block "
     href="/register">
       Register
     </a>

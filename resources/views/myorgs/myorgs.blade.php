@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
     <div class="container">
-        <div class="text-2xl font-semibold">My Organizer</div>
+        <div class="text-2xl font-semibold text-grey-700">My Organizer</div>
         <div class="event-container">
             @foreach ($organizers as $organizer)
             <a href="{{ route('myevents.details', ['myevent' => $myevent]) }}" class="event-item cursor-pointer">
