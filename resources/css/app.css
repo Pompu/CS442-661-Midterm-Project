@@ -152,6 +152,15 @@
     padding: 20px;
 }
 
+.event-detail-myevents{
+    margin-bottom: 10px;
+    background-color: white;
+    color: rgb(31, 41, 55);
+    border-radius: 10px;
+    width: 400px;
+    padding: 20px;
+}
+
 .event-application-item {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
