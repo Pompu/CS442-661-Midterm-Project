@@ -95,7 +95,7 @@ class EventController extends Controller
         $province = DB::table('masterprovince')->where('id', $myevent[0]->province_id)->get();
         $district = DB::table('masterdistrict')->where('id', $myevent[0]->district_id)->get();
         $subdistrict = DB::table('mastersubdistrict')->where('id', $myevent[0]->subdistrict_id)->get();
-
+        //dd($myevent);
         return view('myevents.details', [
             'myevent_details' => $myevent[0],
             'myevent' => $myevent[0]->id,
@@ -124,15 +124,19 @@ class EventController extends Controller
     }
     public function addPostit(Request $request, $event)
     {
-        //dd($request->myevent);
+        $myevent = DB::table('events')->where('id', $event)->get();
         $board = Board::find($request->board);
-        $myevent = $request->myevent;
-        //dd($request->myevent);
+        $organizer =  Organizer::where('id', $request->organizer)->get();
+        //dd($organizer[0]);
         $board_details = BoardDetail::where('board_header_id', $board->id)->get();
         return view('myevents.create-postit', [
             'board' => $board,
             'board_details' => $board_details,
-            'event' => $myevent['id'], 'myevent' => $myevent
+            //'event' => $event, 
+            'myevent' => $myevent[0]->id,
+            'organizer' => $organizer[0],
+            
+            
         ]);
     }
     public function storePostit(Request $request)
@@ -140,7 +144,8 @@ class EventController extends Controller
 
         $board = Board::find($request->board);
         $myevent = $request->myevent;
-        //dd($myevent);
+        $organizer =  Organizer::where('id', $request->organizer)->get();
+        //dd($organizer[0]);
         $board_detail = new BoardDetail();
         $board_detail->board_header_id = $board->id;
         $board_detail->topic = $request->get('board_detail_topic');
@@ -148,7 +153,8 @@ class EventController extends Controller
         $board_detail->save();
 
         return redirect()->route('myevents.boards', [
-            'board' => $board, 'event' => $myevent['id'], 'myevent' => $myevent
+            'board' => $board, 'event' => $myevent, 'myevent' => $myevent,
+            'organizer' => $organizer[0],
         ]);
     }
 
@@ -178,7 +184,7 @@ class EventController extends Controller
         $myevent = DB::table('events')->where('id', $request->myevent)->get();
         $organize = Event::where('organizer_id', $request->organizer)->get();
         $boards = Board::where('organizer_id', $request->organizer)->get();
-        
+        //dd($myevent);
         $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
         return view('myevents.boards', [
             'boards' => $boards,
@@ -194,11 +200,10 @@ class EventController extends Controller
     {
         $board = Board::find($request->board);
         $board_detail = BoardDetail::find($request->board_detail);
-        $myevent = $request->myevent;
-        //dd($myevent);
+        $organizer =  Organizer::where('id', $request->organizer)->get();
         $board_detail->delete();
         return redirect()->route('myevents.boards', [
-            'board' => $board, 'event' => $event, 'myevent' => $myevent
+            'board' => $board, 'event' => $event, 'myevent' => $event, 'organizer' => $organizer[0]
         ]);
     }
 
