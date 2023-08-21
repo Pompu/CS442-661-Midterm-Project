@@ -20,7 +20,7 @@
               @else bg-green-400 @endif
               rounded-lg border shadow-md sm:p-8">
               <h3 class="text-xl font-bold leading-none text-gray-900">{{ $board->header }}</h3>
-              <a href="{{ route('myevents.create-postit', ['board'=> $board])}}" class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">ADD</a>
+              <a href="{{ route('myevents.create-postit', ['boards'=> $boards,'myevent' => $myevent,'board_details' =>$board_details,'organize'=>$organize])}}" class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">ADD</a>
             </div>
             
             @foreach ($board_details as $board_detail)
