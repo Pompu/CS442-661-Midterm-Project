@@ -1,22 +1,19 @@
 @extends('layouts.main')
 @section('content')
-
-<div class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-    <div class=" py-8 px-5 md:px-10 bg-white dark:bg-gray-800 dark:border-gray-700 shadow-md rounded border border-gray-400">
-        <div class="w-full flex justify-center text-gray-600 mb-3">
-            <img src="{{ asset('storage/' . $applicant->user->image_path) }}">
-
-        </div>
-
-
-
-        <div>
-            <!-- component -->
+@include('myevents.sidebar')
+<div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black" > 
+<div class="h-full ml-14 mt-14 mb-10 md:ml-64 ">
+    <div class="max-w-2xl mx-auto">
+        <div class="p-4 bg-white rounded-lg border shadow-md sm:p-1"> 
+        <div class="mx-auto py-10 px-10 grid grid-cols-2 gap-6"> 
+            <div class="w-full flex justify-center text-gray-600 mb-3">
+                <img src="{{ asset('storage/' . $applicant->user->image_path) }}">
+            </div>
             <div>
                 <!-- Author: FormBold Team -->
                 <!-- Learn More: https://formbold.com -->
                 <div class="mx-auto w-full max-w-[550px]">
-                <form action="{{ route('application.update', ['applicant' => $applicant['id'], 'event' => $myevent['id'] ]) }}" method="POST">
+                <form action="{{ route('application.update', ['applicant' => $applicant['id'], 'event' => $myevent['id'] , 'myevent'=>$myevent ]) }}" method="POST">
                         @csrf
                         <div class="-mx-3 flex">
                             <div class="w-full px-3 sm:w-1/2">
@@ -58,12 +55,9 @@
                 </div>
             </div>
         </div>
-
-
-
-
+        
     </div>
 </div>
-
+</div>
 
 @endsection('content')

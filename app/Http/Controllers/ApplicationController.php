@@ -28,10 +28,10 @@ class ApplicationController extends Controller
         
         $applicant = Application::findOrFail($applicant);
         $myevent = Event::findOrFail($event);
-        //dd($request);
+        //dd($request->myevent);
         return view('application.verify', [
 
-            'myevent' => $myevent,
+            'myevent' => $request->myevent,
             'applicant' => $applicant,
         ]);
     }
@@ -40,16 +40,17 @@ class ApplicationController extends Controller
         //dd($applicant);
         $action = $request->input('action');
         $applicant = Application::findOrFail($applicant);
-        $myevent = Event::findOrFail($event);
-        //dd($myevent);
+        $myevent = $request->myevent;
+        //dd($request->myevent);
         if ($action === 'accept') {
-            $applicant->status = 'Accepted';
+            $applicant->status = 'ACCEPT';
         } elseif ($action === 'reject') {
-            $applicant->status = 'Rejected';
+            $applicant->status = 'REJECT';
         }
         //dd($event);
         $applicant->save();
-        return Redirect::route('myevents');
+       
+        return  redirect()->route('myevents.applicants', ['myevent' => $myevent,'event' => $myevent['id']]);
 
         
     }
@@ -64,14 +65,14 @@ class ApplicationController extends Controller
 
     public function store(Event $event)
     {
-
+        
          $application = new Application();
          $application->status = 'WAITING';
          $application->user_id = Auth::user()->id;
          $application->event_id = $event->id;
          $application->save();
             return redirect()->route('event');
-
+        
     }
    
 }

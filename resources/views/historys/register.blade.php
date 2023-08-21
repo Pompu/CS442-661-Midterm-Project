@@ -35,7 +35,7 @@
                         <h2 class="event-name">{{ $application->event->name }}</h2>
                         <p class="event-location" style="margin-block: 4px">{{ $application->event->province->name }} {{ $application->event->district->name }}</p>
                         <div>
-                            <span class="font-semibold">Status : </span>
+                            <span class="font-semibold ">Status : </span>
                             @if($application->status === "WAITING") <span class="text-black">Waiting</span>
                             @elseif($application->status === "ACCEPT") <span class="text-green-600">Accept</span>
                             @elseif($application->status === "REJECT") <span class="text-red-600">Reject</span>
