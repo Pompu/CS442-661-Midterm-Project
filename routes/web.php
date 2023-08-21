@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\OrganizerController;
+use App\Models\Organizer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +54,11 @@ Route::get('/myevents/boards',[EventController::class, 'boards'])->name("myevent
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
 Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
+
+Route::get('/myorgs', [OrganizerController::class, 'myOrg'])->name("myorgs.myorgs");
+Route::get('/myorgs/create-orgs', [OrganizerController::class, 'createOrgs'])->name("myorgs.create-orgs");
+Route::post('/myorgs/storeOrgs', [OrganizerController::class, 'storeOrg'])->name("myorgs.storeOrgs");
+Route::post('/myorgs/addmember', [OrganizerController::class, 'addMember'])->name("myorgs.orgs-member");
 
 Route::get('/verify', function () { return view('events.verify');});
 
