@@ -208,19 +208,7 @@ class EventController extends Controller
     }
 
 
-    /*public function updatePostitStatus(Request $request) {
-        $myevent = $request->myevent;
-
-        $organize = Event::where('organizer_id',$myevent['organizer_id'])->get();
-        $boards = Board::where('organizer_id',$myevent['organizer_id'])->get();
-        $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
-        return view('myevents.boards',[
-            'boards' => $boards,
-            'board_details' => $board_details,
-            'myevent' => $myevent,
-            'organize' => $organize
-        ]);
-    }*/
+    
     public function getDistrict(Request $request)
     {
         $selectedValue = $request->input('province_id');
@@ -272,24 +260,7 @@ class EventController extends Controller
         $budget->cost = $request->get('eventbudget');
         $budget->save();
 
-         for ($i = 0; $i < 3; $i++) {
-             $board = new Board();
-             $board->organizer_id = $event->organizer_id;
-             if ($i == 0) {
-                 $board->header = 'To Do';
-             } else if ($i == 1) {
-                 $board->header = 'Ongoing';
-             } else {
-                 $board->header = 'Finish';
-             }
-             $board->save();
-             $board_detail = new BoardDetail();
-             $board_detail->board_header_id = $board->id;
-             $board_detail->topic = 'topic' . $i;
-            $board_detail->detail = 'Type your detail here' . $i;
-             $board_detail->save();
-         }
-
+        
         $myevents = Event::where('organizer_id', $request->organizer)->get();
         return view('myevents.myevents', [ 
             'myevents' => $myevents,
