@@ -8,18 +8,18 @@
             
             <div class="grid grid-cols-2 gap-0">
                 <div class="max-h-full w-60 mx-14 shadow-md border-grey-300 border flex justify-center items-center rounded-2xl hover:bg-gray-300 h-96">
-                    <img src="{{ asset('storage/' . $myevent['image_path']) }}">
+                    <img src="{{ asset('storage/' . $myevent_details->image_path) }}">
                 </div>  
 
                 <div class="grid grid-rows-2"> 
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="eventName">
-                            Event Name : {{ $myevent['name'] }}
+                            Event Name : {{ $myevent_details->name }}
                         </label> 
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="eventDetail">
-                            Event Detail : {{ $myevent['detail'] }}
+                            Event Detail : {{ $myevent_details->detail }}
                         </label>
                     </div>
                     <div class="mb-4">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
-                            Address : {{ $myevent['address'] }}
+                            Address : {{ $myevent_details->address }}
                         </label>
                     </div>
                     <div class="mb-4">
@@ -49,12 +49,12 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
-                            Location : {{ $myevent['location_detail'] }}
+                            Location : {{ $myevent_details->location_detail }}
                         </label>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
-                            Upcoming : {{ $myevent['date'] }}
+                            Upcoming : {{ $myevent_details->date }}
                         </label>
                     </div>
                 </div>

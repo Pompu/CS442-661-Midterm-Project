@@ -7,16 +7,18 @@ use App\Models\OrganizerMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrganizerController extends Controller
 {
     public function myOrg() {
-        $organizers = DB::table('organizer_members')->where('organizer_id', Auth::user()->id)->get();
-        return view('myorgs.myorgs',['organizers'=>$organizers]);
+        $organizers = Organizer::where('user_id', Auth::user()->id)->get();
+        //dd(Organizer::where('user_id', Auth::user()->id)->get());
+        return view('myorgs.myorgs',['organizers' => $organizers]);
     }
 
     public function createOrgs() {
-        return view('myorgs.create-orgs');
+        return view('myorgs.create-orgs',['user' => Auth::user()]);
     }
 
     public function storeOrg(Request $request){
@@ -24,18 +26,21 @@ class OrganizerController extends Controller
         $organizer->user_id = Auth::user()->id;
         $organizer->name = $request->get('name');
         $organizer->save();
-        $member = new OrganizerMember();
-        $member->user_id = Auth::user()->id;
-        $member->organizer_id = 1;
-        $member->save();
-        return view('myorgs.orgs-member',['organizer'=>$organizer,'members'=>$member]);
+        return response()->json(['organizer' => $organizer]);
     }
 
     public function addMember(Request $request){
-        $member = new OrganizerMember();
-        $member->user_id = Auth::user()->id;
-        $member->organizer_id = 1;
-        $member->save();
-        return view('myorgs.orgs-member',['member'=>$member]);;
+        $email = $request->get('name');
+        $user = DB::table('users')->where('email', $email)->get();
+        Log::info($user[0]->id);
+        if (empty($user)) {
+            return false;
+        } else {
+            $member = new OrganizerMember();
+            $member->user_id = $user[0]->id;
+            $member->organizer_id = $request->get('id');
+            $member->save();
+            return response()->json(['user' => $user[0]]);
+        }
     }
 }

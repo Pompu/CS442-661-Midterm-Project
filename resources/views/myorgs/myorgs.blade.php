@@ -8,14 +8,14 @@
         <div class="text-2xl font-semibold text-grey-700">My Organizer</div>
         <div class="event-container">
             @foreach ($organizers as $organizer)
-            <a href="{{ route('myevents.details', ['myevent' => $myevent]) }}" class="event-item cursor-pointer">
-                <div class="event-image" >
-                    <img src="#">
-                </div>
-                <div class="event-detail">
-                    <label class="event-name">{{ $organizer }}</label>
-                </div>
-            </a>
+                <a href="{{ route('myevents', ['organizer' => $organizer]) }}" class="event-item cursor-pointer">
+                    <div class="event-image">
+                        <img src="#">
+                    </div>
+                    <div class="event-detail">
+                        <label class="event-name">{{ $organizer->name }}</label>
+                    </div>
+                </a>
             @endforeach
         
             <a href=" {{ route('myorgs.create-orgs')}}" class="event-item justify-center items-center" 
