@@ -6,7 +6,7 @@
 <div class="container">
     <div class="w-full">
         <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-            <form action="{{ route('myevents.storePostit',['myevent' => $myevent])}}" method="POST">
+            <form action="{{ route('myevents.storePostit',['board'=> $board,'event' => $myevent['id'], 'myevent' => $myevent])}}" method="POST">
                 @csrf
                 <h1>{{$board}}</h1>
                 <h1>{{$board_details}}</h1>
