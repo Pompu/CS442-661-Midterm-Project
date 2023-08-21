@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+@include('myevents.sidebar')
     <form action="{{ route('myevents.uploadImage') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="myevent" value="{{ $myevent }}">

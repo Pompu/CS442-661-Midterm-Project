@@ -117,7 +117,8 @@ class EventController extends Controller
         $provinces = DB::table('masterprovince')->get();
         return view('myevents.create-event', [
             'provinces' => $provinces,
-            'organizer' => $request->organizer
+            'organizer' => $request->organizer,
+            'myevents' => $request->myevents
         ]);
     }
     public function addPostit(Request $request, $event)
@@ -240,7 +241,6 @@ class EventController extends Controller
             'province' => ['required'],
             'district' => ['required'],
             'subdistrict' => ['required'],
-            'image' => ['required'],
             'eventbudget' => ['required', 'integer'],
         ]);
         $path = $request->file('image')->store('event_images', 'public');
@@ -262,6 +262,29 @@ class EventController extends Controller
         $budget->event_id = $event->id;
         $budget->cost = $request->get('eventbudget');
         $budget->save();
-        return redirect()->route('myevents');
+
+        // for ($i = 0; $i < 3; $i++) {
+        //     $board = new Board();
+        //     $board->organizer_id = $organizer->id;
+        //     if ($i == 0) {
+        //         $board->header = 'To Do';
+        //     } else if ($i == 1) {
+        //         $board->header = 'Ongoing';
+        //     } else {
+        //         $board->header = 'Finish';
+        //     }
+        //     $board->save();
+        //     $board_detail = new BoardDetail();
+        //     $board_detail->board_header_id = $board->id;
+        //     $board_detail->topic = 'topic' . $i;
+        //     $board_detail->detail = 'detail' . $i;
+        //     $board_detail->save();
+        // }
+
+        $myevents = Event::where('organizer_id', $request->organizer)->get();
+        return view('myevents.myevents', [ 
+            'myevents' => $myevents,
+            'organizer' => $request->organizer
+        ]);
     }
 }

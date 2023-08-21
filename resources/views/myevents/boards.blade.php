@@ -6,7 +6,7 @@
   <div class=" min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-grey text-black ">
     <div class="h-full ml-14 mt-10 mb-14 md:ml-64">
       <div class="p-4">
-        <h1 class="text-2xl font-bold text-center">{{ $myevent['name'] }}</h1>
+        <h1 class="text-2xl font-bold text-center">{{ $myevent->name }}</h1>
       </div>
       <div class="grid grid-cols-3 ">
         @foreach ($boards as $index => $board)

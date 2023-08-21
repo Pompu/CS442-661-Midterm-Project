@@ -6,7 +6,7 @@
  </head>
 <div class="container">
     <div class="text-2xl font-semibold text-center">Create New Event</div>
-    <form action="{{ route('myevents.storeEvent',['organizer' => $organizer]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('myevents.storeEvent',['organizer' => $organizer, 'myevents' => $myevents]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="create-container ">
                     <div class="max-h-full w-60 mx-14 shadow-md border-grey-300 border flex flex-col justify-center items-center rounded-2xl hover:bg-gray-300 h-96" id="imageContainer">
