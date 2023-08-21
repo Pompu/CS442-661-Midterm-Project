@@ -53,6 +53,7 @@ Route::get('/events', [EventController::class, 'index'])->name("event");
 Route::get('/myevents/{event}/details', [EventController::class, 'getDetails'])->name("myevents.details");
 Route::get('/myevents/{event}/applicants', [EventController::class, 'applicants'])->name('myevents.applicants');
 
+
 Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
 Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");

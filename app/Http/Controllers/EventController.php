@@ -77,6 +77,8 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
+
+    
     public function applicants(Request $request)
     {
         $myevent = DB::table('events')->where('id', $request->myevent)->get();

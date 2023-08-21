@@ -37,7 +37,25 @@
                         <div>
                             <x-input-label for="email" :value="__('Email')" />
                             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" readonly value="{{$applicant->user->email}}" />
-                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                            
+                        </div>
+                        <div class="flex mb-4"></div>
+                        <div>
+                            <x-input-label for="Faculty" :value="__('Faculty')" />
+                            <x-text-input id="Faculty" name="Faculty" type="text" class="mt-1 block w-full" readonly value="{{$applicant->user->faculty}}" />
+                
+                        </div>
+                        <div class="flex mb-4"></div>
+                        <div>
+                            <x-input-label for="Age" :value="__('Age')" />
+                            <x-text-input id="Age" name="Age" type="text" class="mt-1 block w-full" readonly value="{{$applicant->user->age}} years old" />
+                
+                        </div>
+                        <div class="flex mb-4"></div>
+                        <div>
+                            <x-input-label for="Phone" :value="__('Phone')" />
+                            <x-text-input id="Phone" name="Phone" type="text" class="mt-1 block w-full" readonly value="{{$applicant->user->phone}}" />
+                
                         </div>
 
 
