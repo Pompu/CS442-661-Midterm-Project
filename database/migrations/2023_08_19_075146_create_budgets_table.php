@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Event::class, 'event_id');
             $table->float('cost');
-            $table->string('description')->nullable();
             $table->string('status')->default('inprogress'); //inprogress, completed
             $table->timestamps();
         });

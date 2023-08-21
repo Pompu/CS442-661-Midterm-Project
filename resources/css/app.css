@@ -162,6 +162,18 @@
     width: 400px;
     padding: 20px;
 }
+.event-certificate{
+    margin-bottom: 20px;
+    background-color: white;
+    color: rgb(31, 41, 55);
+    border-radius: 10px;
+    width: 500px;
+    height: 350px;
+    padding-top : 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+}
 
 .event-application-item {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
