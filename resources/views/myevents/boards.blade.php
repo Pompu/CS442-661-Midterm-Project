@@ -4,12 +4,12 @@
 @include('myevents.sidebar')
 
 <div>
-    <div class=" flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
-      <div class=" ml-5 mt-5 mb-5 md:ml-40">
-        <div class="px-10 m-6">
-          <h1 class="text-5xl font-bold text-center">{{ $myevent['name'] }}</h1>
+    <div class=" min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
+      <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
+        <div class="px-10">
+          <h1 class="text-2xl font-bold text-center">{{ $myevent['name'] }}</h1>
         </div>
-      <div class="grid grid-cols-3 gap-5">
+      <div class="grid grid-cols-3 ">
         @foreach ($boards as $index => $board)
           
           <div class="overflow-scroll max-h-[700px] max-w-md mx-5 p-4 bg-white rounded-lg border shadow-md sm:p-8 ">
