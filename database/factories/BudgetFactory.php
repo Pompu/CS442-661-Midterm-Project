@@ -17,9 +17,8 @@ class BudgetFactory extends Factory
     public function definition(): array
     {
         return [
-            'event_id' => fake()->numberBetween(1,20),
+            'event_id' => fake()->numberBetween(1,10),
             'cost' => fake()->randomFloat(2,0,10000),
-            'description' => fake()->sentence(10),
             'status' => fake()->randomElement(['completed', 'inprogress'])
         ];
     }
