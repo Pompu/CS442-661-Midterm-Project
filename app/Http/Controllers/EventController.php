@@ -173,6 +173,7 @@ class EventController extends Controller
 
     public function boards(Request $request)
     {
+        //dd($request);
         $myevent = DB::table('events')->where('id', $request->myevent)->get();
         $organize = Event::where('organizer_id', $request->organizer)->get();
         $boards = Board::where('organizer_id', $request->organizer)->get();
@@ -180,7 +181,8 @@ class EventController extends Controller
         return view('myevents.boards', [
             'boards' => $boards,
             'board_details' => $board_details,
-            'myevent' => $myevent[0],
+            'myevent_details' => $myevent[0],
+            'myevent' => $myevent[0]->id,
             'organize' => $organize,
             'organizer' => $request->organizer
         ]);
