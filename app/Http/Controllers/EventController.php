@@ -23,7 +23,7 @@ class EventController extends Controller
     {
         $currentDate = now();
         $events = Event::whereHas('budget', function ($query) {
-            $query->where('status', 'COMPLETED');
+            $query->where('status', 'completed');
         })->where('date', '>=', $currentDate)->get();
 
         $lastThreeEvents = $events->reverse()->take(3);

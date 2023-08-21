@@ -19,11 +19,9 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->numberBetween(1,User::count()),
             'organizer_id' =>fake()->numberBetween(1,Organizer::count()),
             'name' => fake()->realText($maxNbChars = 50),
-            'user_id' => 1,
-            'organizer_id' => 1,
+            //'user_id' => 1,
             'detail' => fake()->sentence(10),
             'address' => str_replace("\n", ' ', fake()->address),
             'province_id' => 10,
