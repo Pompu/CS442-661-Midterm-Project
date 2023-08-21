@@ -42,11 +42,6 @@
             <span class="font-semibold">ค่าใช้จ่าย : </span>
             <span>{{ $budget->cost }} บาท</span>
         </div>
-        <div style="margin-block:10px">
-            <span class="font-semibold">รายละเอียด : </span>
-            <span>{{ $budget->description }}</span>
-        </div>
-
         <div class="mx-auto flex justify-center" style="margin-block:30px">
             <form action="{{ route('budgets.update-status', ['budget' => $budget]) }}" method="POST">
                 @csrf
@@ -62,5 +57,5 @@
         </div>
     </div>
 
-    
+
 @endsection
