@@ -177,11 +177,12 @@ class EventController extends Controller
         $myevent = DB::table('events')->where('id', $request->myevent)->get();
         $organize = Event::where('organizer_id', $request->organizer)->get();
         $boards = Board::where('organizer_id', $request->organizer)->get();
+        
         $board_details = BoardDetail::whereIn('board_header_id', $boards->pluck('id'))->get();
         return view('myevents.boards', [
             'boards' => $boards,
             'board_details' => $board_details,
-            'myevent_details' => $myevent[0],
+            'myevent_details' => $myevent,
             'myevent' => $myevent[0]->id,
             'organize' => $organize,
             'organizer' => $request->organizer
@@ -265,23 +266,23 @@ class EventController extends Controller
         $budget->cost = $request->get('eventbudget');
         $budget->save();
 
-        // for ($i = 0; $i < 3; $i++) {
-        //     $board = new Board();
-        //     $board->organizer_id = $organizer->id;
-        //     if ($i == 0) {
-        //         $board->header = 'To Do';
-        //     } else if ($i == 1) {
-        //         $board->header = 'Ongoing';
-        //     } else {
-        //         $board->header = 'Finish';
-        //     }
-        //     $board->save();
-        //     $board_detail = new BoardDetail();
-        //     $board_detail->board_header_id = $board->id;
-        //     $board_detail->topic = 'topic' . $i;
-        //     $board_detail->detail = 'detail' . $i;
-        //     $board_detail->save();
-        // }
+         for ($i = 0; $i < 3; $i++) {
+             $board = new Board();
+             $board->organizer_id = $event->organizer_id;
+             if ($i == 0) {
+                 $board->header = 'To Do';
+             } else if ($i == 1) {
+                 $board->header = 'Ongoing';
+             } else {
+                 $board->header = 'Finish';
+             }
+             $board->save();
+             $board_detail = new BoardDetail();
+             $board_detail->board_header_id = $board->id;
+             $board_detail->topic = 'topic' . $i;
+            $board_detail->detail = 'Type your detail here' . $i;
+             $board_detail->save();
+         }
 
         $myevents = Event::where('organizer_id', $request->organizer)->get();
         return view('myevents.myevents', [ 
