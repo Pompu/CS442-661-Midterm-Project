@@ -7,10 +7,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\CertificationController;
+use App\Http\Controllers\CertificateController;
 use App\Models\Application;
 use App\Http\Controllers\OrganizerController;
-use App\Models\Organizer;
+use App\Models\Certificate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,10 +39,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/registered', [HistoryController::class, 'register'])->name("historys.register");
-Route::get('/registered/{event}', [HistoryController::class, 'registerDetail'])->name("historys.registerDetail");
+Route::middleware(['can:viewRegistered,App\Models\Event'])->group(function () {
+    Route::get('/registered', [HistoryController::class, 'register'])->name("historys.register");
+    Route::get('/registered/{event}', [HistoryController::class, 'registerDetail'])->name("historys.registerDetail");
+});
 
-Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
+Route::middleware(['can:viewAny,App\Models\Certificate'])->group(function () {
+    Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
+});
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
 Route::get('/myevents/{event}/details', [EventController::class, 'getDetails'])->name("myevents.details");
@@ -68,6 +72,7 @@ Route::post('/myevents/{event}/applicants/{applicant}/update', [ApplicationContr
 Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
 Route::post('/myevents/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
 
+Route::get('/myevents/certificate', [CertificateController::class, 'index'])->name('myevents.certificate');
 
 Route::middleware(['can:apply,event'])->group(function () {
     Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
