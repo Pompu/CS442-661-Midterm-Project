@@ -126,36 +126,4 @@
     </div>
 
 </div>   
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const boardContainers = document.querySelectorAll('.board-container');
-
-    let draggedItem = null;
-
-    boardContainers.forEach(container => {
-      container.addEventListener('dragstart', event => {
-        draggedItem = event.currentTarget;
-        event.dataTransfer.setData('text/plain', '');
-        event.currentTarget.classList.add('dragging');
-      });
-
-      container.addEventListener('dragend', event => {
-        draggedItem = null;
-        event.currentTarget.classList.remove('dragging');
-      });
-
-      container.addEventListener('dragover', event => {
-        event.preventDefault();
-      });
-
-      container.addEventListener('drop', event => {
-        event.preventDefault();
-        if (draggedItem) {
-          const targetContainer = event.currentTarget;
-          targetContainer.appendChild(draggedItem);
-        }
-      });
-    });
-  });
-</script>
 @endsection
