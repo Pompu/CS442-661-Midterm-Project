@@ -43,9 +43,9 @@ class ApplicationController extends Controller
         $myevent = $request->myevent;
         //dd($request->myevent);
         if ($action === 'accept') {
-            $applicant->status = 'Accepted';
+            $applicant->status = 'ACCEPT';
         } elseif ($action === 'reject') {
-            $applicant->status = 'Rejected';
+            $applicant->status = 'REJECT';
         }
         //dd($event);
         $applicant->save();
@@ -67,7 +67,7 @@ class ApplicationController extends Controller
     {
         
          $application = new Application();
-         $application->status = 'WATING';
+         $application->status = 'WAITING';
          $application->user_id = Auth::user()->id;
          $application->event_id = $event->id;
          $application->save();
