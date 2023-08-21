@@ -3,7 +3,7 @@
 @section('content')
 @include('myevents.sidebar')
 <div>
-  <div class=" min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-grey text-black ">
+  <div class=" min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
     <div class="h-full ml-14 mt-10 mb-14 md:ml-64">
       <div class="p-4">
         <h1 class="text-2xl font-bold text-center">{{ $myevent_details->name }}</h1>
