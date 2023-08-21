@@ -33,6 +33,6 @@ class BudgetController extends Controller
         $budget->status = 'completed';
         $budget->save();
 
-        return redirect()->route('budgets.show', ['budget' => $budget]);
+        return redirect()->route('budgets.index');
     }
 }
