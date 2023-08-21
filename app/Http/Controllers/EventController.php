@@ -116,33 +116,6 @@ class EventController extends Controller
         $provinces = DB::table('masterprovince')->get();
         return view('myevents.create-event', ['provinces' => $provinces]);
     }
-<<<<<<< HEAD
-    public function addPostit(Request $request) {
-        $myevent = $request->myevent;
-        $board = Board::find($request->board);
-        dd($request);
-        $board_details = BoardDetail::where('board_header_id', $board->id)->get();
-        return view('myevents.create-postit', [ 
-            'board' => $board ,
-            'board_details' => $board_details,
-            'myevent' => $myevent]);
-    }
-    public function storePostit(Request $request){
-        $myevent = $request->myevent;
-        $board = Board::where('organizer_id',$myevent['organizer_id'])->get();
-        //dd($board[0]->getAttributes()['id']);   
-        $board_detail = new BoardDetail();
-        $board_detail->board_header_id = $board[0]->getAttributes()['id']; 
-        $board_detail->topic = $request->get('board_detail_topic');
-        $board_detail->detail = $request->get('board_detail_details');
-        $board_detail->save();
-        dd($board[0]->getAttributes()['id']);
-        return redirect()->route('myevents.boards',['myevent' => $myevent,
-        'board'=> $request->board,
-        'board_details' => $request->board_details,
-        'organize'=>$request->organize
-            ]);
-=======
     public function addPostit(Request $request, $event)
     {
         //dd($request->myevent);
@@ -171,7 +144,6 @@ class EventController extends Controller
         return redirect()->route('myevents.boards', [
             'board' => $board, 'event' => $myevent['id'], 'myevent' => $myevent
         ]);
->>>>>>> 8c60b4446824302ecfb8dc1eb2ad398279e5857a
     }
 
     public function updatePostit(Request $request, $event)
@@ -207,14 +179,6 @@ class EventController extends Controller
             'organize' => $organize
         ]);
     }
-<<<<<<< HEAD
-    public function postitDestroy(Request $request)
-    {       
-        $board = Board::find($request->board);
-        $board_detail = BoardDetail::where('board_header_id', $board->id)->get();
-        $request->board_detail->delete();
-        return redirect()->route('myevents.boards');
-=======
 
     public function delete_postit(Request $request, $event)
     {
@@ -226,7 +190,6 @@ class EventController extends Controller
         return redirect()->route('myevents.boards', [
             'board' => $board, 'event' => $event, 'myevent' => $myevent
         ]);
->>>>>>> 8c60b4446824302ecfb8dc1eb2ad398279e5857a
     }
 
 
