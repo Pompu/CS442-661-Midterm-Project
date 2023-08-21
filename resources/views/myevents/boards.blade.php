@@ -22,13 +22,27 @@
               @else bg-green-400 @endif
               rounded-lg border shadow-md sm:p-8">
               <h3 class="text-xl font-bold leading-none text-gray-900">{{ $board->header }}</h3>
-              <a href=" {{ route('myevents.create-postit',['board' => $board])}}" class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">ADD</a>
+              <a href="{{ route('myevents.create-postit', ['board'=> $board])}}" class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">ADD</a>
             </div>
             
             @foreach ($board_details as $board_detail)
               @if ($board_detail->board_header_id == $board->id)
+              @if($board_detail->isEmpty())
+              <form class="inline-block"
+                action="{{ route('artists.destroy', ['artist' => $artist]) }}"
+                method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                  class="inline-block py-2 px-4 border border-gray-700 bg-pink-100">
+                  Delete
+                </button>
+
+                </form>
+              @endif
               <div role="list" class="p-2 divide-y divide-gray-200">
                 <div class="group bg-gray-900 p-4 transition-all duration-300 hover:rotate-1 lg:p-8"> 
+                  <a  class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80">X</a>
                   <div class="mb-3 text-right">
                     <button class="text-gray-50 transition-all duration-300 hover:scale-110 
                       @if ($index % 3 == 0)hover:text-yellow-600

@@ -51,6 +51,7 @@ Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict
 Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
 Route::get('/myevents/boards',[EventController::class, 'boards'])->name("myevents.boards");
 Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
+Route::post('/myevents/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
