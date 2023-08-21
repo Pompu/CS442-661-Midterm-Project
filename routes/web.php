@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ApplicationController;
+use App\Models\Application;
 use App\Http\Controllers\OrganizerController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,18 +47,33 @@ Route::middleware(['can:viewAny,App\Models\Certificate'])->group(function () {
 });
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
-Route::get('/myevents/details', [EventController::class, 'getDetails'])->name("myevents.details");
-Route::get('/myevents/applicants', [EventController::class, 'applicants'])->name("myevents.applicants");
+Route::get('/myevents/{event}/details', [EventController::class, 'getDetails'])->name("myevents.details");
+Route::get('/myevents/{event}/applicants', [EventController::class, 'applicants'])->name('myevents.applicants');
+
+
+
 
 Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
 Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
 Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
 Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
-Route::get('/myevents/boards',[EventController::class, 'boards'])->name("myevents.boards");
-Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
+
+Route::get('/myevents/{event}/boards',[EventController::class, 'boards'])->name("myevents.boards");
+
 
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+
+Route::get('/myevents/{event}/applicants/{applicant}/verify', [ApplicationController::class, 'verify'])->name("application.verify");
+Route::post('/myevents/{event}/applicants/{applicant}/update', [ApplicationController::class, 'update'])->name("application.update");
+
+
+
+
+Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
+Route::post('/myevents/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
+
+
 Route::middleware(['can:apply,event'])->group(function () {
     Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
     Route::post('/events/{event}/application', [ApplicationController::class, 'store'])->name('application.store');
@@ -68,7 +84,7 @@ Route::get('/myorgs/create-orgs', [OrganizerController::class, 'createOrgs'])->n
 Route::post('/myorgs/storeOrgs', [OrganizerController::class, 'storeOrg'])->name("myorgs.storeOrgs");
 Route::post('/myorgs/addmember', [OrganizerController::class, 'addMember'])->name("myorgs.orgs-member");
 
-Route::get('/verify', function () { return view('events.verify');});
+
 
 //Route::get('/boards', [BoardController::class,'index'])->name("board");
 Route::get('/boards/teams', [BoardController::class, 'viewTeamBoard'])->name("board.team");

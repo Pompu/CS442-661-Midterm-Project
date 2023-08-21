@@ -73,24 +73,24 @@ class EventController extends Controller
 
         return $filteredEvents;
     }
-    public function applicants(Request $request) {
-
-        $myevent = $request->myevent;
-        $applicants = Application::where('event_id', $myevent['id'])->get();
-        //$users = DB::table('users')->where('id', $applicants['user_id'])->get();
-        //$users = User::where('id', $applicants['user_id'])->get();
+    public function applicants(Request $request, $event)
+    {   $myevent = $request->myevent;
+        //dd($myevent);
+        $applicants = Application::where('event_id', $event)->get();
+        
         return view('myevents.applicants', [
-            'myevent' => $myevent,
+            'myevent' => $request->myevent,
             'applicants' => $applicants,
         ]);
     }
-
-    public function getDetails(Request $request) {
+    public function getDetails(Request $request,$event) {
 
         $myevent = $request->myevent;
+        //dd($myevent);
         $province = DB::table('masterprovince')->where('id', $myevent['province_id'])->get();
         $district = DB::table('masterdistrict')->where('id', $myevent['district_id'])->get();
         $subdistrict = DB::table('mastersubdistrict')->where('id', $myevent['subdistrict_id'])->get();
+        
         return view('myevents.details', [
             'myevent' => $myevent,
             'province' => $province[0]->name,
@@ -115,6 +115,19 @@ class EventController extends Controller
             'board' => $board ,
             'board_details' => $board_details]);
     }
+    public function storePostit(Request $request){
+
+        $board = Board::find($request->board);
+        $board_detail = new BoardDetail();
+        $board_detail->board_header_id = $board->id; 
+        $board_detail->topic = $request->get('board_detail_topic');
+        $board_detail->detail = $request->get('board_detail_details');
+        $board_detail->save();
+
+        return redirect()->route('myevents.boards',['board' => $board
+            ]);
+    }
+    
 
     public function boards(Request $request) {
         $myevent = $request->myevent;                   
@@ -128,6 +141,17 @@ class EventController extends Controller
             'organize' => $organize
         ]);
     }
+    public function boardDestroy(Request $request)
+    {       
+        $board = Board::find($request->board);
+        $board_details = BoardDetail::where('board_header_id', $board->id)->get();
+        return view('myevents.create-postit', [ 
+            'board' => $board ,
+            'board_details' => $board_details]);
+        $request->board_detail->delete();
+        return redirect()->route('myevents.boards');
+    }
+    
     
     /*public function updatePostitStatus(Request $request) {
         $myevent = $request->myevent;  
@@ -161,8 +185,8 @@ class EventController extends Controller
         return response()->json(['subdistricts' => $subdistricts]);
     }
     public function storeEvent(Request $request){
+        
         $path = $request->file('image')->store('event_images', 'public');
-
         /*$organizer = new Organizer();
         $organizer->user_id = Auth::user()->id;
         $organizer->name = $request->get('organizername');

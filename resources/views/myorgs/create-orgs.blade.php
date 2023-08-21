@@ -11,10 +11,10 @@
     
                 <div class="mb-5">
                     <label for="name" class="block mb-2 font-bold text-gray-700">Organizer Name</label>
-                    <input type="text" id="name" name="name" placeholder="Insert name" class="border border-gray-300 shadow p-3 w-full rounded-lg mb-">
+                    <input type="text" id="name" name="name" placeholder="Insert name" class="border border-gray-300 shadow p-3 w-full rounded mb- focus:ring-indigo-600">
                 </div>
 
-                <button type="submit" class="block w-full bg-teal-500 text-white font-bold p-4 rounded-lg">
+                <button type="submit" class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-full p-4 text-gray-700 text-sm font-bold leading-tight cursor-pointer">
                     Submit</button>
             </form>
         </div>
