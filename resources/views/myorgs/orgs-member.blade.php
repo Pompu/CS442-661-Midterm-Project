@@ -8,11 +8,11 @@
         <div class="bg-white p-10 rounded-lg shadow ">
                     <label for="name" class="block mb-2 font-bold text-gray-700">Organizer Name</label>
                     <!-- <span>{{$organizer->name}}</span>  -->
-                
+
                     @foreach($members as $member)
                     {{$member}}
                     @endforeach
-                    
+
                     <label for="name" class="block mb-2 font-bold text-gray-700">Add your member</label>
                     <div class="relative mb-6">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
@@ -46,10 +46,10 @@
                             <p class="text-gray-600 text-base">email</p>
                         </div>
                     </li>
-                
+
                 </ul>
-            </div>  
- 
+            </div>
+
         </div>
     </div>
 </div>

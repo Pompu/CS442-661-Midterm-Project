@@ -7,8 +7,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\CertificateController;
 use App\Models\Application;
 use App\Http\Controllers\OrganizerController;
+use App\Models\Certificate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +75,7 @@ Route::post('/myevents/{event}/applicants/{applicant}/update', [ApplicationContr
 Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
 Route::post('/myevents/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
 
+Route::get('/myevents/certificate', [CertificateController::class, 'index'])->name('myevents.certificate');
 
 Route::middleware(['can:apply,event'])->group(function () {
     Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
