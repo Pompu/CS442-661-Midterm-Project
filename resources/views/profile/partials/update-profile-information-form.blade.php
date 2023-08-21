@@ -69,6 +69,7 @@
                 <x-input-label for="last_name" :value="__('Last name')" />
                 <div class="mt-2">
                     <x-text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full" :value="old('name', $user->last_name)" required autocomplete="off" />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
             </div>
         </div>
@@ -78,7 +79,7 @@
                 @if($user->faculty)
                 <option selected> {{$user->faculty}}</option>
                 @else
-                <option selected> Select faculty </option>
+                <option selected> ---- </option>
                 @endif
 
                 <option value="engineering">Engineering</option>

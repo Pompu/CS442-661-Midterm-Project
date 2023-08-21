@@ -67,9 +67,10 @@ Route::post('/myevents/{event}/applicants/{applicant}/update', [ApplicationContr
 
 
 
-Route::get('/myevents/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
-Route::post('/myevents/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
-
+Route::get('/myevents/{event}/boards/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");
+Route::post('/myevents/{event}/boards/storePostit', [EventController::class, 'storePostit'])->name("myevents.storePostit");
+Route::put('/myevents//{event}/boards/update-postit', [EventController::class, 'updatePostit'])->name("myevents.updatePostit");
+Route::delete('/myevents/{event}/boards/destroy', [EventController::class, 'delete_postit'])->name("myevents.delete_postit");
 
 Route::middleware(['can:apply,event'])->group(function () {
     Route::get('/events/{event}/application', [ApplicationController::class, 'form'])->name('application.form');
