@@ -99,7 +99,7 @@
                                 id="addressdetail" name="addressdetail" type="text" placeholder="Address Detail">
                             </div> 
                             
-                            <input class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-80 py-2 px-3 text-gray-700 text-gray-700 text-sm font-bold leading-tight cursor-pointer" 
+                            <input class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-80 py-2 px-3 text-gray-700 text-sm font-bold leading-tight cursor-pointer" 
                         id="createSubmit" type="submit">
                         
                         </div>

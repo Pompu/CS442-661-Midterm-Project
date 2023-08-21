@@ -6,14 +6,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="flex justify-between items-center mb-4 p-4 rounded-lg bg-white">
+        <div class="flex justify-between items-center mb-4 p-4 r ">
             <div class="flex items-center">
                 <div class="text-2xl font-semibold">Event Applied</div>
             </div>
             <form id="filterForm" action="{{ route('historys.register') }}" method="get" class="flex items-center space-x-4">
                 @csrf
-                <label for="filter" class="font-semibold">Status:</label>
-                <select id="filter" name="filter" class="px-4 py-1 border rounded w-32">
+                <label for="filter" class="font-semibold text-sm">Status:</label>
+                <select id="filter" name="filter" class="font-semibold text-sm px-4 py-1 border-2 border-indigo-600 text-indigo-600 rounded-full w-24 focus:ring-0">
                     <option value="ALL" {{ request('filter') === 'ALL' ? 'selected' : '' }}>All</option>
                     <option value="WAITING" {{ request('filter') === 'WAITING' ? 'selected' : '' }}>Waiting</option>
                     <option value="ACCEPT" {{ request('filter') === 'ACCEPT' ? 'selected' : '' }}>Accept</option>
@@ -35,10 +35,10 @@
                         <h2 class="event-name">{{ $application->event->name }}</h2>
                         <p class="event-location" style="margin-block: 4px">{{ $application->event->province->name }} {{ $application->event->district->name }}</p>
                         <div>
-                            <span class="font-semibold">สถานะ: </span>
-                            @if($application->status === "WAITING") <span class="text-black">รอดำเนินการ</span>
-                            @elseif($application->status === "ACCEPT") <span class="text-green-600">ยืนยัน</span>
-                            @elseif($application->status === "REJECT") <span class="text-red-600">ปฏิเสธ</span>
+                            <span class="font-semibold">Status : </span>
+                            @if($application->status === "WAITING") <span class="text-black">Waiting</span>
+                            @elseif($application->status === "ACCEPT") <span class="text-green-600">Accept</span>
+                            @elseif($application->status === "REJECT") <span class="text-red-600">Reject</span>
                             @endif
                         </div>
                     </div>
