@@ -8,7 +8,6 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\OrganizerController;
-use App\Models\Organizer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,10 +36,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/registered', [HistoryController::class, 'register'])->name("historys.register");
-Route::get('/registered/{event}', [HistoryController::class, 'registerDetail'])->name("historys.registerDetail");
+Route::middleware(['can:viewRegistered,App\Models\Event'])->group(function () {
+    Route::get('/registered', [HistoryController::class, 'register'])->name("historys.register");
+    Route::get('/registered/{event}', [HistoryController::class, 'registerDetail'])->name("historys.registerDetail");
+});
 
-Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
+Route::middleware(['can:viewAny,App\Models\Certificate'])->group(function () {
+    Route::get('/certificate', [HistoryController::class, 'certificate'])->name("historys.certificate");
+});
 
 Route::get('/events', [EventController::class, 'index'])->name("event");
 Route::get('/myevents/details', [EventController::class, 'getDetails'])->name("myevents.details");

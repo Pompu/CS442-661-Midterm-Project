@@ -15,7 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Budget::class => BudgetPolicy::class,
-        Event::class => EventPolicy::class
+        Event::class => EventPolicy::class,
+        Certificate::class => CertificatePolicy::class,
     ];
 
     /**
