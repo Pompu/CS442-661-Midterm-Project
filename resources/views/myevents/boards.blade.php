@@ -6,7 +6,7 @@
   <div class=" min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
     <div class="h-full ml-14 mt-10 mb-14 md:ml-64">
       <div class="p-4">
-        <h1 class="text-2xl font-bold text-center">{{ $myevent_details->name }}</h1>
+        <h1 class="text-2xl font-bold text-center">Event Board</h1>
       </div>
       <div class="grid grid-cols-3 ">
         @foreach ($boards as $index => $board)
@@ -34,16 +34,6 @@
               </form>
               <div class="mb-1 text-right">
                 <div class="mx-auto flex justify-center" style="margin-block:30px">
-                  <form action="{{ route('myevents.updatePostit', ['board' => $board, 'event' => $myevent,'board_detail'=> $board_detail ,'myevent_details' => $myevent_details] ) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @if($index != 2)
-                    <button type="submit" name="action" value="shift_right" class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
-                      go next
-                    </button>
-                    @endif
-                    
-                  </form>
                 </div>
               </div>
               <div>
