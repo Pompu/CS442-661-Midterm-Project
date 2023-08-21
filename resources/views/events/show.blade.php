@@ -10,23 +10,23 @@
 
         <div class="grid-column:2">
             <div class = "event-detail-box">
-                <h1 class="font-semibold text-xl"> {{ $event->name }} </h1>
+                <h1 class="font-semibold text-xl text-white"> {{ $event->name }} </h1>
             </div>
 
             <div class="event-detail-box">
                 <div class="detail-container">
                     <span class="detail-icon"><img src="https://i.ibb.co/G7DMFWP/icons8-clock-48.png"></span>
-                    <span class="detail-info">{{ date('D d F Y', strtotime($event->date)) }}</span>
+                    <span class="detail-info text-white ">{{ date('D d F Y', strtotime($event->date)) }}</span>
                 </div>
                 <div class="detail-container">
                     <span class="detail-icon"><img src="https://i.ibb.co/TwgxD7N/icons8-location-48.png"></span>
-                    <span class="detail-info">
+                    <span class="detail-info text-white">
                         <p>{{ $event->address }} {{ $event->province->name }} {{ $event->district->name }} {{ $event->subdistrict->name }}</p>
                         <p>{{ $event->location_detail }}</p>
                     </span>
                 </div>
             </div>
-            <div class="event-detail-box">
+            <div class="event-detail-box text-white">
                 <p>{{ $event->detail }}</p>
             </div>
 
