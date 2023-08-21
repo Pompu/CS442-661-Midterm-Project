@@ -11,7 +11,12 @@ class EventPolicy
 
     public function apply(User $user, Event $event)
     {
-        return !$user->applications()->where('event_id', $event->id)->exists();
+        if($user->isMember()){
+            return !$user->applications()->where('event_id', $event->id)->exists();
+        }
+        else if($user->isOfficer()){
+            return false;
+        }
     }
 
 
