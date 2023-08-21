@@ -13,7 +13,7 @@
                 <!-- Author: FormBold Team -->
                 <!-- Learn More: https://formbold.com -->
                 <div class="mx-auto w-full max-w-[550px]">
-                <form action="{{ route('application.update', ['applicant' => $applicant['id'], 'event' => $myevent['id'] , 'myevent'=>$myevent ]) }}" method="POST">
+                <form action="{{ route('application.update', ['applicant' => $applicant['id'], 'event' => $myevent['id'] , 'myevent'=>$myevent ,'organizer' => $organizer ]) }}" method="POST">
                         @csrf
                         <div class="-mx-3 flex">
                             <div class="w-full px-3 sm:w-1/2">
