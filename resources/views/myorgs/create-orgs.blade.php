@@ -37,7 +37,8 @@
             </div>
         </div>
         <div class="bg-white p-10 rounded-lg shadow w-1/2 ml-20 hidden" id="container-2">
-            <div class="bg-white shadow-md rounded-md overflow-hidden max-w-lg mx-auto mt-auto justify-items-center ">
+            <div class="grid grid-rows-2 gap-4">
+            <div class="bg-white shadow-md rounded-md overflow-hidden max-w-lg w-full mx-auto mt-auto justify-items-center ">
                 <div class="bg-indigo-600 py-2 px-4">
                     <h2 class="font-semibold text-white">Member List </h2>
                 </div>
@@ -51,9 +52,10 @@
                 </ul>
             </div> 
             <a id="submitButton" href="{{ route('myorgs.myorgs') }}"
-                class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-60 p-3 text-gray-700 text-sm font-bold leading-tight cursor-pointer hidden">
-            submit
+                class="justify-items-center shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-full h-10 p-3 text-gray-700 text-center text-sm font-bold leading-tight cursor-pointer hidden">
+            Submit
             </a> 
+            </div>
         </div>
     </div>
 </div>
