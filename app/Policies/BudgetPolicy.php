@@ -12,4 +12,12 @@ class BudgetPolicy
     {
         return $user->isOfficer();
     }
+
+    public function editStatus(User $user, Budget $budget): bool
+    {
+        if($budget->status == 'inprogress'){
+            return true;
+        }
+        return false;
+    }
 }
