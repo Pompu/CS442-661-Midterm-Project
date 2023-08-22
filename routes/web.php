@@ -55,9 +55,12 @@ Route::get('/myevents/{event}/applicants', [EventController::class, 'applicants'
 
 Route::get('/myevents', [EventController::class, 'myEvent'])->name("myevents");
 Route::get('/myevents/create-event', [EventController::class, 'createEvent'])->name("myevents.create-event");
+Route::get('/myevents/edit-event', [EventController::class, 'editEvent'])->name("myevents.edit-event");
 Route::post('/myevents/getDistrict', [EventController::class, 'getDistrict'])->name("myevents.getDistrict");
 Route::post('/myevents/getSubdistrict', [EventController::class, 'getSubdistrict'])->name("myevents.getSubdistrict");
 Route::post('/myevents/storeEvent', [EventController::class, 'storeEvent'])->name("myevents.storeEvent");
+Route::post('/myevents/updateEvent', [EventController::class, 'updateEvent'])->name("myevents.updateEvent");
+Route::delete('/myevents/deleteEvent', [EventController::class, 'removeEvent'])->name("myevents.deleteEvent");
 
 Route::get('/myevents/{event}/boards',[EventController::class, 'boards'])->name("myevents.boards");
 
@@ -89,6 +92,8 @@ Route::middleware(['can:apply,event'])->group(function () {
 Route::get('/myorgs', [OrganizerController::class, 'myOrg'])->name("myorgs.myorgs");
 Route::get('/myorgs/create-orgs', [OrganizerController::class, 'createOrgs'])->name("myorgs.create-orgs");
 Route::post('/myorgs/storeOrgs', [OrganizerController::class, 'storeOrg'])->name("myorgs.storeOrgs");
+Route::get('/myorgs/edit-orgs', [OrganizerController::class, 'editOrgs'])->name("myorgs.edit-orgs");
+Route::post('/myorgs/updateOrgs', [OrganizerController::class, 'updateOrg'])->name("myorgs.updateOrgs");
 Route::post('/myorgs/addmember', [OrganizerController::class, 'addMember'])->name("myorgs.orgs-member");
 
 

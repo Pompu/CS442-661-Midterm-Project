@@ -9,6 +9,8 @@ use App\Models\Event;
 use App\Models\Organizer;
 use App\Models\OrganizerMember;
 use App\Models\Application;
+use App\Models\District;
+use App\Models\Subdistrict;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
@@ -102,8 +104,7 @@ class EventController extends Controller
             'province' => $province[0]->name,
             'district' => $district[0]->name,
             'subdistrict' => $subdistrict[0]->name,
-            'organizer' => $request->organizer,
-            'owner' =>  Auth::user()->name
+            'organizer' => $request->organizer
         ]);
     }
     public function myEvent(Request $request) {
@@ -259,7 +260,10 @@ class EventController extends Controller
         $event->district_id = $request->get('district');
         $event->subdistrict_id = $request->get('subdistrict');
         $event->location_detail = $request->get('addressdetail');
-        $event->image_path = $path;
+        if ($request->hasFile('image_path')) {
+            $path = $request->file('image')->store('event_images', 'public');
+            $event->image_path = $path;
+        }
         $event->save();
 
         $budget = new Budget();
@@ -287,6 +291,75 @@ class EventController extends Controller
 
         $myevents = Event::where('organizer_id', $request->organizer)->get();
         return view('myevents.myevents', [ 
+            'myevents' => $myevents,
+            'organizer' => $request->organizer
+        ]);
+    }
+    public function editEvent(Request $request) {
+        $provinces = DB::table('masterprovince')->get();
+        $myevent = DB::table('events')->where('id', $request->myevent)->get();
+        //dd($myevent[0]);
+        return view('myevents.edit-event', [
+            'provinces' => $provinces,
+            'organizer' => $request->organizer,
+            'myevent' => $request->myevent,
+            'myevent_details' => $myevent[0],
+            'district' => District::find($myevent[0]->district_id),
+            'subdistrict' => Subdistrict::find($myevent[0]->subdistrict_id),
+            'budget' => Budget::find($request->myevent)
+        ]);
+    }
+    public function updateEvent(Request $request) {
+/*         dd($request);
+        $request->validate([
+            'eventname' => ['required', 'unique:App\Models\Event,name'],
+            'eventdate' => ['required'],
+            'eventaddress' => ['required'],
+            'province' => ['required'],
+            'district' => ['required'],
+            'subdistrict' => ['required'],
+            'eventbudget' => ['required'],
+        ]); */
+
+        $event = Event::find($request->myevent);
+        $event->name = $request->get('eventname');
+        $event->detail = $request->get('eventdetail');
+        $event->date = $request->get('eventdate');
+        $event->address = $request->get('eventaddress');
+        $event->province_id = $request->get('province');
+        $event->district_id = $request->get('district');
+        $event->subdistrict_id = $request->get('subdistrict');
+        $event->location_detail = $request->get('addressdetail');
+        if ($request->hasFile('image_path')) {
+            $path = $request->file('image')->store('event_images', 'public');
+            $event->image_path = $path;
+        }
+        $event->save();
+
+        $budget = Budget::find($request->myevent);
+        $budget->cost = $request->get('eventbudget');
+        $budget->save();
+
+        $myevent = DB::table('events')->where('id', $request->myevent)->get();
+        $province = DB::table('masterprovince')->where('id', $myevent[0]->province_id)->get();
+        $district = DB::table('masterdistrict')->where('id', $myevent[0]->district_id)->get();
+        $subdistrict = DB::table('mastersubdistrict')->where('id', $myevent[0]->subdistrict_id)->get();
+
+        return view('myevents.details', [
+            'myevent_details' => $myevent[0],
+            'myevent' => $myevent[0]->id,
+            'province' => $province[0]->name,
+            'district' => $district[0]->name,
+            'subdistrict' => $subdistrict[0]->name,
+            'organizer' => $request->organizer
+        ]);
+    }
+    public function removeEvent(Request $request) {
+        $event = Event::find($request->myevent);
+        $event->delete();
+
+        $myevents = Event::where('organizer_id', $request->organizer)->get();
+        return view('myevents.myevents', [
             'myevents' => $myevents,
             'organizer' => $request->organizer
         ]);

@@ -29,6 +29,13 @@ class OrganizerController extends Controller
         return response()->json(['organizer' => $organizer]);
     }
 
+    public function editOrgs(Request $request) {
+        return view('myorgs.edit-orgs',[
+            'organizer' => Organizer::find($request->organizer),
+            'user' => Auth::user()
+        ]);
+    }
+
     public function addMember(Request $request){
         $email = $request->get('name');
         $user = DB::table('users')->where('email', $email)->get();
