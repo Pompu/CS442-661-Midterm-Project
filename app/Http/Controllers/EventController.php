@@ -164,18 +164,36 @@ class EventController extends Controller
     {
 
         $board = Board::find($request->board);
-        $board_detail = BoardDetail::find($request->board_detail);
+        //dd($board);
         $myevent = $request->myevent;
+        $board_detail = BoardDetail::find($request->board_detail);
+        $organizer =  Organizer::where('id', $request->organizer)->get(); //organizer_id
+        $boards = Board::where('organizer_id', $request->organizer)->get();
+        //dd($organizer);
         $action = $request->input('action');
         $myevent = $request->myevent;
         if ($action === 'shift_left') {
-            $board_detail->board_header_id  = '21';
+            if($board->header == 'To Do'){
+                $board_detail->board_header_id  = ($board->id) + 1;
+            }elseif ($board->header == 'Ongoing') {
+                $board_detail->board_header_id  = ($board->id) + 1;
+            }elseif ($board->header == 'Finish') {
+                $board_detail->board_header_id  = ($board->id) - 2;
+            }
         } elseif ($action === 'shift_right') {
-            $board_detail->board_header_id  = '23';
+            if($board->header == 'To Do'){
+                $board_detail->board_header_id  = ($board->id) + 2;
+            }elseif ($board->header == 'Ongoing') {
+                $board_detail->board_header_id  = ($board->id) - 1;
+            }elseif ($board->header == 'Finish') {
+                $board_detail->board_header_id  = ($board->id) - 1;
+            }
         }
         $board_detail->save();
+        $board_details = BoardDetail::where('board_header_id', $board->id)->get();
         return redirect()->route('myevents.boards', [
-            'board' => $board, 'event' => $event, 'myevent' => $myevent
+            'board' => $board, 'event' => $myevent, 'myevent' => $myevent,
+            'organizer' => $organizer[0],
         ]);
     }
 
