@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        
+
         <h3 class=" flex justify-center text-gray-800 dark:text-white  font-lg font-bold  leading-tight mb-4">{{ $event->name }}</h3>
 
         <div>

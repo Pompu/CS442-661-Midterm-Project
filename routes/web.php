@@ -83,7 +83,7 @@ Route::middleware(['can:manageEvent,App\Models\Organizer'])->group(function () {
     Route::get('/myevents/{event}/details', [EventController::class, 'getDetails'])->name("myevents.details");
     Route::get('/myevents/{event}/applicants', [EventController::class, 'applicants'])->name('myevents.applicants');
     Route::get('/myevents/{event}/applicants/{applicant}/verify', [ApplicationController::class, 'verify'])->name("application.verify");
-    Route::post('/myevents/{event}/applicants/{applicant}/update', [ApplicationController::class, 'update'])->name("application.update");
+    Route::post('/applicants/{applicant}/update', [ApplicationController::class, 'update'])->name("application.update");
 
     Route::get('/myevents/{event}/boards',[EventController::class, 'boards'])->name("myevents.boards");
     Route::get('/myevents/{event}/boards/create-postit',[EventController::class, 'addPostit'])->name("myevents.create-postit");

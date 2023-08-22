@@ -29,7 +29,7 @@ class EventFactory extends Factory
             'subdistrict_id' => 100101,
             'location_detail' => fake()->sentence(),
             'date' => fake()->dateTimeBetween('-1 years', '+1 years'),
-            'image_path' => "https://s3-ap-southeast-1.amazonaws.com/tm-img-poster-event/897834403ad711ee911101117567899b.jpg?opt=mild&resize=w200,h290"
+            'image_path' => "event_images/default.png"
         ];
     }
 }
