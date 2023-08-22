@@ -33,6 +33,5 @@ class DatabaseSeeder extends Seeder
         $this->call(TeamMemberSeeder::class);
         $this->call(BoardSeeder::class);
         $this->call(BoardDetailSeeder::class);
-        $this->call(CertificateSeeder::class);
     }
 }
