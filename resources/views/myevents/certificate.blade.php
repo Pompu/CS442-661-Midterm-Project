@@ -7,16 +7,16 @@
 </head>
 <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white text-black ">
     <div class="event-certificate border shadow-md text-base mx-auto">
-        
+
                 <form action="{{ route('myevents.uploadImage') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                
+
                     <input type="hidden" name="myevent" value="{{ $myevent }}">
-                    
+
                     <label class="grid grid-rows-2 gap-y-2"title="Click to upload" for="certificate_button"> <!-- Updated ID -->
-                        <div class="group/img shadow-md border-black border animate-[fadeIn_2s]">
+                        <div class="group/img shadow-md border-black border animate-[fadeIn_2s] event-image">
                             <img type="file" name="preview" id="preview" class="w-full h-full mb-8object-cover opacity-90 group-hover/img:opacity-100"
-                                src="#">
+                                src="{{ asset('storage/event_images/default.png') }}">
                         </div>
                         <input hidden="" type="file" name="certificate" id="certificate_button" onchange="loadFile(event)"> <!-- Updated ID -->
                         <div class="justify-self-center"> <x-primary-button>Upload</x-primary-button></div>

@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <h1 class=" flex justify-center text-gray-800 dark:text-white  font-lg font-bold  leading-tight mb-4"> Apply to: </h1>
+            
                 <h2 class=" flex justify-center text-gray-800 dark:text-white  font-lg font-bold  leading-tight mb-4">{{ $event->name }}</h2>
 
                 <div>

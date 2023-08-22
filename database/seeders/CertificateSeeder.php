@@ -13,15 +13,15 @@ class CertificateSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i=0; $i < 30; $i++) { 
+        for ($i=0; $i < 30; $i++) {
             $certificate = new Certificate();
             $certificate->user_id = $i;
-            $certificate->certificate = "https://cdn.discordapp.com/attachments/982119215723053096/1142161915104202932/B1ZIgijJVCiOAAAAAElFTkSuQmCC.png";
+            $certificate->certificate = "event_images/default.png";
             $certificate->save();
 
             $certificate = new Certificate();
             $certificate->user_id = $i;
-            $certificate->certificate = "https://cdn.discordapp.com/attachments/982119215723053096/1142161915343274024/2Q.png";
+            $certificate->certificate = "event_images/default.png";
             $certificate->save();
         }
     }

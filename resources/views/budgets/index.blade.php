@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="flex justify-between items-center mb-4 p-4 rounded-lg bg-white">
+        <div class="flex justify-between items-center mb-4 p-4 rounded-lg">
             <div class="flex items-center">
                 <div class="text-2xl font-semibold">Event Budget</div>
             </div>
