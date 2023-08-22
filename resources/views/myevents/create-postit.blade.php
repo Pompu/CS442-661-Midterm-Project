@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-5">
                     <label for="name" class="block mb-2 font-bold text-gray-700">Detail</label>
-                    <input type="text" id="board_detail_details" name="board_detail_details" placeholder="Insert detail" class="border border-gray-300 shadow p-3 w-full rounded-lg mb-">
+                    <textarea type="text" id="board_detail_details" name="board_detail_details" placeholder="Insert detail" class="border border-gray-300 shadow p-3 w-full rounded-lg mb-"></textarea>
                 </div>
 
                 <button type="submit" class="block w-full bg-teal-500 text-white font-bold p-4 rounded-lg">

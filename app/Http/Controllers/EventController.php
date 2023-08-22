@@ -176,20 +176,16 @@ class EventController extends Controller
         $action = $request->input('action');
         $myevent = $request->myevent;
         if ($action === 'shift_left') {
-            if($board->header == 'To Do'){
-                $board_detail->board_header_id  = ($board->id) + 1;
-            }elseif ($board->header == 'Ongoing') {
-                $board_detail->board_header_id  = ($board->id) + 1;
+            if ($board->header == 'Ongoing') {
+                $board_detail->board_header_id  = ($board->id) - 1;
             }elseif ($board->header == 'Finish') {
-                $board_detail->board_header_id  = ($board->id) - 2;
+                $board_detail->board_header_id  = ($board->id) - 1;
             }
         } elseif ($action === 'shift_right') {
             if($board->header == 'To Do'){
-                $board_detail->board_header_id  = ($board->id) + 2;
+                $board_detail->board_header_id  = ($board->id) + 1;
             }elseif ($board->header == 'Ongoing') {
-                $board_detail->board_header_id  = ($board->id) - 1;
-            }elseif ($board->header == 'Finish') {
-                $board_detail->board_header_id  = ($board->id) - 1;
+                $board_detail->board_header_id  = ($board->id) + 1;
             }
         }
         $board_detail->save();
