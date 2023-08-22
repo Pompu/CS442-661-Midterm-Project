@@ -24,11 +24,11 @@
         </div>
 
         <div class="budget-container">
-            @foreach (array_combine($budgets,events) as $budget => $event)
+            @foreach ($budgets as $budget)
             <a href="{{ route('budgets.show', ['budget' => $budget]) }}">
                 <div class="budget-item">
                     <div class="budget-image">
-                        <img src="{{ asset('storage/' . $events->image_path) }}" alt="{{ $budget->event->name }}">
+                        <img src="{{ asset('storage/' . $budget->event->image_path) }}" alt="{{ $budget->event->name }}">
                     </div>
                     <div class="budget-detail">
                         <h2 class="text-xl font-semibold">{{ $budget->event->name }}</h2>
