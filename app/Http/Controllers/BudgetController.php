@@ -12,18 +12,14 @@ class BudgetController extends Controller
         $status = $request->input('status', 'ALL');
 
         if($status === 'ALL'){
-            $budgets = Budget::get();;
-            $events = Event::get();
+            $budgets = Budget::get();
         }
         else{
             $budgets = Budget::where('status', $status)->get();
-            
-            // $events = $budgets->with('event');
         }
 
         return view('budgets.index', [
             'budgets' => $budgets,
-            'events' => $events
         ]);
     }
 
@@ -36,7 +32,6 @@ class BudgetController extends Controller
 
     public function updateStatus(Request $request, Budget $budget)
     {
-        // dd($request->value);
         $status = $request->input('status');
         $budget->status = $status;
         $budget->save();
