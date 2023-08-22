@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Budget;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class BudgetController extends Controller
@@ -11,13 +12,16 @@ class BudgetController extends Controller
         $status = $request->input('status', 'ALL');
 
         if($status === 'ALL'){
-            $budgets = Budget::get();
+            $budgets = Budget::get();;
+            $events = Event::get();
         }
         else{
             $budgets = Budget::where('status', $status)->get();
         }
+
         return view('budgets.index', [
-            'budgets' => $budgets
+            'budgets' => $budgets,
+            'events' => $events
         ]);
     }
 
