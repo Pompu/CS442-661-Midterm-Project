@@ -25,11 +25,11 @@
                                 Event Detail : {{ $myevent_details->detail }}
                             </label>
                         </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="eventName">
-                                Owner : {{ $owner }}
-                            </label> 
-                        </div>
+
+                        <a href=" {{ route('myevents.edit-event',['organizer' => $organizer, 'myevent' => $myevent]) }}" 
+                            class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-full p-2 text-gray-700 text-sm font-bold leading-tight cursor-pointer" method="POST" >
+                            Edit Event
+                        </a>                       
                     </div>
                     <div class="event-detail-myevents border shadow-md text-base">
                         <div class="mb-4">

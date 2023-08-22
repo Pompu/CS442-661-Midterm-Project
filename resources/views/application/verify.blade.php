@@ -63,10 +63,12 @@
 
                         <div class="flex mb-8"></div>
                         <div class="flex justify-center">
+                            @if(($applicant->status == 'WAITING'))
                             <div class="flex justify-center space-x-4">
                                 <button type="submit" name="action" value="accept" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Accept</button>
                                 <button type="submit" name="action" value="reject" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Reject</button>
                             </div>
+                            @endif
                         </div>
                     </form>
 

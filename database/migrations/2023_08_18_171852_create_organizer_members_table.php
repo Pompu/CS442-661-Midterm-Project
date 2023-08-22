@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Organizer::class,'organizer_id');
             $table->foreignIdFor(User::class,'user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
