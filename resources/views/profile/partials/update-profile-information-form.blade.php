@@ -55,6 +55,7 @@
                 <x-input-label for="age" :value="__('Age')" />
                 <div class="mt-2">
                     <x-text-input id="age" name="age" type="number" class="mt-1 block w-full" :value="old('age', $user->age)" required autofocus autocomplete="name" />
+
                 </div>
             </div>
         </div>
@@ -75,7 +76,7 @@
         </div>
         @if($user->role == 'MEMBER')
         <div class="sm:col-span-3">
-            
+
             <x-input-label for="faculty" :value="__('Select faculty')" />
             <select id="faculty" name="faculty" value="{{old('about', $user->faculty)}}" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 @if($user->faculty)
@@ -129,7 +130,9 @@
         </div>
         <div class="sm:col-span-3">
             <x-input-label for="phone" :value="__('Phone')" />
+
             <input type="tel" id="phone" name="phone" class=" mt-2 block p-2.5 w-full text-sm  rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" value="{{old('phone', $user->phone)}}" required>
+            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
         <div class="sm:col-span-3">
             <x-input-label for="about" :value="__('About')" />

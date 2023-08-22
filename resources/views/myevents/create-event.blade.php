@@ -38,8 +38,9 @@
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventdetail">
                                 Event Detail
                                 </label>
-                                <input required class="shadow appearance-none border-gray-300 rounded w-80 h-40 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600"
-                                id="eventdetail" name="eventdetail" type="text" placeholder="Event Detail">
+                                <textarea name="eventdetail" id="eventdetail" type="text" rows="4"
+                                class="block shadow appearance-none text-gray-700 rounded w-80 h-40 py-2 px-3 border-gray-300 focus:ring-violet-600"
+                                placeholder="Write your event detail here..."></textarea>
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventdate">
@@ -99,8 +100,10 @@
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="addressdetail">
                                     More Address
                                 </label>
-                                <input class="shadow appearance-none border-gray-300 rounded w-80 py-2 h-20 px-3 text-gray-700 leading-tight focus:ring-violet-600"
-                                id="addressdetail" name="addressdetail" type="text" placeholder="Address Detail">
+                                <textarea id="addressdetail" name="addressdetail" type="text" rows="4"
+                                class="block shadow appearance-none text-gray-700 rounded w-80 h-20 py-2 px-3 border-gray-300 focus:ring-violet-600"
+                                placeholder="Address Detail"></textarea>
+
                             </div>
 
                             <input class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-80 py-2 px-3 text-gray-700 text-sm font-bold leading-tight cursor-pointer"

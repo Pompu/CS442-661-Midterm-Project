@@ -80,7 +80,7 @@ class EventController extends Controller
         return $filteredEvents;
     }
 
-    
+
     public function applicants(Request $request)
     {
         $myevent = DB::table('events')->where('id', $request->myevent)->get();
@@ -137,11 +137,11 @@ class EventController extends Controller
         return view('myevents.create-postit', [
             'board' => $board,
             'board_details' => $board_details,
-            //'event' => $event, 
+            //'event' => $event,
             'myevent' => $myevent[0]->id,
             'organizer' => $organizer[0],
-            
-            
+
+
         ]);
     }
     public function storePostit(Request $request)
@@ -231,7 +231,7 @@ class EventController extends Controller
     }
 
 
-    
+
     public function getDistrict(Request $request)
     {
         $selectedValue = $request->input('province_id');
@@ -275,7 +275,7 @@ class EventController extends Controller
         $event->district_id = $request->get('district');
         $event->subdistrict_id = $request->get('subdistrict');
         $event->location_detail = $request->get('addressdetail');
-        if ($request->hasFile('image_path')) {
+        if ($request->hasFile('image')) {
             $path = $request->file('image')->store('event_images', 'public');
             $event->image_path = $path;
         }
@@ -286,9 +286,9 @@ class EventController extends Controller
         $budget->cost = $request->get('eventbudget');
         $budget->save();
 
-        
+
         $myevents = Event::where('organizer_id', $request->organizer)->get();
-        return view('myevents.myevents', [ 
+        return view('myevents.myevents', [
             'myevents' => $myevents,
             'organizer' => $request->organizer
         ]);
@@ -328,15 +328,17 @@ class EventController extends Controller
         $event->district_id = $request->get('district');
         $event->subdistrict_id = $request->get('subdistrict');
         $event->location_detail = $request->get('addressdetail');
-        if ($request->hasFile('image_path')) {
+        if ($request->hasFile('image')) {
             $path = $request->file('image')->store('event_images', 'public');
             $event->image_path = $path;
         }
         $event->save();
 
-        $budget = Budget::find($request->myevent);
-        $budget->cost = $request->get('eventbudget');
-        $budget->save();
+        if ($request->get('eventbudget')) {
+            $budget = Budget::find($request->myevent);
+            $budget->cost = $request->get('eventbudget');
+            $budget->save();
+        }
 
         $myevent = DB::table('events')->where('id', $request->myevent)->get();
         $province = DB::table('masterprovince')->where('id', $myevent[0]->province_id)->get();

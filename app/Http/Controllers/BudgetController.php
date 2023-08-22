@@ -17,6 +17,8 @@ class BudgetController extends Controller
         }
         else{
             $budgets = Budget::where('status', $status)->get();
+            
+            // $events = $budgets->with('event');
         }
 
         return view('budgets.index', [
