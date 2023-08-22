@@ -19,7 +19,7 @@
               @else bg-green-400 @endif
               rounded-lg border shadow-md sm:p-8">
             <h3 class="text-xl center font-bold leading-none text-gray-900">{{ $board->header }}</h3>
-            <a href="{{ route('myevents.create-postit', ['board'=> $board,'event' => $myevent, 'myevent_details' => $myevent_details] )}}" class="font-medium text-blue-800 hover:bg-blue-800 hover:text-white transition-colors duration-300 rounded-full p-3">ADD</a>
+            <a href="{{ route('myevents.create-postit', ['board'=> $board,'event' => $myevent, 'myevent_details' => $myevent_details, 'organizer' => $organizer ] )}}" class="font-medium text-blue-800 hover:bg-blue-800 hover:text-white transition-colors duration-300 rounded-full p-3">ADD</a>
           </div>
 
           @foreach ($board_details as $board_detail)
@@ -27,7 +27,7 @@
 
           <div role="list" class="p-2 divide-y divide-gray-200">
             <div class="group bg-gray-900 p-6 transition-all duration-300 hover:rotate-1 lg:p-8">
-              <form action="{{ route('myevents.delete_postit', ['board' => $board, 'event' => $myevent,'board_detail'=> $board_detail ,'myevent_details' => $myevent_details] ) }}" method="POST">
+            <form action="{{ route('myevents.delete_postit', ['board' => $board, 'event' => $myevent,'board_detail'=> $board_detail ,'myevent_details' => $myevent_details, 'organizer' => $organizer] ) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger text-red-400 hover:bg-red-400 hover:text-white transition-colors duration-300 rounded-full p-2">Delete</button>

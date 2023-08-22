@@ -35,6 +35,7 @@ class ApplicationController extends Controller
             'myevent' => $myevent,
             'applicant' => $applicant,
             'organizer' => $organizer[0]
+            
         ]);
     }
     public function update(Request $request,$applicant)

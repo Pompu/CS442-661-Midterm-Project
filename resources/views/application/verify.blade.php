@@ -37,7 +37,25 @@
                         <div>
                             <x-input-label for="email" :value="__('Email')" />
                             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" readonly value="{{$applicant->user->email}}" />
-                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                            
+                        </div>
+                        <div class="flex mb-4"></div>
+                        <div>
+                            <x-input-label for="Faculty" :value="__('Faculty')" />
+                            <x-text-input id="Faculty" name="Faculty" type="text" class="mt-1 block w-full" readonly value="{{$applicant->user->faculty}}" />
+                
+                        </div>
+                        <div class="flex mb-4"></div>
+                        <div>
+                            <x-input-label for="Age" :value="__('Age')" />
+                            <x-text-input id="Age" name="Age" type="text" class="mt-1 block w-full" readonly value="{{$applicant->user->age}} years old" />
+                
+                        </div>
+                        <div class="flex mb-4"></div>
+                        <div>
+                            <x-input-label for="Phone" :value="__('Phone')" />
+                            <x-text-input id="Phone" name="Phone" type="text" class="mt-1 block w-full" readonly value="{{$applicant->user->phone}}" />
+                
                         </div>
 
 
@@ -45,10 +63,12 @@
 
                         <div class="flex mb-8"></div>
                         <div class="flex justify-center">
+                            @if(($applicant->status == 'WAITING'))
                             <div class="flex justify-center space-x-4">
                                 <button type="submit" name="action" value="accept" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Accept</button>
                                 <button type="submit" name="action" value="reject" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Reject</button>
                             </div>
+                            @endif
                         </div>
                     </form>
 
