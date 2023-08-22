@@ -19,7 +19,7 @@ class BudgetFactory extends Factory
         return [
             'event_id' => 1,
             'cost' => fake()->randomFloat(2,0,10000),
-            'status' => fake()->randomElement(['completed', 'inprogress'])
+            'status' => fake()->randomElement(['inprogress', 'completed', 'rejected'])
         ];
     }
 }

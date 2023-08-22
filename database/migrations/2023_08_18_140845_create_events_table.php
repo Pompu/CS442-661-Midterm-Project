@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Certificate;
 use App\Models\District;
 use App\Models\Organizer;
 use App\Models\Province;

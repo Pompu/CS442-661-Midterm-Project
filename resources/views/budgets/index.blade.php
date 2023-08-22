@@ -19,6 +19,7 @@
                     <option value="ALL" {{ request('status') === 'ALL' ? 'selected' : '' }}>All</option>
                     <option value="inprogress" {{ request('status') === 'inprogress' ? 'selected' : '' }}>In Progress</option>
                     <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Completed</option>
+                    <option value="rejected" {{ request('status') === 'rejected' ? 'selected' : '' }}>Rejected</option>
                 </select>
             </form>
         </div>
@@ -35,8 +36,9 @@
                         <div>
                             <div>
                                 <span class="font-semibold">สถานะ: </span>
-                                @if($budget->status === "inprogress") <span class="text-red-600">รอดำเนินการ</span>
-                                @elseif($budget->status === "completed") <span class="text-green-600">ดำเนินการแล้ว</span>
+                                @if($budget->status === "inprogress") <span class="text-black">รอดำเนินการ</span>
+                                @elseif($budget->status === "completed") <span class="text-green-600">ยืนยัน</span>
+                                @elseif($budget->status === "rejected") <span class="text-red-600">ปฏิเสธ</span>
                                 @endif
                             </div>
                             <div>

@@ -24,40 +24,37 @@
                         {{ $message }}
                     </div>
                     @enderror
-                    
-                
+
+
                 <div class="ml-20">
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventname">
                                 Event Name
                                 </label>
-                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600"
                                 id="eventname" name="eventname" type="text" placeholder="Event Name">
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventdetail">
                                 Event Detail
                                 </label>
-                                <textarea name="eventdetail" id="eventdetail" rows="4"
-                                class="block shadow appearance-none text-gray-700 rounded w-80 h-40 py-2 px-3 border-gray-300 focus:ring-violet-600" 
-                                placeholder="Write your event detail here..."></textarea>
-
-                                
-                            </div>        
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 h-40 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600"
+                                id="eventdetail" name="eventdetail" type="text" placeholder="Event Detail">
+                            </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventdate">
                                 Event Date
                                 </label>
-                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600"
                                 id="eventdate" name="eventdate" type="datetime-local" placeholder="Event Date">
-                            </div>        
+                            </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventbudget">
                                 Event Budget
                                 </label>
-                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600"
                                 id="eventbudget" name="eventbudget" type="number" placeholder="Event Budget">
-                            </div>        
+                            </div>
                         </div>
 
                         <div class="ml-40">
@@ -65,51 +62,50 @@
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="eventaddress">
                                     Address
                                 </label>
-                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600" 
+                                <input required class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600"
                                 id="eventaddress" name="eventaddress" type="text" placeholder="Address">
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="province">
                                     Province
                                 </label>
-                                <select class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 cursor-pointer" 
+                                <select class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 cursor-pointer"
                                 name="province" id="province">
                                 <option value="" disabled selected>Select Province</option>
                                     @foreach ($provinces as $province)
                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>   
+                            </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="district">
                                     District
                                 </label>
-                                <select class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 cursor-pointer" 
+                                <select class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 cursor-pointer"
                                 name="district" id="district">
                                     <option value="" disabled selected>Select District</option>
                                 </select>
-                            </div> 
+                            </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="subdistrict">
                                     Subdistrict
                                 </label>
-                                <select class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 cursor-pointer" 
+                                <select class="shadow appearance-none border-gray-300 rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:ring-violet-600 cursor-pointer"
                                 name="subdistrict" id="subdistrict">
                                     <option value="" disabled selected>Select Subdistrict</option>
                                 </select>
-                            </div>     
+                            </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="addressdetail">
                                     More Address
                                 </label>
-                                <textarea id="addressdetail" name="addressdetail" type="text" rows="4"
-                                class="block shadow appearance-none text-gray-700 rounded w-80 h-20 py-2 px-3 border-gray-300 focus:ring-violet-600" 
-                                placeholder="Address Detail"></textarea>
-                            </div> 
-                            
-                            <input class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-80 py-2 px-3 text-gray-700 text-sm font-bold leading-tight cursor-pointer" 
+                                <input class="shadow appearance-none border-gray-300 rounded w-80 py-2 h-20 px-3 text-gray-700 leading-tight focus:ring-violet-600"
+                                id="addressdetail" name="addressdetail" type="text" placeholder="Address Detail">
+                            </div>
+
+                            <input class="shadow-lg bg-teal-500 hover:bg-teal-400 appearance-none border rounded w-80 py-2 px-3 text-gray-700 text-sm font-bold leading-tight cursor-pointer"
                         id="createSubmit" type="submit">
-                        
+
                         </div>
             </div>
     </form>
@@ -144,7 +140,7 @@
     $(document).ready(function() {
         $('#province').on('change', function() {
             var selectedProvinceId = $(this).val();
-            
+
             $.ajax({
                 url: '{{ route('myevents.getDistrict') }}',
                 type: 'POST',
@@ -181,7 +177,7 @@
                 success: function(response) {
                     var subdistrictSelect = $('#subdistrict');
                     subdistrictSelect.empty();
-                    
+
                     subdistrictSelect.append($('<option disabled selected></option>').val('').text('Select Subdistrict'));
 
                     $.each(response.subdistricts, function(key, subdistrict) {

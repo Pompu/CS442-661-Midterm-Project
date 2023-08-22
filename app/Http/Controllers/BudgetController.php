@@ -34,7 +34,9 @@ class BudgetController extends Controller
 
     public function updateStatus(Request $request, Budget $budget)
     {
-        $budget->status = 'completed';
+        // dd($request->value);
+        $status = $request->input('status');
+        $budget->status = $status;
         $budget->save();
 
         return redirect()->route('budgets.index');

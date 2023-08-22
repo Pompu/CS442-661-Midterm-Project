@@ -35,23 +35,31 @@
         <div style="margin-block:10px">
             <span class="font-semibold">สถานะ : </span>
             @if($budget->status === "inprogress") <span>รอดำเนินการ</span>
-            @elseif($budget->status === "completed") <span>ดำเนินการแล้ว</span>
+            @elseif($budget->status === "completed") <span>ยืนยัน</span>
+            @elseif($budget->status === "rejected") <span>ปฏิเสธ</span>
             @endif
         </div>
         <div style="margin-block:10px">
             <span class="font-semibold">ค่าใช้จ่าย : </span>
             <span>{{ $budget->cost }} บาท</span>
         </div>
+
+        @can('editStatus', $budget)
         <div class="mx-auto flex justify-center" style="margin-block:30px">
             <form action="{{ route('budgets.update-status', ['budget' => $budget]) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <button type="submit" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">
+                <button type="submit" value="completed" name="status" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">
                     <div class="absolute inset-0 w-3 bg-purple-700 transition-all duration-250 ease-out group-hover:w-full"></div>
-                    <span class="relative group-hover:text-white">ยืนยันการเบิก</span>
+                    <span class="relative group-hover:text-white">accept</span>
+                </button>
+                <button type="submit" value="rejected" name="status" class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" style="background-color: rgb(31, 41, 55); color: white;">
+                    <div class="absolute inset-0 w-3 bg-purple-700 transition-all duration-250 ease-out group-hover:w-full"></div>
+                    <span class="relative group-hover:text-white">reject</span>
                 </button>
             </form>
         </div>
+        @endcan
     </div>
             </div>
         </div>
